@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 namespace EIR
@@ -8,42 +8,47 @@ namespace EIR
     {
         #region Singleton
         private static Dev _instance;
-        public static Dev Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = FindObjectOfType<Dev>();
-                    if (_instance == null) print("Dev not Instanced");
-                }
-                return _instance;
-            }
-            private set { }
-        }
+        public static Dev Instance { get => _instance; private set { } }
         #endregion
 
         [Header("Properties")]
         public bool isDevMode = true;
         public bool useCustomUserModel = true;
-        public UserModel customUserModel;
+        public PlayerDataModel customPlayerModel;
+        public GameObject gameManagerPrefab;
 
         private void Awake()
         {
-            if (_instance == null)
+            if (_instance != null) Destroy(gameObject);
+            else
             {
                 _instance = this;
-                DontDestroyOnLoad(this);
+                DontDestroyOnLoad(gameObject);
             }
-            else Destroy(gameObject);
         }
 
         private void Start()
         {
+            StartCoroutine(IDevStart());
+        }
+
+        IEnumerator IDevStart()
+        {
             if (isDevMode)
             {
+                if (GameManager.Instance == null) Instantiate(gameManagerPrefab);
                 print("<color=red> Dev Mode</color>");
             }
+
+            yield return new WaitUntil(() => GameManager.Instance != null);
+
+            if (GameManager.SceneState == SceneState.MAINMENU)
+                GameManager.Instance.initialize();
+            else
+            {
+                GameManager.Instance.playerDataModel = customPlayerModel;
+            }
+                
         }
     }
 }
