@@ -16,9 +16,9 @@ namespace EIR
             ui_Form.gameObject.SetActive(false);
         }
 
-        public void spawnForm() => 
-            ui_Form.gameObject.SetActive(true);
+        public void FormSetActive(bool value) => 
+            ui_Form.gameObject.SetActive(value);
 
-        public void setUserName(string _username) => userName.text = _username;
+        public void UpdateUserName() => userName.text = GameManager.Instance.playerDataModel.userName;
     }
 }

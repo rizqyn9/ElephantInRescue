@@ -8,6 +8,8 @@ namespace EIR
         [Header("Debug")]
         [SerializeField] string saveFilePath;
 
+        public PlayerDataModel playerDataModel => GameManager.Instance.playerDataModel;
+
         public PlayerDataModel load()
         {
             saveFilePath = Dev.Instance.isDevMode ?
@@ -19,19 +21,29 @@ namespace EIR
             {
                 try
                 {
-                    return JsonUtility.FromJson<PlayerDataModel>(File.ReadAllText(saveFilePath));
+                    PlayerDataModel res = JsonUtility.FromJson<PlayerDataModel>(File.ReadAllText(saveFilePath));
+                    print(res.userName);
+                    return res;
                 } catch (System.Exception e)
                 {
-                    print(e);
+                    Debug.LogError(e);
                     return new PlayerDataModel();
                 }
             }
             else return new PlayerDataModel();   
         }
 
-        public void save()
+        public void Save()
         {
-
+            try
+            {
+                File.WriteAllText(saveFilePath, JsonUtility.ToJson(playerDataModel));
+                Debug.Log("<color=green>Success update data</color>");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e);
+            }
         }
     }
 }

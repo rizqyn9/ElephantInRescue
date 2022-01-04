@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,4 +10,5 @@ using UnityEditor;
 public class LevelBase : ScriptableObject
 {
     public int level;
+    public List<int> stages = new List<int>();
 }

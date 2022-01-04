@@ -60,9 +60,9 @@ namespace EIR
         {
             if (SceneState == SceneState.GAME && Dev.Instance.isDevMode) return;
             if (playerDataModel.Equals(default(PlayerDataModel)))
-                MainMenuManager.Instance.spawnForm();
+                MainMenuManager.UI_MainMenu.FormSetActive(true);
             else
-                MainMenuManager.UI_MainMenu.setUserName(playerDataModel.userName);
+                MainMenuManager.UI_MainMenu.UpdateUserName();
         }
 
         /**

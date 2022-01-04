@@ -42,6 +42,7 @@ namespace EIR
             {
                 textError.text = "";
                 print("OK");
+                GameManager.Instance.playerDataModel.userName = _input;
                 MainMenuManager.Instance.formSuccess();
             }
         }

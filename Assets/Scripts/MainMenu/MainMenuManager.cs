@@ -21,8 +21,6 @@ namespace EIR
                 _instance = this;
         }
 
-        public void spawnForm() => ui_MainMenu.spawnForm();
-
         public void Init()
         {
 
@@ -30,7 +28,9 @@ namespace EIR
 
         public void formSuccess()
         {
-            print("Success");
+            ui_MainMenu.ui_Form.gameObject.SetActive(false);
+            ui_MainMenu.UpdateUserName();
+            GameManager.PlayerData.Save();
         }
     }
 }
