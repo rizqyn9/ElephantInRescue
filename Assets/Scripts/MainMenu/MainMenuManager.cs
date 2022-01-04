@@ -32,5 +32,10 @@ namespace EIR
             ui_MainMenu.UpdateUserName();
             GameManager.PlayerData.Save();
         }
+
+        public void Play()
+        {
+            GameManager.LoadGameLevel(ResourcesManager.LevelBase.Find(val => val.level == GameManager.Instance.playerDataModel.currentLevel));
+        }
     }
 }

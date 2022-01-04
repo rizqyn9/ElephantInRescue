@@ -62,7 +62,7 @@ namespace EIR
             if (playerDataModel.Equals(default(PlayerDataModel)))
                 MainMenuManager.UI_MainMenu.FormSetActive(true);
             else
-                MainMenuManager.UI_MainMenu.UpdateUserName();
+                MainMenuManager.UI_MainMenu.UpdateUIComponent();
         }
 
         /**
@@ -74,7 +74,7 @@ namespace EIR
         IEnumerator ILoadAllResources()
         {
             if (ResourcesManager.Instance == null)
-                resourcesManager = Instantiate(GO_MainController).GetComponent<ResourcesManager>();
+                resourcesManager = Instantiate(GO_ResourcesManager).GetComponent<ResourcesManager>();
             else resourcesManager = ResourcesManager.Instance;
 
             if (MainController.Instance == null)
@@ -97,6 +97,7 @@ namespace EIR
             else return SceneState.GAME;
         }
 
+        [SerializeField] LevelBase levelWillLoad;
         private void handleSceneChanged(Scene _scene, LoadSceneMode _loadMode)
         {
             print($" Load {_scene}");
@@ -109,7 +110,8 @@ namespace EIR
 
         public static void LoadGameLevel(LevelBase _levelBase)
         {
-
+            Instance.levelWillLoad = new LevelBase(); // Reset
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
         }
     }
 }

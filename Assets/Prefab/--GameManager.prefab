@@ -90,10 +90,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 5041868331139986750}
+  GO_ResourcesManager: {fileID: 3757903726133284598, guid: 40baf34991b384ff78efaad0b40e51b9, type: 3}
+  GO_MainController: {fileID: 6082143029668091612, guid: 8e5478087b5c74b5ea2eab3cad61217b, type: 3}
   playerDataModel:
     userName: 
     currentLevel: 0
     currentStage: 0
+  _sceneState: 1
+  resourcesManager: {fileID: 0}
+  mainController: {fileID: 0}
+  levelWillLoad: {fileID: 0}
 --- !u!1 &5041868331757866279
 GameObject:
   m_ObjectHideFlags: 0

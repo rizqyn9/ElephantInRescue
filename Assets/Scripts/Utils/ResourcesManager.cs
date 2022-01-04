@@ -11,7 +11,7 @@ public class ResourcesManager : MonoBehaviour
     [SerializeField] List<LevelBase> _levelBases;
 
     // Accessor
-    public static List<LevelBase> levelBase => Instance._levelBases;
+    public static List<LevelBase> LevelBase => Instance._levelBases;
 
     private void Awake()
     {
