@@ -14,6 +14,8 @@ namespace EIR.Game
             if (_instance == null) _instance = this;
             else Destroy(gameObject);
         }
+        public void haha() {
 
+        }
     }
 }
