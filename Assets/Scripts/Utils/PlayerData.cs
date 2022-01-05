@@ -17,6 +17,7 @@ namespace EIR
                 Application.persistentDataPath + "/eir_production.json";
 
             if (Dev.Instance.isDevMode && Dev.Instance.useCustomUserModel) return Dev.Instance.customPlayerModel;
+            else if (Dev.Instance.isDevMode && Dev.Instance.useNewDataUser) return new PlayerDataModel();
             else if (File.Exists(saveFilePath))
             {
                 try
@@ -24,7 +25,8 @@ namespace EIR
                     PlayerDataModel res = JsonUtility.FromJson<PlayerDataModel>(File.ReadAllText(saveFilePath));
                     print(res.userName);
                     return res;
-                } catch (System.Exception e)
+                }
+                catch (System.Exception e)
                 {
                     Debug.LogError(e);
                     return new PlayerDataModel();
@@ -45,5 +47,8 @@ namespace EIR
                 Debug.LogError(e);
             }
         }
+
+        PlayerDataModel getNewUserTemp() =>
+            new PlayerDataModel();
     }
 }

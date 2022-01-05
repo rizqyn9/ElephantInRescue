@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using EIR.Game;
 
 namespace EIR
 {
@@ -14,7 +15,10 @@ namespace EIR
         [Header("Properties")]
         public bool isDevMode = true;
         public bool useCustomUserModel = true;
+        public bool useNewDataUser = false;
         public PlayerDataModel customPlayerModel;
+        public bool useLevelTest = true;
+        public LevelBase levelTest;
         public GameObject gameManagerPrefab;
 
         private void Awake()
@@ -46,9 +50,9 @@ namespace EIR
                 GameManager.Instance.initialize();
             else
             {
-                GameManager.Instance.playerDataModel = customPlayerModel;
+                LevelManager.Instance.Init(levelTest);
+
             }
-                
         }
     }
 }

@@ -2,6 +2,8 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using EIR.MainMenu;
+using EIR.Game;
 
 namespace EIR
 {

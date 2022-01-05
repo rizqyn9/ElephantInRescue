@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-namespace EIR
+namespace EIR.MainMenu
 {
     public class UI_MainMenu : MonoBehaviour
     {

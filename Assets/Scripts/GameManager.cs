@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using EIR.Game;
+using EIR.MainMenu;
 
 namespace EIR
 {
@@ -52,7 +54,6 @@ namespace EIR
 
             playerDataModel = playerData.load();
 
-
             validateNewUser();
         }
 
@@ -100,7 +101,7 @@ namespace EIR
         [SerializeField] LevelBase levelWillLoad;
         private void handleSceneChanged(Scene _scene, LoadSceneMode _loadMode)
         {
-            print($" Load {_scene}");
+            print($" Load {_scene.name}");
         }
 
         public static void LoadMainMenu()

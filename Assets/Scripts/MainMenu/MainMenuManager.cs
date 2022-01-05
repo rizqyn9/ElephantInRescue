@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EIR
+namespace EIR.MainMenu
 {
     public class MainMenuManager : MonoBehaviour
     {
