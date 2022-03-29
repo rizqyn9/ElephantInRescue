@@ -94,4 +94,7 @@ Thumbs.db
 
 # But keep the demo packages themselves.
 !/Assets/Plugins/Sirenix/Demos/*.unitypackage 
-i
+
+
+# Code Editor Preferences
+.vscode
