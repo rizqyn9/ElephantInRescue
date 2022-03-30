@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    name: Build my project ✨
+    name: Breeding my Elephant 🐘
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -36,7 +36,7 @@ jobs:
         #  githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       # Build
-      - name: Build project
+      - name: Build cute elephant 🔥
         uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
