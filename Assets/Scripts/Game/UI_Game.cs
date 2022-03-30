@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EIR.Game
 {
@@ -14,6 +15,10 @@ namespace EIR.Game
         public TMP_Text profileLevel;
         public TMP_Text profileStage;
         public TMP_Text directionText;
+
+        [Header("Pause")]
+        [SerializeField] Button btnPause;
+        [SerializeField] GameObject pauseModal;
 
         private void Awake()
         {
@@ -37,5 +42,10 @@ namespace EIR.Game
         }
 
         public void UpdateUI() { }
+
+        public void Btn_Pause()
+        {
+
+        }
     }
 }

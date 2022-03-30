@@ -28,8 +28,17 @@ namespace EIR.Game
         public void Init(LevelBase _levelBase)
         {
             levelBase = _levelBase;
-
             UI_Game.Init();
+        }
+
+        public void WinCondition()
+        {
+
+        }
+
+        public void LoseCondition()
+        {
+
         }
     }
 }
