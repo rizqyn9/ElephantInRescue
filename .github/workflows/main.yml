@@ -23,7 +23,7 @@ jobs:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
-          
+
       # Test
       #- name: Run tests
        # uses: game-ci/unity-test-runner@v2
@@ -34,7 +34,7 @@ jobs:
 
       # Build
       - name: 🪢 Build project
-        uses: game-ci/unity-builder@v2
+        uses: game-ci/unity-builder@v2.0.0-alpha-14
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
