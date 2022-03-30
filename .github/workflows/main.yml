@@ -1,6 +1,9 @@
-name: GameCI Template 🎮
+name: 🎮 Elephant In Rescue
 
-on: push
+on: 
+  push:
+  branches:    
+    - master
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
