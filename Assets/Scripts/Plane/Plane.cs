@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public enum PlaneType {
+public enum PlaneType
+{
     NULL,
     WALL,
     ROUTE,

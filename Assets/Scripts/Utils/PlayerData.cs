@@ -32,7 +32,7 @@ namespace EIR
                     return new PlayerDataModel();
                 }
             }
-            else return new PlayerDataModel();   
+            else return new PlayerDataModel();
         }
 
         public void Save()

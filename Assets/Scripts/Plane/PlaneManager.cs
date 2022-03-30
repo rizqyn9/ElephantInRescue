@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlaneManager : MonoBehaviour
 {
-    private static PlaneManager _instance; 
+    private static PlaneManager _instance;
     public static PlaneManager Instance { get => _instance; }
 
     [SerializeField] GameObject nullPlane, treePlane, wallPlane, routePlane;

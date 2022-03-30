@@ -16,7 +16,7 @@ namespace EIR.MainMenu
             ui_Form.gameObject.SetActive(false);
         }
 
-        public void FormSetActive(bool value) => 
+        public void FormSetActive(bool value) =>
             ui_Form.gameObject.SetActive(value);
 
         public void UpdateUIComponent()
@@ -27,7 +27,7 @@ namespace EIR.MainMenu
 
         public void UpdateUserName() => profileUserName.text = GameManager.Instance.playerDataModel.userName;
 
-        public void UpdateLevelContainer ()
+        public void UpdateLevelContainer()
         {
             levelLevel.text = $"Level {GameManager.Instance.playerDataModel.currentLevel}";
             levelStage.text = $"Stage {GameManager.Instance.playerDataModel.currentStage}";

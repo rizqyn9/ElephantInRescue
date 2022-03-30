@@ -17,7 +17,7 @@ namespace EIR.MainMenu
 
         private void Awake()
         {
-            if(_instance == null)   // Singleton
+            if (_instance == null)   // Singleton
                 _instance = this;
         }
 

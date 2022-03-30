@@ -86,7 +86,7 @@ public class InputManager : MonoBehaviour
                 {
                     direction = Vector3.right;
                 }
-                else if (endPos.x < startPos.x) 
+                else if (endPos.x < startPos.x)
                 {
                     direction = Vector3.left;
                 }

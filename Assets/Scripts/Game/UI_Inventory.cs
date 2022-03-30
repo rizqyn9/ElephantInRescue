@@ -12,16 +12,16 @@ public class UI_Inventory : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < totalItem; i++)
+        for (int i = 0; i < totalItem; i++)
         {
             GameObject go = Instantiate(baseInventoryItem, transform);
             go.name = $"Item-{i}";
 
             go.GetComponent<RectTransform>().localPosition = new Vector2(i * -60, 0f);
 
-            items.Add(go.name, go.GetComponent<InventoryItem>());    
+            items.Add(go.name, go.GetComponent<InventoryItem>());
         }
     }
 
-    
+
 }

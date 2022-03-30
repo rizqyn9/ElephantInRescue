@@ -24,7 +24,7 @@ namespace EIR
         }
 
         private void OnDisable()
-        {            
+        {
             //input.onValueChanged.RemoveListener(validateInput);
         }
         #endregion

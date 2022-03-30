@@ -12,7 +12,7 @@ namespace EIR.Game
 
         // Get Instances object
         public UI_Game UI_Game => UI_Game.Instance;
-        
+
 
         private void Awake()
         {
@@ -22,13 +22,13 @@ namespace EIR.Game
         }
 
         public void SetDirection(Vector3 dir)
-        {            
+        {
             direction = dir;
-            RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir,1f);
+            RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir, 1f);
 
             foreach (RaycastHit2D ray in raycast)
             {
-                if(ray.collider != null)
+                if (ray.collider != null)
                 {
                     Plane target = ray.collider.GetComponent<Plane>();
                     if (target)
