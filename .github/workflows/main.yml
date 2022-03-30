@@ -42,7 +42,7 @@ jobs:
           targetPlatform: Android
 
       # Output
-      - uses: ✅ actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2
         with:
           name: Build
           path: build
