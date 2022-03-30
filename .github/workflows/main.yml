@@ -2,8 +2,8 @@ name: 🎮 Elephant In Rescue
 
 on: 
   push:
-  branches:    
-    - master
+    branches:    
+      - master
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
