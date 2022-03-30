@@ -9,10 +9,19 @@ public enum PlaneType {
 
 public class Plane : MonoBehaviour
 {
-    public PlaneType planeType = PlaneType.NULL;
+    [SerializeField] PlaneType planeType = PlaneType.NULL;
 
-    public void SetPlaneType(PlaneType _planeType)
+    // Accessor
+    public PlaneType PlaneType { get => planeType; }
+
+    private void Start()
     {
-        planeType = _planeType;
+        RegisterPlaneToPlaneManager();
+    }
+
+    public void RegisterPlaneToPlaneManager()
+    {
+        PlaneManager.Instance.AuthorizedPlane(this, out string planeNameHashed);
+        gameObject.name = planeNameHashed;
     }
 }

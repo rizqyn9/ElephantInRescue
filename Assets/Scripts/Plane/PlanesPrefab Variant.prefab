@@ -11,18 +11,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlanesPrefab Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 7935272798844617921, guid: 3eff430c824ff4ff7a01b8b48cf8ab4e, type: 3}
-      propertyPath: m_Color.b
-      value: 0.17421682
-      objectReference: {fileID: 0}
-    - target: {fileID: 7935272798844617921, guid: 3eff430c824ff4ff7a01b8b48cf8ab4e, type: 3}
-      propertyPath: m_Color.g
-      value: 0.6384718
-      objectReference: {fileID: 0}
-    - target: {fileID: 7935272798844617921, guid: 3eff430c824ff4ff7a01b8b48cf8ab4e, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8207547
-      objectReference: {fileID: 0}
     - target: {fileID: 9078918071238351502, guid: 3eff430c824ff4ff7a01b8b48cf8ab4e, type: 3}
       propertyPath: m_RootOrder
       value: 0

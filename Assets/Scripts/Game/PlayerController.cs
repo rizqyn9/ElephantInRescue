@@ -17,20 +17,12 @@ namespace EIR.Game
         private void Awake()
         {
             if (_instance == null)
-            {
                 _instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
             else Destroy(gameObject);
         }
 
-        /// <summary>
-        /// Todo
-        /// </summary>
-        /// <param name="dir"></param>
         public void SetDirection(Vector3 dir)
-        {
-            
+        {            
             direction = dir;
             RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir,1f);
 
@@ -38,8 +30,15 @@ namespace EIR.Game
             {
                 if(ray.collider != null)
                 {
-                    print(ray.collider.gameObject.name);
-                    transform.position = ray.transform.position;
+                    Plane target = ray.collider.GetComponent<Plane>();
+                    if (target)
+                    {
+                        if (target.PlaneType == PlaneType.ROUTE)
+                        {
+                            print(ray.collider.gameObject.name);
+                            transform.position = ray.transform.position;
+                        }
+                    }
                 }
             }
         }

@@ -84,7 +84,7 @@ public class InputManager : MonoBehaviour
                 {
                     direction = Vector3.right;
                 }
-                else if (endPos.x < startPos.x) //left swipe
+                else if (endPos.x < startPos.x) 
                 {
                     direction = Vector3.left;
                 }
@@ -99,7 +99,7 @@ public class InputManager : MonoBehaviour
                 {
                     direction = Vector3.up;
                 }
-                else if (endPos.y < startPos.y) //down swipe
+                else if (endPos.y < startPos.y)
                 {
                     direction = Vector3.down;
                 }
