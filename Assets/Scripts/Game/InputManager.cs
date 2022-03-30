@@ -1,5 +1,6 @@
 using UnityEngine;
 using EIR.Game;
+using System.Collections;
 
 public class InputManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
+        ListenWithKeys();
         MoveInput();
 #elif UNITY_IOS || UNITY_ANDROID
         TouchInput();
@@ -106,5 +108,21 @@ public class InputManager : MonoBehaviour
             }
         }
         return direction;
+    }
+
+    void ListenWithKeys()
+    {
+        Vector3 direction = Vector3.zero;
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            direction = Vector3.up;
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+            direction = Vector3.right;
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+            direction = Vector3.down;
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            direction = Vector3.left;
+
+        playerController.SetDirection(direction);
     }
 }
