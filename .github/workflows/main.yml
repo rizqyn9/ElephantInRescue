@@ -1,6 +1,7 @@
 name: 🚀 Build Elehpant In Rescue
 
 on: 
+  workflow_dispatch: {}
   push:
     branches:  
     - master
