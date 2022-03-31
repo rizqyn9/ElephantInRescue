@@ -1,6 +1,7 @@
 using UnityEngine;
 using EIR.Game;
 using System.Collections;
+using System;
 
 public class InputManager : MonoBehaviour
 {
@@ -37,9 +38,11 @@ public class InputManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                RaycastHit2D[] ray = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+                if (ray.Length == 0 || Array.Exists(ray, el => !el.collider.CompareTag("InputArea"))) return;
 
                 startPos = Input.mousePosition;
-
             }
 
             endPos = Input.mousePosition;
@@ -61,6 +64,10 @@ public class InputManager : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+
+            RaycastHit2D[] ray = Physics2D.RaycastAll(touch.position, Vector2.zero);
+
+            if (ray.Length == 0 || Array.Exists(ray, el => !el.collider.CompareTag("InputArea"))) return;
 
             if (touch.phase == TouchPhase.Began)
                 startPos = touch.position;

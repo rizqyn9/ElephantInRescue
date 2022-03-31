@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using EIR;
+using UnityEngine.Events;
 
 public class UI_Pause : MonoBehaviour
 {
     [SerializeField] Button pauseBtn, cancelBtn;
     [SerializeField] GameObject modalPause;
+    public UnityAction UnityAction;
 
     public bool isPaused { get; private set; }
 
