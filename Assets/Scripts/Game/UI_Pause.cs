@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EIR;
 
 public class UI_Pause : MonoBehaviour
 {
@@ -20,8 +19,16 @@ public class UI_Pause : MonoBehaviour
     public void Btn_Cancel()
     {
         if (!modalPause.activeSelf) return;
-
         modalPause.SetActive(false);
+    }
 
+    public void Btn_Resume()
+    {
+        Btn_Cancel();
+    }
+
+    public void Btn_MainMenu()
+    {
+        GameManager.LoadMainMenu();
     }
 }

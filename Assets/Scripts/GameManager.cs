@@ -106,7 +106,7 @@ namespace EIR
 
         public static void LoadMainMenu()
         {
-
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
 
         public static void LoadGameLevel(LevelBase _levelBase)
