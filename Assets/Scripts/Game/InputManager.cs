@@ -36,7 +36,11 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             if (Input.GetMouseButtonDown(0))
+            {
+
                 startPos = Input.mousePosition;
+
+            }
 
             endPos = Input.mousePosition;
         }
