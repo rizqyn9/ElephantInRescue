@@ -127,6 +127,7 @@ public class InputManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
             direction = Vector3.left;
 
+        if (direction == Vector3.zero) return;
         playerController.SetDirection(direction);
     }
 }

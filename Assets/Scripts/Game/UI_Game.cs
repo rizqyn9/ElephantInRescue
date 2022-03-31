@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace EIR.Game
 {
@@ -19,14 +17,13 @@ namespace EIR.Game
         [Header("Pause")]
         [SerializeField] Button btnPause;
         [SerializeField] GameObject pauseModal;
+        [SerializeField] UI_Inventory uI_Inventory;
+
+        public static UI_Inventory UI_Inventory => Instance.uI_Inventory;
 
         private void Awake()
         {
-            if (_instance == null)
-            {
-                _instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
+            if (_instance == null) _instance = this;
             else Destroy(gameObject);
         }
 

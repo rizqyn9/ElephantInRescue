@@ -559,6 +559,7 @@ MonoBehaviour:
   directionText: {fileID: 0}
   btnPause: {fileID: 0}
   pauseModal: {fileID: 0}
+  uI_Inventory: {fileID: 1606229380}
 --- !u!1 &487232348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,6 +1737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseInventoryItem: {fileID: 7362660384188031927, guid: 514c4fe14c3b54658909807e2536af0e, type: 3}
   totalItem: 3
+  activeItem: 
 --- !u!114 &1606229381
 MonoBehaviour:
   m_ObjectHideFlags: 0

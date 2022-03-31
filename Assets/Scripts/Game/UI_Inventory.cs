@@ -8,7 +8,12 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] GameObject baseInventoryItem;
     [SerializeField] int totalItem = 3;
 
-    private Dictionary<string, InventoryItem> items = new Dictionary<string, InventoryItem>();
+    [Header("Debug")]
+
+    private readonly Dictionary<string, InventoryItem> items = new Dictionary<string, InventoryItem>();
+    [SerializeField] string activeItem = string.Empty;
+
+    public string ActiveItem { get => activeItem; }
 
     private void Start()
     {
@@ -19,9 +24,16 @@ public class UI_Inventory : MonoBehaviour
 
             go.GetComponent<RectTransform>().localPosition = new Vector2(i * -60, 0f);
 
-            items.Add(go.name, go.GetComponent<InventoryItem>());
+            InventoryItem IE = go.GetComponent<InventoryItem>();
+
+            items.Add(go.name, IE);
         }
     }
 
-
+    public void SetInventoryActive(string key)
+    {
+        if (activeItem != string.Empty) items[activeItem].IsActive = false;
+        items[key].IsActive = true;
+        activeItem = key;
+    }
 }

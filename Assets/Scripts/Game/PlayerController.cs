@@ -35,7 +35,6 @@ namespace EIR.Game
                     {
                         if (target.PlaneType == PlaneType.ROUTE)
                         {
-                            print(ray.collider.gameObject.name);
                             transform.position = ray.transform.position;
                         }
                     }
