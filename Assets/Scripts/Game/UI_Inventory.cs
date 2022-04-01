@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,6 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] int totalItem = 3;
 
     [Header("Debug")]
-
     private readonly Dictionary<string, InventoryItem> items = new Dictionary<string, InventoryItem>();
     [SerializeField] string activeItem = string.Empty;
 

@@ -10,6 +10,8 @@ namespace EIR.Game
         public static PlayerController Instance { get => _instance; }
         [SerializeField] Vector3 direction;
 
+        public GameStateSO gameStateSO;
+
         // Get Instances object
         public UI_Game UI_Game => UI_Game.Instance;
 

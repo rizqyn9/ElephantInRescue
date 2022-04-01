@@ -1,18 +1,34 @@
 using UnityEngine;
 using UnityEngine.UI;
 using EIR;
-using UnityEngine.Events;
 
 public class UI_Pause : MonoBehaviour
 {
     [SerializeField] Button pauseBtn, cancelBtn;
     [SerializeField] GameObject modalPause;
-    public UnityAction UnityAction;
+
+    [SerializeField] BoolEventChannelSO testBool;
 
     public bool isPaused { get; private set; }
 
+    private void OnEnable()
+    {
+        testBool.OnEventRaised += test;
+    }
+
+    private void OnDisable()
+    {
+        testBool.OnEventRaised -= test;
+    }
+
+    public void test(bool a)
+    {
+        print(a);
+    }
+
     public void Btn_Pause()
     {
+        testBool.RaiseEvent(true);
         if (modalPause.activeSelf) return;
 
         modalPause.SetActive(true);

@@ -15,9 +15,8 @@ namespace EIR.Game
         public TMP_Text directionText;
 
         [Header("Pause")]
-        [SerializeField] Button btnPause;
-        [SerializeField] GameObject pauseModal;
         [SerializeField] UI_Inventory uI_Inventory;
+        [SerializeField] BoolEventChannelSO boolTest;
 
         public static UI_Inventory UI_Inventory => Instance.uI_Inventory;
 
@@ -30,6 +29,7 @@ namespace EIR.Game
         public void Init()
         {
             UpdateCompProfile();
+            boolTest.RaiseEvent(false);
         }
 
         public void UpdateCompProfile()
