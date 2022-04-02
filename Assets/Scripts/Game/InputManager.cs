@@ -142,10 +142,14 @@ public class InputManager : MonoBehaviour
         playerController.SetDirection(direction);
     }
 
+    /// <summary>
+    /// Ensure user event inner the InputArea
+    /// </summary>
+    /// <param name="rays"></param>
+    /// <returns></returns>
     bool IsValidInput(RaycastHit2D[] rays)
     {
         if (rays.Length <= 0) return false;
-
         return Array.FindIndex(rays, res => res.transform.CompareTag("InputArea")) < 0 ? false : true;
     }
 }
