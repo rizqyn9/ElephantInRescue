@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
     /// </summary>
     ///
 
-    [SerializeField] bool jembut = false;
+    [SerializeField] bool validClick = false;
 
     void MoveInput()
     {
@@ -42,22 +42,21 @@ public class InputManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                RaycastHit2D[] ray = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 5f);
 
-                if (ray.Length == 0 || Array.Exists(ray, el => !el.collider.CompareTag("InputArea"))) return;
+                if (!IsValidInput(Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 5f))) return;
 
                 startPos = Input.mousePosition;
 
-                jembut = true;
+                validClick = true;
             }
 
             endPos = Input.mousePosition;
         }
 
         //when player lift the mouse button
-        if (Input.GetMouseButtonUp(0) && jembut)
+        if (Input.GetMouseButtonUp(0) && validClick)
         {
-            jembut = false;
+            validClick = false;
             if (DecideDirection() != Vector3.zero)
                 playerController.SetDirection(DecideDirection());
         }
@@ -72,9 +71,7 @@ public class InputManager : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            RaycastHit2D[] ray = Physics2D.RaycastAll(touch.position, Vector2.zero);
-
-            if (ray.Length == 0 || Array.Exists(ray, el => !el.collider.CompareTag("InputArea"))) return;
+            if (!IsValidInput(Physics2D.RaycastAll(touch.position, Vector2.zero))) return;
 
             if (touch.phase == TouchPhase.Began)
                 startPos = touch.position;
@@ -143,5 +140,12 @@ public class InputManager : MonoBehaviour
 
         if (direction == Vector3.zero) return;
         playerController.SetDirection(direction);
+    }
+
+    bool IsValidInput(RaycastHit2D[] rays)
+    {
+        if (rays.Length <= 0) return false;
+
+        return Array.FindIndex(rays, res => res.transform.CompareTag("InputArea")) < 0 ? false : true;
     }
 }
