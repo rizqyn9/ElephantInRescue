@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshHold: 100
+  jembut: 0
 --- !u!4 &597900817
 Transform:
   m_ObjectHideFlags: 0
@@ -479,7 +480,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 0.0754717, g: 0.06443574, b: 0.06443574, a: 1}
   m_FlipX: 0
@@ -504,7 +505,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.37311053}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -515,7 +516,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.6316442, y: 6.644928}
+  m_Size: {x: 5.6316442, y: 7.391149}
   m_EdgeRadius: 0
 --- !u!1001 &716403830
 PrefabInstance:
