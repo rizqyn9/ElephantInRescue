@@ -11,9 +11,12 @@ public enum PlaneType
 public class Plane : MonoBehaviour
 {
     [SerializeField] PlaneType planeType = PlaneType.NULL;
+    [SerializeField] bool m_isPlayerInstancePlace = false;
 
     [Header("Events")]
     [SerializeField] InventoryStateSO _inventoryChannel = default;
+
+    public bool IsPlayerInstancePlace { get => m_isPlayerInstancePlace; }
 
     // Accessor
     public PlaneType PlaneType { get => planeType; }
@@ -50,7 +53,7 @@ public class Plane : MonoBehaviour
 
     public void RegisterPlaneToPlaneManager()
     {
-        PlaneManager.Instance.AuthorizedPlane(this, out string planeNameHashed);
+        PlaneManager.AuthorizedPlane(this, out string planeNameHashed);
         gameObject.name = planeNameHashed;
     }
 }
