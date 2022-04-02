@@ -12,7 +12,6 @@ namespace EIR.Game
         [Header("Properties")]
         public TMP_Text profileLevel;
         public TMP_Text profileStage;
-        public TMP_Text directionText;
 
         [Header("Pause")]
         [SerializeField] UI_Inventory uI_Inventory;

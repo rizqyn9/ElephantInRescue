@@ -24,22 +24,18 @@ namespace EIR.Game
 
         private void OnEnable()
         {
-            gameStateChannel.OnEventRaised += handleGameStateChange;
+            gameStateChannel.OnEventRaised += HandleGameStateChange;
         }
 
         private void OnDisable()
         {
-            gameStateChannel.OnEventRaised -= handleGameStateChange;
+            gameStateChannel.OnEventRaised -= HandleGameStateChange;
         }
 
-        void handleGameStateChange(GameState _gameState)
+        [SerializeField] GameState m_gameState;
+        void HandleGameStateChange(GameState _gameState)
         {
-            switch (_gameState)
-            {
-                case GameState.PLAY:
-                    print("Play");
-                    break;
-            }
+            m_gameState = _gameState;
         }
 
 
