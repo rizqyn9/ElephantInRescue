@@ -7,19 +7,9 @@ public class UI_Pause : MonoBehaviour
     [SerializeField] Button pauseBtn, cancelBtn;
     [SerializeField] GameObject modalPause;
 
-    [SerializeField] BoolEventChannelSO testBool;
+    [SerializeField] GameStateChannelSO m_GameStateChannelSO;
 
     public bool isPaused { get; private set; }
-
-    private void OnEnable()
-    {
-        testBool.OnEventRaised += test;
-    }
-
-    private void OnDisable()
-    {
-        testBool.OnEventRaised -= test;
-    }
 
     public void test(bool a)
     {
@@ -28,7 +18,7 @@ public class UI_Pause : MonoBehaviour
 
     public void Btn_Pause()
     {
-        testBool.RaiseEvent(true);
+        m_GameStateChannelSO.RaiseEvent(GameState.PAUSE);
         if (modalPause.activeSelf) return;
 
         modalPause.SetActive(true);
@@ -37,6 +27,7 @@ public class UI_Pause : MonoBehaviour
     public void Btn_Cancel()
     {
         if (!modalPause.activeSelf) return;
+        m_GameStateChannelSO.RaiseEvent(GameState.PLAY);
         modalPause.SetActive(false);
     }
 

@@ -4,14 +4,30 @@ using System;
 
 public class InputManager : MonoBehaviour
 {
-    //small value to confirm its swipe or not
+
+
     [SerializeField] private float threshHold = 0.1f;
 
     //ref to playerController
     [SerializeField] private PlayerController playerController => PlayerController.Instance;
 
+    [SerializeField] GameStateChannelSO m_GameStateChannelSO = default;
+
     //Vector3 to store start touch position and end touch position
     private Vector3 startPos, endPos;
+    [SerializeField] GameState m_gameState;
+
+    void HandleGameState(GameState _gameState) => m_gameState = _gameState;
+
+    private void OnEnable()
+    {
+        m_GameStateChannelSO.OnEventRaised += HandleGameState;
+    }
+
+    private void OnDisable()
+    {
+        m_GameStateChannelSO.OnEventRaised -= HandleGameState;      
+    }
 
     void Start()
     {
@@ -20,6 +36,7 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        if (m_gameState != GameState.PLAY) return;
 #if UNITY_EDITOR
         ListenWithKeys();
         MoveInput();
