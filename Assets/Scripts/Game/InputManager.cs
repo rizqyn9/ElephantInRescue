@@ -32,25 +32,32 @@ public class InputManager : MonoBehaviour
     /// <summary>
     /// Method called for mouse input
     /// </summary>
+    ///
+
+    [SerializeField] bool jembut = false;
+
     void MoveInput()
     {
         if (Input.GetMouseButton(0))
         {
             if (Input.GetMouseButtonDown(0))
             {
-                RaycastHit2D[] ray = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                RaycastHit2D[] ray = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 5f);
 
                 if (ray.Length == 0 || Array.Exists(ray, el => !el.collider.CompareTag("InputArea"))) return;
 
                 startPos = Input.mousePosition;
+
+                jembut = true;
             }
 
             endPos = Input.mousePosition;
         }
 
         //when player lift the mouse button
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && jembut)
         {
+            jembut = false;
             if (DecideDirection() != Vector3.zero)
                 playerController.SetDirection(DecideDirection());
         }

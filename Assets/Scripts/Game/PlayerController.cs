@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EIR.Game
@@ -9,8 +7,6 @@ namespace EIR.Game
         private static PlayerController _instance;
         public static PlayerController Instance { get => _instance; }
         [SerializeField] Vector3 direction;
-
-        public GameStateSO gameStateSO;
 
         // Get Instances object
         public UI_Game UI_Game => UI_Game.Instance;
