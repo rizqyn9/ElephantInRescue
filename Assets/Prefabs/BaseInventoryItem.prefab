@@ -153,3 +153,4 @@ MonoBehaviour:
     rgba: 4284082612
   image: {fileID: 1495701395749676038}
   isActive: 0
+  _inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}

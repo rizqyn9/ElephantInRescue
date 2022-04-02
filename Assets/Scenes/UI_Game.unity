@@ -1475,6 +1475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseInventoryItem: {fileID: 7362660384188031927, guid: 514c4fe14c3b54658909807e2536af0e, type: 3}
   totalItem: 3
+  _inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   activeItem: 
 --- !u!114 &1606229381
 MonoBehaviour:

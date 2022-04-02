@@ -1,24 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using EIR.Game;
 using UnityEngine;
 using UnityEngine.UI;
+
+[System.Serializable]
+public enum InventoryItemType
+{
+    TEST1,
+    TEST2
+}
 
 public class InventoryItem : MonoBehaviour
 {
     [SerializeField] Color32 colorActive, colorDisactive;
     [SerializeField] Image image;
-    [SerializeField] bool isActive = false;
+    [SerializeField] bool _isActive = false;
 
+    [SerializeField] InventoryStateSO _inventoryChannel;
 
-    [SerializeField] UI_Inventory UI_Inventory => UI_Game.UI_Inventory;
     // Accessor
+    public InventoryItemType InventoryItemType = InventoryItemType.TEST1; 
     public bool IsActive
     {
-        get => isActive; set
+        get => _isActive; set
         {
-            if (isActive == value) return;
-            isActive = value;
+            if (_isActive == value) return;
+            _isActive = value;
             UpdateState();
         }
     }
@@ -30,12 +36,29 @@ public class InventoryItem : MonoBehaviour
 
     public void On_Click()
     {
-        if (UI_Inventory.ActiveItem == gameObject.name) return;
-        UI_Game.UI_Inventory.SetInventoryActive(gameObject.name);
+        if (IsActive)
+        {
+            _inventoryChannel.RaiseEvent(InventoryCommand.DEACTIVE, this);
+            SetDeactive();
+        } else
+        {
+            _inventoryChannel.RaiseEvent(InventoryCommand.ACTIVE, this);
+            SetActive();
+        }
+    }
+
+    public void SetActive()
+    {
+        IsActive = true;
+    }
+
+    public void SetDeactive()
+    {
+        IsActive = false;
     }
 
     void UpdateState()
     {
-        image.color = isActive ? colorActive : colorDisactive;
+        image.color = _isActive ? colorActive : colorDisactive;
     }
 }

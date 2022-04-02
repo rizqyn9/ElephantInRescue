@@ -1,6 +1,5 @@
 using UnityEngine;
 using EIR.Game;
-using System.Collections;
 using System;
 
 public class InputManager : MonoBehaviour
@@ -150,6 +149,6 @@ public class InputManager : MonoBehaviour
     bool IsValidInput(RaycastHit2D[] rays)
     {
         if (rays.Length <= 0) return false;
-        return Array.FindIndex(rays, res => res.transform.CompareTag("InputArea")) < 0 ? false : true;
+        return Array.FindIndex(rays, res => res.transform.CompareTag("InputArea")) >= 0;
     }
 }
