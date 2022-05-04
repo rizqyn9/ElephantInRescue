@@ -9,8 +9,6 @@ public class UI_Pause : MonoBehaviour
 
     [SerializeField] GameStateChannelSO m_GameStateChannelSO;
 
-    public bool isPaused { get; private set; }
-
     public void test(bool a)
     {
         print(a);
