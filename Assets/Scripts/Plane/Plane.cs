@@ -28,7 +28,7 @@ public class Plane : MonoBehaviour
 
     private void OnDisable()
     {
-        _inventoryChannel.OnEventRaised -= HandleInventoryChange;        
+        _inventoryChannel.OnEventRaised -= HandleInventoryChange;
     }
 
     private void Start()
@@ -41,10 +41,10 @@ public class Plane : MonoBehaviour
         switch (cmd)
         {
             case InventoryCommand.ACTIVE:
-                if(planeType == PlaneType.WALL && item.InventoryItemType == InventoryItemType.TEST2)
+                if (planeType == PlaneType.WALL && item.InventoryItemType == InventoryItemType.TEST2)
                 {
                     Destroy(gameObject);
-                } 
+                }
                 break;
 
 

@@ -26,7 +26,7 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        m_GameStateChannelSO.OnEventRaised -= HandleGameState;      
+        m_GameStateChannelSO.OnEventRaised -= HandleGameState;
     }
 
     void Start()

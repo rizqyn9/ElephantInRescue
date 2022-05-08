@@ -32,9 +32,11 @@ namespace DG.Tweening
             Sequence s = DOTween.Sequence();
             GradientColorKey[] colors = gradient.colorKeys;
             int len = colors.Length;
-            for (int i = 0; i < len; ++i) {
+            for (int i = 0; i < len; ++i)
+            {
                 GradientColorKey c = colors[i];
-                if (i == 0 && c.time <= 0) {
+                if (i == 0 && c.time <= 0)
+                {
                     target.color = c.color;
                     continue;
                 }
@@ -57,9 +59,11 @@ namespace DG.Tweening
             Sequence s = DOTween.Sequence();
             GradientColorKey[] colors = gradient.colorKeys;
             int len = colors.Length;
-            for (int i = 0; i < len; ++i) {
+            for (int i = 0; i < len; ++i)
+            {
                 GradientColorKey c = colors[i];
-                if (i == 0 && c.time <= 0) {
+                if (i == 0 && c.time <= 0)
+                {
                     target.SetColor(property, c.color);
                     continue;
                 }
@@ -89,7 +93,8 @@ namespace DG.Tweening
         /// </summary>
         public static CustomYieldInstruction WaitForCompletion(this Tween t, bool returnCustomYieldInstruction)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return null;
             }
@@ -103,7 +108,8 @@ namespace DG.Tweening
         /// </summary>
         public static CustomYieldInstruction WaitForRewind(this Tween t, bool returnCustomYieldInstruction)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return null;
             }
@@ -117,7 +123,8 @@ namespace DG.Tweening
         /// </summary>
         public static CustomYieldInstruction WaitForKill(this Tween t, bool returnCustomYieldInstruction)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return null;
             }
@@ -132,7 +139,8 @@ namespace DG.Tweening
         /// <param name="elapsedLoops">Elapsed loops to wait for</param>
         public static CustomYieldInstruction WaitForElapsedLoops(this Tween t, int elapsedLoops, bool returnCustomYieldInstruction)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return null;
             }
@@ -148,7 +156,8 @@ namespace DG.Tweening
         /// <param name="position">Position (loops included, delays excluded) to wait for</param>
         public static CustomYieldInstruction WaitForPosition(this Tween t, float position, bool returnCustomYieldInstruction)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return null;
             }
@@ -163,7 +172,8 @@ namespace DG.Tweening
         /// </summary>
         public static CustomYieldInstruction WaitForStart(this Tween t, bool returnCustomYieldInstruction)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return null;
             }
@@ -187,7 +197,8 @@ namespace DG.Tweening
         /// <param name="duration">The duration of the tween</param>
         public static TweenerCore<Vector2, Vector2, VectorOptions> DOOffset(this Material target, Vector2 endValue, int propertyID, float duration)
         {
-            if (!target.HasProperty(propertyID)) {
+            if (!target.HasProperty(propertyID))
+            {
                 if (Debugger.logPriority > 0) Debugger.LogMissingMaterialProperty(propertyID);
                 return null;
             }
@@ -203,7 +214,8 @@ namespace DG.Tweening
         /// <param name="duration">The duration of the tween</param>
         public static TweenerCore<Vector2, Vector2, VectorOptions> DOTiling(this Material target, Vector2 endValue, int propertyID, float duration)
         {
-            if (!target.HasProperty(propertyID)) {
+            if (!target.HasProperty(propertyID))
+            {
                 if (Debugger.logPriority > 0) Debugger.LogMissingMaterialProperty(propertyID);
                 return null;
             }
@@ -227,7 +239,8 @@ namespace DG.Tweening
         /// </summary>
         public static async System.Threading.Tasks.Task AsyncWaitForCompletion(this Tween t)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return;
             }
@@ -241,7 +254,8 @@ namespace DG.Tweening
         /// </summary>
         public static async System.Threading.Tasks.Task AsyncWaitForRewind(this Tween t)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return;
             }
@@ -255,7 +269,8 @@ namespace DG.Tweening
         /// </summary>
         public static async System.Threading.Tasks.Task AsyncWaitForKill(this Tween t)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return;
             }
@@ -270,7 +285,8 @@ namespace DG.Tweening
         /// <param name="elapsedLoops">Elapsed loops to wait for</param>
         public static async System.Threading.Tasks.Task AsyncWaitForElapsedLoops(this Tween t, int elapsedLoops)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return;
             }
@@ -286,7 +302,8 @@ namespace DG.Tweening
         /// <param name="position">Position (loops included, delays excluded) to wait for</param>
         public static async System.Threading.Tasks.Task AsyncWaitForPosition(this Tween t, float position)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return;
             }
@@ -300,7 +317,8 @@ namespace DG.Tweening
         /// </summary>
         public static async System.Threading.Tasks.Task AsyncWaitForStart(this Tween t)
         {
-            if (!t.active) {
+            if (!t.active)
+            {
                 if (Debugger.logPriority > 0) Debugger.LogInvalidTween(t);
                 return;
             }
@@ -325,9 +343,13 @@ namespace DG.Tweening
     {
         public class WaitForCompletion : CustomYieldInstruction
         {
-            public override bool keepWaiting { get {
-                return t.active && !t.IsComplete();
-            }}
+            public override bool keepWaiting
+            {
+                get
+                {
+                    return t.active && !t.IsComplete();
+                }
+            }
             readonly Tween t;
             public WaitForCompletion(Tween tween)
             {
@@ -337,9 +359,13 @@ namespace DG.Tweening
 
         public class WaitForRewind : CustomYieldInstruction
         {
-            public override bool keepWaiting { get {
-                return t.active && (!t.playedOnce || t.position * (t.CompletedLoops() + 1) > 0);
-            }}
+            public override bool keepWaiting
+            {
+                get
+                {
+                    return t.active && (!t.playedOnce || t.position * (t.CompletedLoops() + 1) > 0);
+                }
+            }
             readonly Tween t;
             public WaitForRewind(Tween tween)
             {
@@ -349,9 +375,13 @@ namespace DG.Tweening
 
         public class WaitForKill : CustomYieldInstruction
         {
-            public override bool keepWaiting { get {
-                return t.active;
-            }}
+            public override bool keepWaiting
+            {
+                get
+                {
+                    return t.active;
+                }
+            }
             readonly Tween t;
             public WaitForKill(Tween tween)
             {
@@ -361,9 +391,13 @@ namespace DG.Tweening
 
         public class WaitForElapsedLoops : CustomYieldInstruction
         {
-            public override bool keepWaiting { get {
-                return t.active && t.CompletedLoops() < elapsedLoops;
-            }}
+            public override bool keepWaiting
+            {
+                get
+                {
+                    return t.active && t.CompletedLoops() < elapsedLoops;
+                }
+            }
             readonly Tween t;
             readonly int elapsedLoops;
             public WaitForElapsedLoops(Tween tween, int elapsedLoops)
@@ -375,9 +409,13 @@ namespace DG.Tweening
 
         public class WaitForPosition : CustomYieldInstruction
         {
-            public override bool keepWaiting { get {
-                return t.active && t.position * (t.CompletedLoops() + 1) < position;
-            }}
+            public override bool keepWaiting
+            {
+                get
+                {
+                    return t.active && t.position * (t.CompletedLoops() + 1) < position;
+                }
+            }
             readonly Tween t;
             readonly float position;
             public WaitForPosition(Tween tween, float position)
@@ -389,9 +427,13 @@ namespace DG.Tweening
 
         public class WaitForStart : CustomYieldInstruction
         {
-            public override bool keepWaiting { get {
-                return t.active && !t.playedOnce;
-            }}
+            public override bool keepWaiting
+            {
+                get
+                {
+                    return t.active && !t.playedOnce;
+                }
+            }
             readonly Tween t;
             public WaitForStart(Tween tween)
             {

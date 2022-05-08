@@ -13,7 +13,7 @@ using UnityEngine;
 #pragma warning disable 1591
 namespace DG.Tweening
 {
-	public static class DOTweenModulePhysics
+    public static class DOTweenModulePhysics
     {
         #region Shortcuts
 
@@ -116,8 +116,10 @@ namespace DG.Tweening
                     .SetOptions(AxisConstraint.Z, snapping).SetEase(Ease.Linear)
                 ).Join(yTween)
                 .SetTarget(target).SetEase(DOTween.defaultEaseType);
-            yTween.OnUpdate(() => {
-                if (!offsetYSet) {
+            yTween.OnUpdate(() =>
+            {
+                if (!offsetYSet)
+                {
                     offsetYSet = true;
                     offsetY = s.isRelative ? endValue.y : endValue.y - startPosY;
                 }
@@ -211,6 +213,6 @@ namespace DG.Tweening
         #endregion
 
         #endregion
-	}
+    }
 }
 #endif

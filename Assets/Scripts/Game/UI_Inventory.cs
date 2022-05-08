@@ -24,7 +24,7 @@ public class UI_Inventory : MonoBehaviour
 
     private void OnDisable()
     {
-        _inventoryChannel.OnEventRaised -= HandleInventoryCommand;        
+        _inventoryChannel.OnEventRaised -= HandleInventoryCommand;
     }
 
     private void Start()

@@ -18,7 +18,7 @@ public class InventoryItem : MonoBehaviour
     [SerializeField] InventoryStateSO _inventoryChannel;
 
     // Accessor
-    public InventoryItemType InventoryItemType = InventoryItemType.TEST1; 
+    public InventoryItemType InventoryItemType = InventoryItemType.TEST1;
     public bool IsActive
     {
         get => _isActive; set
@@ -40,7 +40,8 @@ public class InventoryItem : MonoBehaviour
         {
             _inventoryChannel.RaiseEvent(InventoryCommand.DEACTIVE, this);
             SetDeactive();
-        } else
+        }
+        else
         {
             _inventoryChannel.RaiseEvent(InventoryCommand.ACTIVE, this);
             SetActive();
