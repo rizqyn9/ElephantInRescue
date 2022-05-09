@@ -9,9 +9,11 @@ public class UINotes : MonoBehaviour
     [SerializeField] GameObject primaryContainer;
     [SerializeField] GameObject _containerState;
 
-    private GameObject containerState {
+    private GameObject containerState
+    {
         get => _containerState;
-        set {
+        set
+        {
             if (_containerState == value) return;
             handleOnContainerChanged(_containerState, value);
             _containerState = value;
