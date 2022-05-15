@@ -96,3 +96,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
+  gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
+  inventoryStateSO: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}

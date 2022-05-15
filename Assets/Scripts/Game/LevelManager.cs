@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace EIR.Game
@@ -12,15 +13,8 @@ namespace EIR.Game
         [Header("Event")]
         [SerializeField] GameStateChannelSO gameStateChannel = default;
 
-        [Header("Properties")]
-        [SerializeField] UI_Game ui_Game;
-
         [Header("Debug")]
         public LevelBase levelBase;
-
-
-        // Accessor
-        public static UI_Game UI_Game => Instance.ui_Game;
 
         private void OnEnable()
         {
@@ -44,21 +38,33 @@ namespace EIR.Game
             if (_instance == null) _instance = this;
         }
 
-        public void Init(LevelBase _levelBase)
+        void Start()
         {
-            levelBase = _levelBase;
-            gameStateChannel.RaiseEvent(GameState.PLAY);
-            UI_Game.Init();
+            StartCoroutine(StartEnumerator());
+        }
+
+        IEnumerator StartEnumerator()
+        {
+            /**
+             * Start the game after all animation have done
+             */
+            Camera.main.transform.DOMoveZ(Camera.main.transform.position.z, 3).SetEase(Ease.InOutQuart).From(0).OnComplete(() =>
+            {
+                gameStateChannel.RaiseEvent(GameState.PLAY);
+                PlayerController.Instance.InitializePlayer();
+            });
+
+            yield return 1;
         }
 
         public void WinCondition()
         {
-
+            gameStateChannel.RaiseEvent(GameState.FINISH);
         }
 
         public void LoseCondition()
         {
-
+            gameStateChannel.RaiseEvent(GameState.FINISH);
         }
     }
 }

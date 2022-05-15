@@ -50,7 +50,7 @@ namespace EIR
                 GameManager.Instance.initialize();
             else
             {
-                LevelManager.Instance.Init(levelTest);
+                //LevelManager.Instance.Init();
 
             }
         }

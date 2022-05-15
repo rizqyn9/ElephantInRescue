@@ -16,6 +16,7 @@ public class InventoryItem : MonoBehaviour
     [SerializeField] bool _isActive = false;
 
     [SerializeField] InventoryStateSO _inventoryChannel;
+    [SerializeField] TouchStateSO _touchChannel;
 
     // Accessor
     public InventoryItemType InventoryItemType = InventoryItemType.TEST1;
@@ -29,13 +30,20 @@ public class InventoryItem : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+
+    }
+
     private void Start()
     {
         UpdateState();
     }
 
+
     public void On_Click()
     {
+        _touchChannel.RaiseEvent(TouchState.INVENTORY);
         if (IsActive)
         {
             _inventoryChannel.RaiseEvent(InventoryCommand.DEACTIVE, this);

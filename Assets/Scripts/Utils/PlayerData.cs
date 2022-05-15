@@ -23,7 +23,6 @@ namespace EIR
                 try
                 {
                     PlayerDataModel res = JsonUtility.FromJson<PlayerDataModel>(File.ReadAllText(saveFilePath));
-                    print(res.userName);
                     return res;
                 }
                 catch (System.Exception e)

@@ -104,14 +104,23 @@ namespace EIR
             print($" Load {_scene.name}");
         }
 
+        /**
+         * Back to main menu
+         * Ensure all game environment clearance as properly
+         */
         public static void LoadMainMenu()
         {
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
 
+        /**
+         * Load game level
+         * Params reference to levelTarget with LevelBase 
+         * Set levelWillLoad to targeted _levelBase
+         */
         public static void LoadGameLevel(LevelBase _levelBase)
         {
-            Instance.levelWillLoad = new LevelBase(); // Reset
+            Instance.levelWillLoad = new LevelBase(); // Reset // Todo
             SceneManager.LoadScene(1, LoadSceneMode.Single);
             SceneManager.LoadScene(2, LoadSceneMode.Additive);
         }

@@ -4,14 +4,14 @@ using System;
 
 public class InputManager : MonoBehaviour
 {
-
-
     [SerializeField] private float threshHold = 0.1f;
 
     //ref to playerController
     [SerializeField] private PlayerController playerController => PlayerController.Instance;
 
-    [SerializeField] GameStateChannelSO m_GameStateChannelSO = default;
+    [Header("Events")]
+    [SerializeField] GameStateChannelSO m_GameStateChannelSO = null;
+    [SerializeField] TouchStateSO m_TouchState = null;
 
     //Vector3 to store start touch position and end touch position
     private Vector3 startPos, endPos;
@@ -22,11 +22,18 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         m_GameStateChannelSO.OnEventRaised += HandleGameState;
+        m_TouchState.OnEventRaised += HandleTouchState;
     }
 
     private void OnDisable()
     {
         m_GameStateChannelSO.OnEventRaised -= HandleGameState;
+        m_TouchState.OnEventRaised -= HandleTouchState;
+    }
+
+    private void HandleTouchState(TouchState arg1)
+    {
+        print(m_TouchState.cachedState.Count);
     }
 
     void Start()

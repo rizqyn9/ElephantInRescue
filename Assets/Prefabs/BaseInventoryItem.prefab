@@ -152,5 +152,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4284082612
   image: {fileID: 1495701395749676038}
-  isActive: 0
+  _isActive: 0
   _inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
+  _touchChannel: {fileID: 11400000, guid: cd825276d94684d6cb91dd076390025a, type: 2}
+  InventoryItemType: 0
