@@ -6,7 +6,9 @@ namespace EIR.Game
     {
         private static PlayerController _instance;
         public static PlayerController Instance { get => _instance; }
+        [SerializeField] SpriteRenderer spriteRenderer;
         [SerializeField] Vector3 direction;
+        public Plane PlanePosition { get; private set; }
 
         [Header("Events")]
         public GameStateChannelSO gameStateChannel;
@@ -17,14 +19,19 @@ namespace EIR.Game
 
         private void OnEnable()
         {
-            gameStateChannel.OnEventRaised += handleGameState;
-            inventoryStateSO.OnEventRaised += handleInventoryState;
+            gameStateChannel.OnEventRaised += HandleGameState;
+            inventoryStateSO.OnEventRaised += HandleInventoryState;
         }
 
         private void OnDisable()
         {
-            gameStateChannel.OnEventRaised -= handleGameState;            
-            inventoryStateSO.OnEventRaised -= handleInventoryState;
+            gameStateChannel.OnEventRaised -= HandleGameState;            
+            inventoryStateSO.OnEventRaised -= HandleInventoryState;
+        }
+
+        private void Start()
+        {
+            spriteRenderer.enabled = false;
         }
 
         private void Awake()
@@ -34,24 +41,29 @@ namespace EIR.Game
             else Destroy(gameObject);
         }
 
-        void handleGameState(GameState _gameState)
+        void HandleGameState(GameState gameState)
         {
-
+            switch (gameState)
+            {
+                case GameState.PLAY:
+                    InitializePlayer();
+                    break;
+            }                
         }
 
-        void handleInventoryState(InventoryCommand _cmd, InventoryItem _item)
+        void HandleInventoryState(InventoryCommand _cmd, InventoryItem _item)
         {
 
-        }
-
-        private void Start()
-        {
-            //gameObject.LeanAlpha(0, 0);    
         }
 
         public void InitializePlayer()
         {
-            //gameObject.LeanAlpha(1, 2);
+            if (PlaneManager.Instance.PlayerPlaneInstance)
+            {
+                transform.position = PlaneManager.Instance.PlayerPlaneInstance.gameObject.transform.position;
+            }
+            else throw new System.Exception("No placed for instance elephant");
+            spriteRenderer.enabled = true;
         }
 
         public void SetDirection(Vector3 dir)
@@ -66,9 +78,11 @@ namespace EIR.Game
                     Plane target = ray.collider.GetComponent<Plane>();
                     if (target)
                     {
-                        if (target.PlaneType == PlaneTypeEnum.ROUTE)
+                        if (target.PlaneType == PlaneTypeEnum.ROUTE || target.PlaneType == PlaneTypeEnum.FINISH)
                         {
                             transform.position = ray.transform.position;
+                            PlanePosition = target;
+                            target.OnElephant();
                         }
                     }
                 }

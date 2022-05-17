@@ -9,8 +9,9 @@ public class PlaneTree : Plane
 
     public bool ShouldDestroyable { get => m_ShouldDestroyable; private set => m_ShouldDestroyable = value; }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         PlaneType = PlaneTypeEnum.TREE;
         if (ShouldDestroyable) spriteRenderer.sprite = destroyableTree;
         else spriteRenderer.sprite = notDestroyableTree;

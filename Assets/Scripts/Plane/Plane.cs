@@ -33,7 +33,7 @@ public class Plane : MonoBehaviour
     {
     }
 
-    private void Start()
+    public virtual void Start()
     {
         CheckValidity();
         RegisterPlaneToPlaneManager();

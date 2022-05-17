@@ -1,3 +1,4 @@
+using EIR;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,5 +43,7 @@ public class LevelItem : MonoBehaviour
     public void On_SelectLevel()
     {
         print($"Select Stage: {m_stage}, Level: {m_level}");
+        // HardCode
+        GameManager.LoadGameLevel(ResourcesManager.LevelBase.Find(val => val.level == GameManager.Instance.playerDataModel.currentLevel));
     }
 }

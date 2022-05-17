@@ -33,8 +33,8 @@ namespace EIR.Game
 
         public void UpdateCompProfile()
         {
-            profileLevel.text = $"Level : {LevelManager.Instance.levelBase.level}";
-            profileStage.text = $"Stage : {LevelManager.Instance.levelBase.stages.Count}";
+            profileLevel.text = $"Level : {LevelManager.Instance.LevelBase.level}";
+            profileStage.text = $"Stage : {LevelManager.Instance.LevelBase.stages.Count}";
         }
 
         public void UpdateUI() { }

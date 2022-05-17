@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -13,8 +12,7 @@ namespace EIR.Game
         [Header("Event")]
         [SerializeField] GameStateChannelSO gameStateChannel = default;
 
-        [Header("Debug")]
-        public LevelBase levelBase;
+        public LevelBase LevelBase { get; private set; }
 
         private void OnEnable()
         {
@@ -27,9 +25,9 @@ namespace EIR.Game
         }
 
         [SerializeField] GameState m_gameState;
-        void HandleGameStateChange(GameState _gameState)
+        void HandleGameStateChange(GameState gameState)
         {
-            m_gameState = _gameState;
+            m_gameState = gameState;
         }
 
 
@@ -40,6 +38,7 @@ namespace EIR.Game
 
         void Start()
         {
+            gameStateChannel.RaiseEvent(GameState.BEFORE_PLAY);
             StartCoroutine(StartEnumerator());
         }
 
@@ -51,7 +50,6 @@ namespace EIR.Game
             Camera.main.transform.DOMoveZ(Camera.main.transform.position.z, 3).SetEase(Ease.InOutQuart).From(0).OnComplete(() =>
             {
                 gameStateChannel.RaiseEvent(GameState.PLAY);
-                PlayerController.Instance.InitializePlayer();
             });
 
             yield return 1;

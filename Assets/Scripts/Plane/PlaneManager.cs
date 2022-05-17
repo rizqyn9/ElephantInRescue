@@ -6,11 +6,8 @@ public class PlaneManager : MonoBehaviour
     private static PlaneManager _instance;
     public static PlaneManager Instance { get => _instance; }
 
-    [SerializeField] GameObject playerGO;
-
-    [SerializeField] static Plane m_playerStartInstance = null;
-
-    [SerializeField] public GameObject InstancedPlayer = null;
+    [SerializeField] Plane m_PlayerPlaneInstance = null;
+    public Plane PlayerPlaneInstance { get => m_PlayerPlaneInstance; private set => m_PlayerPlaneInstance = value; }
 
     public readonly Dictionary<string, Plane> Planes = new Dictionary<string, Plane>();
 
@@ -21,16 +18,16 @@ public class PlaneManager : MonoBehaviour
     }
 
     static int planeIndex = 0;
-    public static void AuthorizedPlane(Plane _plane, out string planeHashed)
+    public static void AuthorizedPlane(Plane plane, out string planeHashed)
     {
         planeHashed = $"Plane-{planeIndex++}";
 
-        if (m_playerStartInstance == null && _plane.IsPlayerInstancePlace)
+        if (plane.IsPlayerInstancePlace)
         {
-            m_playerStartInstance = _plane;
-            Instance.InstancedPlayer = Instantiate(Instance.playerGO, _plane.transform.position, Quaternion.identity);
+            print(plane.IsPlayerInstancePlace);
+            Instance.PlayerPlaneInstance = plane;
         }
 
-        Instance.Planes.Add(planeHashed, _plane);
+        Instance.Planes.Add(planeHashed, plane);
     }
 }

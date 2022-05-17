@@ -113,6 +113,11 @@ namespace EIR
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
 
+        public static void LoadLevelMap()
+        {
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
+        }
+
         /**
          * Load game level
          * Params reference to levelTarget with LevelBase 

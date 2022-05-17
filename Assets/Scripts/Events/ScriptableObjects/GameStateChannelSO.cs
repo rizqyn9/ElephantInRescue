@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public enum GameState
 {
+    BEFORE_PLAY,
     PLAY,
     PAUSE,
     FINISH
@@ -13,9 +14,19 @@ public class GameStateChannelSO : ScriptableObject
 {
     public event UnityAction<GameState> OnEventRaised;
 
-    public void RaiseEvent(GameState value)
+    [SerializeField] GameState m_gameState;
+
+    public GameState GameState { get => m_gameState; private set => m_gameState = value; }
+
+    private void OnEnable()
     {
-        if (OnEventRaised != null)
-            OnEventRaised.Invoke(value);
+        Debug.Log("Instance");
+        m_gameState = GameState.BEFORE_PLAY;
+    }
+
+    public void RaiseEvent(GameState gameState)
+    {
+        if (OnEventRaised != null && m_gameState != gameState)
+            OnEventRaised.Invoke(gameState);
     }
 }
