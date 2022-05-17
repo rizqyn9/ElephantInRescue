@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e43a8e47f2e49e5809facc7cd72561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
+  m_isPlayerInstancePlace: 0
 --- !u!1 &7949586061597449039
 GameObject:
   m_ObjectHideFlags: 0

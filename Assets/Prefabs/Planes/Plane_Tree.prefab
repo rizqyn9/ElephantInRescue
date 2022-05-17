@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcdd12d6ab5c94852be7c7840c7b3d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_inventoryChannel: {fileID: 0}
+  m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   m_isPlayerInstancePlace: 0
   m_ShouldDestroyable: 0
   destroyableTree: {fileID: 21300000, guid: d8109f903931644fb84865a87d20edb9, type: 3}
@@ -282,7 +282,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 76cec10ec646c4a8fb62579254e37f78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

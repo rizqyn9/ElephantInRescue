@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using EIR.Game;
 using UnityEngine;
 
 public class PlaneManager : MonoBehaviour
@@ -9,11 +8,9 @@ public class PlaneManager : MonoBehaviour
 
     [SerializeField] GameObject playerGO;
 
-    [SerializeField] static Plane _playerStartInstance = null;
+    [SerializeField] static Plane m_playerStartInstance = null;
 
     [SerializeField] public GameObject InstancedPlayer = null;
-
-    [SerializeField] GameObject nullPlane, treePlane, wallPlane, routePlane;
 
     public readonly Dictionary<string, Plane> Planes = new Dictionary<string, Plane>();
 
@@ -27,11 +24,13 @@ public class PlaneManager : MonoBehaviour
     public static void AuthorizedPlane(Plane _plane, out string planeHashed)
     {
         planeHashed = $"Plane-{planeIndex++}";
-        if (_playerStartInstance == null && _plane.IsPlayerInstancePlace)
+
+        if (m_playerStartInstance == null && _plane.IsPlayerInstancePlace)
         {
-            _playerStartInstance = _plane;
+            m_playerStartInstance = _plane;
             Instance.InstancedPlayer = Instantiate(Instance.playerGO, _plane.transform.position, Quaternion.identity);
         }
+
         Instance.Planes.Add(planeHashed, _plane);
     }
 }
