@@ -21,6 +21,21 @@ public class TouchStateSO : DescriptionBaseSO
 
     public TouchState GetLatestTouch => cachedState[cachedState.Count - 1];
 
+    private void OnEnable()
+    {
+        ClearCache();
+    }
+
+    private void OnDisable()
+    {
+        ClearCache();
+    }
+
+    private void ClearCache()
+    {
+        cachedState = new List<TouchState>() { TouchState.EMPTY };
+    }
+
     public void RaiseEvent(TouchState touched)
     {
         if (OnEventRaised != null)

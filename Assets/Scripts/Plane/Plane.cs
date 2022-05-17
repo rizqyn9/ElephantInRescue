@@ -46,8 +46,6 @@ public class Plane : MonoBehaviour
                     Destroy(gameObject);
                 }
                 break;
-
-
         }
     }
 

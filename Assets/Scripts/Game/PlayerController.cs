@@ -46,12 +46,12 @@ namespace EIR.Game
 
         private void Start()
         {
-            gameObject.LeanAlpha(0, 0);    
+            //gameObject.LeanAlpha(0, 0);    
         }
 
         public void InitializePlayer()
         {
-            gameObject.LeanAlpha(1, 2);
+            //gameObject.LeanAlpha(1, 2);
         }
 
         public void SetDirection(Vector3 dir)

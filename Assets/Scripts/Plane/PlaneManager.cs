@@ -34,5 +34,4 @@ public class PlaneManager : MonoBehaviour
         }
         Instance.Planes.Add(planeHashed, _plane);
     }
-
 }

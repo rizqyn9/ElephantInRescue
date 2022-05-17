@@ -1,6 +1,7 @@
 using UnityEngine;
 using EIR.Game;
 using System;
+using DG.Tweening;
 
 public class InputManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class InputManager : MonoBehaviour
     //Vector3 to store start touch position and end touch position
     private Vector3 startPos, endPos;
     [SerializeField] GameState m_gameState;
+
+    private Camera mainCamera => Camera.main;
 
     void HandleGameState(GameState _gameState) => m_gameState = _gameState;
 
@@ -39,6 +42,7 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         startPos = endPos;
+        transform.position = new Vector3(0, 0, 1);
     }
 
     void Update()
@@ -61,11 +65,10 @@ public class InputManager : MonoBehaviour
 
     void MoveInput()
     {
-        if (Input.GetMouseButton(0))
+         if (Input.GetMouseButton(0))
         {
             if (Input.GetMouseButtonDown(0))
             {
-
                 if (!IsValidInput(Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 5f))) return;
 
                 startPos = Input.mousePosition;
