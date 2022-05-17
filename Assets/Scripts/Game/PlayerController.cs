@@ -66,7 +66,7 @@ namespace EIR.Game
                     Plane target = ray.collider.GetComponent<Plane>();
                     if (target)
                     {
-                        if (target.PlaneType == PlaneType.ROUTE)
+                        if (target.PlaneType == PlaneTypeEnum.ROUTE)
                         {
                             transform.position = ray.transform.position;
                         }

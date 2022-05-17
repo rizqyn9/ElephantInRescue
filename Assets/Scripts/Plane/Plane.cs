@@ -1,39 +1,49 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 
-public enum PlaneType
+public enum PlaneTypeEnum
 {
-    NULL,
-    WALL,
     ROUTE,
-    TREE
+    TREE,
+    FINISH
 }
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class Plane : MonoBehaviour
 {
-    [SerializeField] PlaneType planeType = PlaneType.NULL;
+    [Header("Events")]
+    [SerializeField] InventoryStateSO m_inventoryChannel = default;
+
     [SerializeField] bool m_isPlayerInstancePlace = false;
 
-    [Header("Events")]
-    [SerializeField] InventoryStateSO _inventoryChannel = default;
-
+    public PlaneTypeEnum PlaneType { get; internal set; }
     public bool IsPlayerInstancePlace { get => m_isPlayerInstancePlace; }
-
-    // Accessor
-    public PlaneType PlaneType { get => planeType; }
 
     private void OnEnable()
     {
-        _inventoryChannel.OnEventRaised += HandleInventoryChange;
+        m_inventoryChannel.OnEventRaised += HandleInventoryChange;
     }
 
     private void OnDisable()
     {
-        _inventoryChannel.OnEventRaised -= HandleInventoryChange;
+        m_inventoryChannel.OnEventRaised -= HandleInventoryChange;
+    }
+
+    private void OnValidate()
+    {
     }
 
     private void Start()
     {
+        CheckValidity();
         RegisterPlaneToPlaneManager();
+    }
+
+    void CheckValidity()
+    {
+        if(m_isPlayerInstancePlace && PlaneType != PlaneTypeEnum.ROUTE)
+            throw new System.Exception("Instanced place but Plane type not use Route Plane");
+
     }
 
     void HandleInventoryChange(InventoryCommand cmd, InventoryItem item)
@@ -41,13 +51,15 @@ public class Plane : MonoBehaviour
         switch (cmd)
         {
             case InventoryCommand.ACTIVE:
-                if (planeType == PlaneType.WALL && item.InventoryItemType == InventoryItemType.TEST2)
+                if (PlaneType == PlaneTypeEnum.TREE && item.InventoryItemType == InventoryItemType.TEST2)
                 {
                     Destroy(gameObject);
                 }
                 break;
         }
     }
+
+    public virtual void OnElephant() { }
 
     public void RegisterPlaneToPlaneManager()
     {

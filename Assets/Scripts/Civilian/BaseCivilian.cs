@@ -32,7 +32,7 @@ public class BaseCivilian : MonoBehaviour
 
         if (target && target.CompareTag("Player"))
         {
-            Vector2 directionToTarget = (transform.position- PlayerController.Instance.transform.position).normalized;
+            Vector2 directionToTarget = (transform.position - PlayerController.Instance.transform.position).normalized;
 
             if(Vector2.Angle(transform.up, directionToTarget) > angle /2)
             {

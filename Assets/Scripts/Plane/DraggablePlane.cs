@@ -1,19 +1,21 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Plane))]
 public class DraggablePlane : MonoBehaviour
 {
+    public bool PlaneActive { get; set; }
+
     [SerializeField] Plane m_Plane;
-    [SerializeField] bool m_ActivatePlane;
     [SerializeField] TouchStateSO m_TouchStateChannel;
 
     private void OnValidate()
     {
-        m_Plane = gameObject.GetComponent<Plane>();
+        m_Plane = GetComponent<Plane>();
     }
 
     private void OnMouseDown()
     {
         m_TouchStateChannel.RaiseEvent(TouchState.GRID);
-        m_ActivatePlane = !m_ActivatePlane;
+        PlaneActive = !PlaneActive;
     }
 }
