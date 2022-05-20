@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4990049202022081723
+--- !u!1 &7330336584550263655
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3023503403432838247}
-  - component: {fileID: 5076156283107778551}
-  - component: {fileID: 3121664663190452169}
-  - component: {fileID: 7043999738061381919}
-  - component: {fileID: 6997831539280342603}
+  - component: {fileID: 652746334676765627}
+  - component: {fileID: 7388296167028019243}
+  - component: {fileID: 840132979804043285}
+  - component: {fileID: 4700616126625984195}
+  - component: {fileID: 4749023489418076567}
   m_Layer: 5
-  m_Name: InventoryStone
+  m_Name: InventoryKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3023503403432838247
+--- !u!224 &652746334676765627
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4990049202022081723}
+  m_GameObject: {fileID: 7330336584550263655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -39,21 +39,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5076156283107778551
+--- !u!222 &7388296167028019243
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4990049202022081723}
+  m_GameObject: {fileID: 7330336584550263655}
   m_CullTransparentMesh: 1
---- !u!114 &3121664663190452169
+--- !u!114 &840132979804043285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4990049202022081723}
+  m_GameObject: {fileID: 7330336584550263655}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5a626ea6e8af243cfb660dd2617c8332, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 663183262d9e34737b368e93c76c7f38, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -77,13 +77,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7043999738061381919
+--- !u!114 &4700616126625984195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4990049202022081723}
+  m_GameObject: {fileID: 7330336584550263655}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -117,11 +117,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 3121664663190452169}
+  m_TargetGraphic: {fileID: 840132979804043285}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6997831539280342603}
+      - m_Target: {fileID: 4749023489418076567}
         m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
         m_MethodName: On_Click
         m_Mode: 1
@@ -133,19 +133,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6997831539280342603
+--- !u!114 &4749023489418076567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4990049202022081723}
+  m_GameObject: {fileID: 7330336584550263655}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d65298f4cefa4f6183712f0ef1721b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryItemType: 0
+  InventoryItemType: 2
   m_isActive: 0
   m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   _touchChannel: {fileID: 0}

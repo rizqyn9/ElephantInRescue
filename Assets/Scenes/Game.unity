@@ -3754,8 +3754,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inventoryGO:
-  - {fileID: 4990049202022081723, guid: 0997b89f995024cd88c8e820bc9b0df8, type: 3}
-  - {fileID: 4990049202022081723, guid: 0997b89f995024cd88c8e820bc9b0df8, type: 3}
+  - {fileID: 4448506482479717122, guid: 22fe64de55af94f448d50aefe2fd116c, type: 3}
+  - {fileID: 7330336584550263655, guid: b57ee0e2c1de04f7791f5eb4f724ccba, type: 3}
+  - {fileID: 9071270905717962241, guid: 1b3d32ab252bf4b778e79cbc6cdab2c8, type: 3}
   - {fileID: 4990049202022081723, guid: 0997b89f995024cd88c8e820bc9b0df8, type: 3}
   gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_gameState: 0

@@ -46,17 +46,17 @@ public class Plane : MonoBehaviour
 
     }
 
-    void HandleInventoryChange(InventoryCommand cmd, InventoryItem item)
+    void HandleInventoryChange(InventoryItem activeInventory)
     {
-        switch (cmd)
-        {
-            case InventoryCommand.ACTIVE:
-                if (PlaneType == PlaneTypeEnum.TREE && item.InventoryItemType == InventoryItemType.TEST2)
-                {
-                    Destroy(gameObject);
-                }
-                break;
-        }
+        //switch (cmd)
+        //{
+        //    case InventoryCommand.ACTIVE:
+        //        if (PlaneType == PlaneTypeEnum.TREE && item.InventoryItemType == InventoryItemType.TEST2)
+        //        {
+        //            Destroy(gameObject);
+        //        }
+        //        break;
+        //}
     }
 
     public virtual void OnElephant() { }

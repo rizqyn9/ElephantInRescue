@@ -1,73 +1,66 @@
-using EIR.Game;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
 public enum InventoryItemType
 {
-    TEST1,
-    TEST2
+    STONE,
+    ROOT,
+    KNIFE,
+    HAMMER
 }
 
+[RequireComponent(typeof(Button))]
 public class InventoryItem : MonoBehaviour
 {
-    [SerializeField] Color32 colorActive, colorDisactive;
-    [SerializeField] Image image;
-    [SerializeField] bool _isActive = false;
+    public InventoryItemType InventoryItemType;
+    [SerializeField] bool m_isActive = false;
 
-    [SerializeField] InventoryStateSO _inventoryChannel;
+    [SerializeField] InventoryStateSO m_inventoryChannel;
     [SerializeField] TouchStateSO _touchChannel;
 
-    // Accessor
-    public InventoryItemType InventoryItemType = InventoryItemType.TEST1;
-    public bool IsActive
-    {
-        get => _isActive; set
-        {
-            if (_isActive == value) return;
-            _isActive = value;
-            UpdateState();
-        }
-    }
+    public bool IsActive { get => m_isActive; set => m_isActive = value; }
 
     private void OnEnable()
     {
+        m_inventoryChannel.OnEventRaised += HandleInventoryChanged;
+    }
 
+    private void OnDisable()
+    {
+        m_inventoryChannel.OnEventRaised -= HandleInventoryChanged;        
     }
 
     private void Start()
     {
-        UpdateState();
+        m_isActive = false;
     }
 
+    private void HandleInventoryChanged(InventoryItem activeInventory)
+    {
+        if(InventoryItemType != activeInventory.InventoryItemType)
+        {
+            DisableActivated();
+        } else
+        {
+            EnableActivated();
+        }
+    }
+
+    private void DisableActivated()
+    {
+        m_isActive = false;
+    }
+
+    private void EnableActivated()
+    {
+        m_isActive = true;
+    }
 
     public void On_Click()
     {
-        _touchChannel.RaiseEvent(TouchState.INVENTORY);
-        if (IsActive)
-        {
-            _inventoryChannel.RaiseEvent(InventoryCommand.DEACTIVE, this);
-            SetDeactive();
-        }
-        else
-        {
-            _inventoryChannel.RaiseEvent(InventoryCommand.ACTIVE, this);
-            SetActive();
-        }
-    }
-
-    public void SetActive()
-    {
-        IsActive = true;
-    }
-
-    public void SetDeactive()
-    {
-        IsActive = false;
-    }
-
-    void UpdateState()
-    {
-        image.color = _isActive ? colorActive : colorDisactive;
+        if (m_inventoryChannel.ActiveInventory?.InventoryItemType == InventoryItemType) return;
+        m_inventoryChannel.RaiseEvent(this);
     }
 }

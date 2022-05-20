@@ -16,11 +16,22 @@ public enum InventoryCommand
 [CreateAssetMenu(menuName = "Events/Inventory Event Channel")]
 public class InventoryStateSO : DescriptionBaseSO
 {
-    public UnityAction<InventoryCommand, InventoryItem> OnEventRaised;
+    public UnityAction<InventoryItem> OnEventRaised;
 
-    public void RaiseEvent(InventoryCommand cmd, InventoryItem value)
+    public InventoryItem ActiveInventory { get; private set; }
+
+    private void OnEnable()
     {
+        ActiveInventory = null;
+    }
+
+    public void RaiseEvent(InventoryItem value)
+    {
+        ActiveInventory = value;
+
         if (OnEventRaised != null)
-            OnEventRaised.Invoke(cmd, value);
+        {
+            OnEventRaised.Invoke(value);
+        }
     }
 }

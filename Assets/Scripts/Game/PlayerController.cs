@@ -53,7 +53,7 @@ namespace EIR.Game
             }                
         }
 
-        void HandleInventoryState(InventoryCommand _cmd, InventoryItem _item)
+        void HandleInventoryState(InventoryItem activeInventory)
         {
 
         }

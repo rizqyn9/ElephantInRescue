@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,46 +7,31 @@ public class UI_Inventory : MonoBehaviour
     [Header("Properties")]
     [SerializeField] List<Transform> m_placedInstance = new List<Transform>();
 
-
     [Header("Event")]
     [SerializeField] InventoryStateSO _inventoryChannel = default;
     [SerializeField] GameStateChannelSO m_gameStateChannelSO;
 
     [Header("Debug")]
     private readonly Dictionary<string, InventoryItem> items = new Dictionary<string, InventoryItem>();
-    [SerializeField] string activeItem = string.Empty;
-
-    public string ActiveItem { get => activeItem; }
+    [SerializeField] InventoryItem m_activeInventoryItem;
 
     private void OnEnable()
     {
-        //_inventoryChannel.OnEventRaised += HandleInventoryCommand;
+        _inventoryChannel.OnEventRaised += HandleInventoryChanged;
         m_gameStateChannelSO.OnEventRaised += HandleGameStateChanged;
-    }    
+    }
+
 
     private void OnDisable()
     {
-        //_inventoryChannel.OnEventRaised -= HandleInventoryCommand;
+        _inventoryChannel.OnEventRaised -= HandleInventoryChanged;
         m_gameStateChannelSO.OnEventRaised -= HandleGameStateChanged;
     }
 
-    //void HandleInventoryCommand(InventoryCommand cmd, InventoryItem item)
-    //{
-    //    switch (cmd)
-    //    {
-    //        case InventoryCommand.ACTIVE:
-    //            if (!string.IsNullOrEmpty(ActiveItem)) items[ActiveItem].SetDeactive();
-    //            activeItem = item.name;
-    //            items[activeItem].SetActive();
-    //            break;
-    //        case InventoryCommand.DEACTIVE:
-    //            items[activeItem].SetDeactive();
-    //            activeItem = string.Empty;
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
+    private void HandleInventoryChanged(InventoryItem activeInventory)
+    {
+        m_activeInventoryItem = activeInventory;
+    }
 
     private void HandleGameStateChanged(GameState gameState)
     {
