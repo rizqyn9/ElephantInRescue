@@ -4,11 +4,13 @@ namespace EIR.Game
 {
     public class PlayerController : MonoBehaviour
     {
-        private static PlayerController _instance;
-        public static PlayerController Instance { get => _instance; }
+        private static PlayerController m_instance;
+        public static PlayerController Instance { get => m_instance; }
         [SerializeField] SpriteRenderer spriteRenderer;
         [SerializeField] Vector3 direction;
         public Plane PlanePosition { get; private set; }
+
+        [SerializeField] Plane m_planeStartPosition;
 
         [Header("Events")]
         public GameStateChannelSO gameStateChannel;
@@ -36,8 +38,8 @@ namespace EIR.Game
 
         private void Awake()
         {
-            if (_instance == null)
-                _instance = this;
+            if (m_instance == null)
+                m_instance = this;
             else Destroy(gameObject);
         }
 
@@ -58,11 +60,12 @@ namespace EIR.Game
 
         public void InitializePlayer()
         {
-            if (PlaneManager.Instance.PlayerPlaneInstance)
-            {
-                transform.position = PlaneManager.Instance.PlayerPlaneInstance.gameObject.transform.position;
-            }
-            else throw new System.Exception("No placed for instance elephant");
+            //if (PlaneManager.Instance.PlayerPlaneInstance)
+            //{
+            //    transform.position = PlaneManager.Instance.PlayerPlaneInstance.gameObject.transform.position;
+            //}
+            //else throw new System.Exception("No placed for instance elephant");
+            gameObject.transform.position = m_planeStartPosition.transform.position;
             spriteRenderer.enabled = true;
         }
 
