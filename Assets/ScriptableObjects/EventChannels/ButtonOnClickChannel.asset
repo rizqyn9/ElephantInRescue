@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb9be610e6fba4f2cae0323a7b541787, type: 3}
-  m_Name: InventoryState
+  m_Script: {fileID: 11500000, guid: fc0643487bb7d4244b40712baae52b6e, type: 3}
+  m_Name: ButtonOnClickChannel
   m_EditorClassIdentifier: 
-  _guid: 7b60e6e9370f04a939c48ae58e3f8663
-  description: Invoke every inventory active has chnged
+  _guid: 18d3c0d9e0e5c401997558f54829ea18
+  description: 'Trigger sound effect
+
+    On button click'

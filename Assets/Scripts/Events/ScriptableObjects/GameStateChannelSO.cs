@@ -10,7 +10,7 @@ public enum GameState
 }
 
 [CreateAssetMenu(menuName = "Events/Game State Event Channel")]
-public class GameStateChannelSO : ScriptableObject
+public class GameStateChannelSO : DescriptionBaseSO
 {
     public event UnityAction<GameState> OnEventRaised;
 
