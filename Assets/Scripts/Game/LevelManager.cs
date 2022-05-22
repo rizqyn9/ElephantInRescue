@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
         yield return 1;
     }
 
-    public List<GameObject> GetInventoryGO() => m_inventoryGO; 
+    public List<GameObject> GetInventoryGO() => m_inventoryGO;
 
     public void WinCondition()
     {

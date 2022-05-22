@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Utils: MonoBehaviour
+public class Utils : MonoBehaviour
 {
     private Camera mainCamera = Camera.main;
     private void Update()

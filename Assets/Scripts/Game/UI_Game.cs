@@ -16,7 +16,7 @@ public class UI_Game : MonoBehaviour
 
     private void OnDisable()
     {
-        gameState.OnEventRaised -= HandleGameStateChanged;        
+        gameState.OnEventRaised -= HandleGameStateChanged;
     }
 
     private void HandleGameStateChanged(GameState gameState)
@@ -24,7 +24,7 @@ public class UI_Game : MonoBehaviour
         switch (gameState)
         {
             case GameState.PLAY:
-                
+
                 break;
         }
     }

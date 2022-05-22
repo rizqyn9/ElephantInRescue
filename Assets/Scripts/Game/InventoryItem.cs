@@ -29,7 +29,7 @@ public class InventoryItem : MonoBehaviour
 
     private void OnDisable()
     {
-        m_inventoryChannel.OnEventRaised -= HandleInventoryChanged;        
+        m_inventoryChannel.OnEventRaised -= HandleInventoryChanged;
     }
 
     private void Start()
@@ -39,10 +39,11 @@ public class InventoryItem : MonoBehaviour
 
     private void HandleInventoryChanged(InventoryItem activeInventory)
     {
-        if(InventoryItemType != activeInventory.InventoryItemType)
+        if (InventoryItemType != activeInventory.InventoryItemType)
         {
             DisableActivated();
-        } else
+        }
+        else
         {
             EnableActivated();
         }

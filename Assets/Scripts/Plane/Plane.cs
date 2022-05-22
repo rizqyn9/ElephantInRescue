@@ -41,7 +41,7 @@ public class Plane : MonoBehaviour
 
     void CheckValidity()
     {
-        if(m_isPlayerInstancePlace && PlaneType != PlaneTypeEnum.ROUTE)
+        if (m_isPlayerInstancePlace && PlaneType != PlaneTypeEnum.ROUTE)
             throw new System.Exception("Instanced place but Plane type not use Route Plane");
 
     }

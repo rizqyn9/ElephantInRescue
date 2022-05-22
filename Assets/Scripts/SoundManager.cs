@@ -21,12 +21,12 @@ public class SoundManager : MonoBehaviour
 
     private void OnDisable()
     {
-        m_handleButtonOnClick.OnEventRaised -= HandleButtonOnClick;        
+        m_handleButtonOnClick.OnEventRaised -= HandleButtonOnClick;
     }
 
     private void HandleButtonOnClick()
     {
-        
+
     }
 
     private void Awake()

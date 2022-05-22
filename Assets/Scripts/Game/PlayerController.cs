@@ -27,7 +27,7 @@ namespace EIR.Game
 
         private void OnDisable()
         {
-            gameStateChannel.OnEventRaised -= HandleGameState;            
+            gameStateChannel.OnEventRaised -= HandleGameState;
             inventoryStateSO.OnEventRaised -= HandleInventoryState;
         }
 
@@ -50,7 +50,7 @@ namespace EIR.Game
                 case GameState.PLAY:
                     InitializePlayer();
                     break;
-            }                
+            }
         }
 
         void HandleInventoryState(InventoryItem activeInventory)

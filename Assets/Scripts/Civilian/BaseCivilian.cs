@@ -19,7 +19,7 @@ public class BaseCivilian : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(.2f);
 
-        while(true)
+        while (true)
         {
             yield return wait;
             FOV();
@@ -34,13 +34,16 @@ public class BaseCivilian : MonoBehaviour
         {
             Vector2 directionToTarget = (transform.position - PlayerController.Instance.transform.position).normalized;
 
-            if(Vector2.Angle(transform.up, directionToTarget) > angle /2)
+            if (Vector2.Angle(transform.up, directionToTarget) > angle / 2)
             {
                 CanSeePlayer = true;
-            } else {
+            }
+            else
+            {
                 CanSeePlayer = false;
             }
-        } else
+        }
+        else
         {
             CanSeePlayer = false;
         }
@@ -59,14 +62,14 @@ public class BaseCivilian : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + angle1 * radius);
         Gizmos.DrawLine(transform.position, transform.position + angle2 * radius);
 
-        if(CanSeePlayer)
+        if (CanSeePlayer)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, PlayerController.Instance.transform.position);
         }
     }
 
-    private Vector2 DirectionFromAngle (float eulerY, float angleInDegrees )
+    private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees)
     {
         angleInDegrees += eulerY;
         return new Vector2(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));

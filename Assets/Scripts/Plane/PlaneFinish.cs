@@ -7,7 +7,7 @@ public class PlaneFinish : Plane
     public override void Start()
     {
         base.Start();
-        PlaneType = PlaneTypeEnum.FINISH;        
+        PlaneType = PlaneTypeEnum.FINISH;
     }
 
     /// <summary>

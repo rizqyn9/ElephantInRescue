@@ -35,7 +35,7 @@ public class UI_Inventory : MonoBehaviour
 
     private void HandleGameStateChanged(GameState gameState)
     {
-        switch(gameState)
+        switch (gameState)
         {
             case GameState.BEFORE_PLAY:
                 //InstanceInvetory();
@@ -46,7 +46,7 @@ public class UI_Inventory : MonoBehaviour
     private void Start()
     {
         if (LevelManager.Instance.GetInventoryGO().Count > m_placedInstance.Count) throw new System.Exception("Please check total intanced inventory");
-        for(int i = 0; i < LevelManager.Instance.GetInventoryGO().Count; i++)
+        for (int i = 0; i < LevelManager.Instance.GetInventoryGO().Count; i++)
         {
             Instantiate(LevelManager.Instance.GetInventoryGO()[i], m_placedInstance[i]);
         }

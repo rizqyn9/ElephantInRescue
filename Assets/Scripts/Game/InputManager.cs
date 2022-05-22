@@ -65,7 +65,7 @@ public class InputManager : MonoBehaviour
 
     void MoveInput()
     {
-         if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             if (Input.GetMouseButtonDown(0))
             {

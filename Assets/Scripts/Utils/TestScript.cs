@@ -21,7 +21,8 @@ public class TestScript : MonoBehaviour
 
         var a = Physics2D.RaycastAll(pos, Vector2.zero);
 
-        foreach(var b in a){
+        foreach (var b in a)
+        {
             print(b.collider.name);
         }
 
