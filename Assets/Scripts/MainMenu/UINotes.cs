@@ -1,28 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using EIR.MainMenu;
 using UnityEngine;
 
 public class UINotes : MonoBehaviour
 {
-    [SerializeField] UI_MainMenu uI_MainMenu;
-    [SerializeField] GameObject primaryContainer;
-    [SerializeField] GameObject _containerState;
+    [SerializeField] UI_MainMenu m_Ui_MainMenu;
+    [SerializeField] GameObject m_primaryContainer;
+    [SerializeField] GameObject m_containerState;
 
     private GameObject containerState
     {
-        get => _containerState;
+        get => m_containerState;
         set
         {
-            if (_containerState == value) return;
-            handleOnContainerChanged(_containerState, value);
-            _containerState = value;
+            if (m_containerState == value) return;
+            HandleOnContainerChanged(m_containerState, value);
+            m_containerState = value;
         }
     }
 
     private void OnEnable()
     {
-        containerState = primaryContainer;
+        containerState = m_primaryContainer;
     }
 
     public void OnChange(GameObject _containerOpen)
@@ -30,7 +27,7 @@ public class UINotes : MonoBehaviour
         containerState = _containerOpen;
     }
 
-    public void handleOnContainerChanged(GameObject _before, GameObject _after)
+    public void HandleOnContainerChanged(GameObject _before, GameObject _after)
     {
         if (_before != null) _before.SetActive(false);
         _after.SetActive(true);
@@ -38,7 +35,7 @@ public class UINotes : MonoBehaviour
 
     public void On_BackContainer()
     {
-        if (primaryContainer.name == _containerState.name) uI_MainMenu.OnClick_Overlay();
-        else OnChange(primaryContainer);
+        if (m_primaryContainer.name == m_containerState.name) m_Ui_MainMenu.OnClick_Overlay();
+        else OnChange(m_primaryContainer);
     }
 }

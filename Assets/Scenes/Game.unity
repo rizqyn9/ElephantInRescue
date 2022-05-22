@@ -259,6 +259,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3160200983195024732, guid: a61966881258546c1ae5770bf6d9f0f1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160200983195024732, guid: a61966881258546c1ae5770bf6d9f0f1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160200983195024732, guid: a61966881258546c1ae5770bf6d9f0f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
@@ -298,6 +306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3160200983195024733, guid: a61966881258546c1ae5770bf6d9f0f1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 899297a6f0723485980deb0f2fac42ac, type: 3}
     - target: {fileID: 3160200983195024734, guid: a61966881258546c1ae5770bf6d9f0f1, type: 3}
       propertyPath: m_Name
       value: Civilian
@@ -739,6 +751,10 @@ PrefabInstance:
     - target: {fileID: 3253689177560521954, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
       propertyPath: m_Name
       value: --Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253689177560521967, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3253689177560521967, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
       propertyPath: m_LocalScale.x

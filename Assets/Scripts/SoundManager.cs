@@ -5,14 +5,18 @@ public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance;
     public static SoundManager Instance { get => instance; }
-    public AudioMixer mixer;
+
+    [SerializeField] [HideInInspector] AudioMixer mixer;
+    [SerializeField] AudioSource sourceSFX, sourceBGM;
 
     public AudioClip BGM;
     public AudioClip ButtonSFX;
 
-    public AudioSource soundFX, soundMusic;
 
     [SerializeField] VoidEventChannelSO m_handleButtonOnClick;
+
+    public static readonly string BGM_VOL = "BGM";
+    public static readonly string SFX_VOL = "SFX";
 
     private void OnEnable()
     {
@@ -39,23 +43,26 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public static void PlaySound(AudioClip _audioClip)
+    private void Start()
     {
-        Instance.soundFX.PlayOneShot(_audioClip);
+        mixer.SetFloat(SFX_VOL, GetVolumePref(SFX_VOL));
+        mixer.SetFloat(BGM_VOL, GetVolumePref(SFX_VOL));
     }
 
-    public static void PlayButtonSFX() => Instance.soundFX.PlayOneShot(Instance.ButtonSFX);
-
-    public enum AudioTarget
+    public void ChangeVolume(float value, string target)
     {
-        BGM,
-        SFX
+        mixer.SetFloat(target, Mathf.Log10(value) * 20);       
+        SetVolumePref(target, value);
     }
 
-    public void changeVolume(float _value, AudioTarget _target)
-    {
-        if (_target == AudioTarget.BGM) mixer.SetFloat("MusicVol", Mathf.Log10(_value) * 20);
-        if (_target == AudioTarget.SFX) mixer.SetFloat("SFXVol", Mathf.Log10(_value) * 20);
-    }
+    public static float GetVolumePref(string target) => PlayerPrefs.GetFloat(target, 1);
 
+    public static void SetVolumePref(string target, float value) => PlayerPrefs.SetFloat(target, value);
+
+    public static void PlayButtonSFX() => Instance.sourceSFX.PlayOneShot(Instance.ButtonSFX);
+
+    public static void PlaySound(AudioClip audioClip)
+    {
+        Instance.sourceSFX.PlayOneShot(audioClip);
+    }
 }
