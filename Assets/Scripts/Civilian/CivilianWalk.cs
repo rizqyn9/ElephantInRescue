@@ -1,7 +1,6 @@
-using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 [RequireComponent(typeof(BaseCivilian))]
 public class CivilianWalk : MonoBehaviour
@@ -34,10 +33,24 @@ public class CivilianWalk : MonoBehaviour
 
     IEnumerator Move(Transform target)
     {
+        OnChangeTarget(target);
         while (Vector3.Distance(transform.position, target.position) > 0.05f)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, m_speed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    private void OnChangeTarget(Transform target)
+    {
+        Vector3 targ = target.transform.position;
+        targ.z = 0f;
+
+        Vector3 objectPos = transform.position;
+        targ.x -= objectPos.x;
+        targ.y -= objectPos.y;
+
+        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
 }

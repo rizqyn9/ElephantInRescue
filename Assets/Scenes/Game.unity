@@ -264,7 +264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3160200983195024732, guid: a61966881258546c1ae5770bf6d9f0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.02
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 3160200983195024732, guid: a61966881258546c1ae5770bf6d9f0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -330,7 +330,10 @@ MonoBehaviour:
   - {fileID: 357771632}
   - {fileID: 815540070}
   - {fileID: 1285738626}
-  m_speed: 2
+  - {fileID: 815540070}
+  m_speed: 0.46
+  m_canMove: 0
+  m_indexNow: 0
 --- !u!1001 &243027966
 PrefabInstance:
   m_ObjectHideFlags: 0
