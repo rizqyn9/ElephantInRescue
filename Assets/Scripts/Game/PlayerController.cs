@@ -43,6 +43,11 @@ namespace EIR.Game
             else Destroy(gameObject);
         }
 
+        private void OnDestroy()
+        {
+            m_instance = null;
+        }
+
         void HandleGameState(GameState gameState)
         {
             switch (gameState)
@@ -53,6 +58,12 @@ namespace EIR.Game
             }
         }
 
+        public void OnHitCivilian(BaseCivilian civilian)
+        {
+            Destroy(gameObject);
+            civilian.CivilianWalk.Stop();
+        }
+
         void HandleInventoryState(InventoryItem activeInventory)
         {
 
@@ -60,11 +71,6 @@ namespace EIR.Game
 
         public void InitializePlayer()
         {
-            //if (PlaneManager.Instance.PlayerPlaneInstance)
-            //{
-            //    transform.position = PlaneManager.Instance.PlayerPlaneInstance.gameObject.transform.position;
-            //}
-            //else throw new System.Exception("No placed for instance elephant");
             gameObject.transform.position = m_planeStartPosition.transform.position;
             spriteRenderer.enabled = true;
         }

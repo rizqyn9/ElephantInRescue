@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using EIR.Game;
 using UnityEngine;
 
 public class BaseCivilian : MonoBehaviour
 {
+    public CivilianWalk CivilianWalk { get; private set; }
     [SerializeField] float radius = 3f;
     [SerializeField] float angle = 360f;
     [SerializeField] LayerMask targetLayer;
@@ -12,6 +14,7 @@ public class BaseCivilian : MonoBehaviour
 
     private void Start()
     {
+        CivilianWalk = GetComponent<CivilianWalk>();
         StartCoroutine(FOVCheck());
     }
 
@@ -37,6 +40,7 @@ public class BaseCivilian : MonoBehaviour
             if (Vector2.Angle(transform.up, directionToTarget) > angle / 2)
             {
                 CanSeePlayer = true;
+                OnPlayerHit();
             }
             else
             {
@@ -48,6 +52,11 @@ public class BaseCivilian : MonoBehaviour
             CanSeePlayer = false;
         }
 
+    }
+
+    private void OnPlayerHit()
+    {
+        PlayerController.Instance.OnHitCivilian(this);
     }
 
     private void OnDrawGizmos()
@@ -65,6 +74,7 @@ public class BaseCivilian : MonoBehaviour
         if (CanSeePlayer)
         {
             Gizmos.color = Color.green;
+            if (PlayerController.Instance == null) return;
             Gizmos.DrawLine(transform.position, PlayerController.Instance.transform.position);
         }
     }

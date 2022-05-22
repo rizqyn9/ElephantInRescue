@@ -34,11 +34,16 @@ public class CivilianWalk : MonoBehaviour
     IEnumerator Move(Transform target)
     {
         OnChangeTarget(target);
-        while (Vector3.Distance(transform.position, target.position) > 0.05f)
+        while (Vector3.Distance(transform.position, target.position) > 0.05f && m_canMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, m_speed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    public void Stop()
+    {
+        m_canMove = false;
     }
 
     private void OnChangeTarget(Transform target)
