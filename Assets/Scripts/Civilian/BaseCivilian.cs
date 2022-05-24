@@ -59,6 +59,8 @@ public class BaseCivilian : MonoBehaviour
         PlayerController.Instance.OnHitCivilian(this);
     }
 
+#if UNITY_EDITOR
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
@@ -78,6 +80,8 @@ public class BaseCivilian : MonoBehaviour
             Gizmos.DrawLine(transform.position, PlayerController.Instance.transform.position);
         }
     }
+
+#endif
 
     private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees)
     {
