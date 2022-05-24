@@ -12,7 +12,7 @@ public enum PlaneTypeEnum
 public class Plane : MonoBehaviour
 {
     [Header("Events")]
-    [SerializeField] InventoryStateSO m_inventoryChannel = default;
+    [SerializeField] internal InventoryStateSO m_inventoryChannel = default;
 
     [SerializeField] bool m_isPlayerInstancePlace = false;
 
@@ -65,5 +65,9 @@ public class Plane : MonoBehaviour
     {
         PlaneManager.AuthorizedPlane(this, out string planeNameHashed);
         gameObject.name = planeNameHashed;
+    }
+
+    public virtual void OnMouseDown() {
+        if (m_inventoryChannel.ActiveInventory) m_inventoryChannel.RaiseEvent(null);
     }
 }

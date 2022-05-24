@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,13 +52,13 @@ public class InventoryItem : MonoBehaviour
 
     private void HandleInventoryChanged(InventoryItem activeInventory)
     {
-        if (InventoryItemType != activeInventory.InventoryItemType)
+        if (InventoryItemType == activeInventory?.InventoryItemType)
         {
             Enable();
         }
         else
         {
-            Disable();
+            Iddle();
         }
     }
 
@@ -86,6 +87,14 @@ public class InventoryItem : MonoBehaviour
     {
         OnStateChanged(InventoryState, state);
         InventoryState = state;
+    }
+
+    PlaneBase GetPlane(RaycastHit2D[] rays)
+    {
+        if (rays.Length == 0) return null;
+        var res = Array.Find(rays, val => val.collider.GetComponent<PlaneBase>() != null);
+        if (!res) return null;
+        return res.collider.GetComponent<PlaneBase>();
     }
 
     public virtual void OnStateChanged(InventoryState before, InventoryState after) { }

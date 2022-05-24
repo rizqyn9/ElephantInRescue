@@ -43,6 +43,7 @@ public class UI_Inventory : MonoBehaviour
 
     private void Start()
     {
+        if (!LevelManager.Instance) return;
         if (LevelManager.Instance.GetInventoryGO().Count > m_placedInstance.Count) throw new System.Exception("Please check total intanced inventory");
         for (int i = 0; i < LevelManager.Instance.GetInventoryGO().Count; i++)
         {

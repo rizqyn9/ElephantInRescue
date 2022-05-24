@@ -15,6 +15,11 @@ public class InventoryRoot : InventoryItem
         }
     }
 
+    private void Start()
+    {
+        OnChange();
+    }
+
     private void OnEnable()
     {
         m_decreaseIncreaseSO.OnEventRaised += HandleDecreaseIncrease;
