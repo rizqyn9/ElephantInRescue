@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +11,6 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] GameStateChannelSO m_gameStateChannelSO;
 
     [Header("Debug")]
-    private readonly Dictionary<string, InventoryItem> items = new Dictionary<string, InventoryItem>();
     [SerializeField] InventoryItem m_activeInventoryItem;
 
     private void OnEnable()

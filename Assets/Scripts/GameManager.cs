@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public PlayerDataModel playerDataModel = new PlayerDataModel();
     [SerializeField] SceneState _sceneState = SceneState.MAINMENU;
     [SerializeField] ResourcesManager resourcesManager;
-    [SerializeField] MainController mainController;
 
     // Accessors
     public static PlayerData PlayerData => Instance.playerData;
@@ -73,10 +72,6 @@ public class GameManager : MonoBehaviour
         if (ResourcesManager.Instance == null)
             resourcesManager = Instantiate(GO_ResourcesManager).GetComponent<ResourcesManager>();
         else resourcesManager = ResourcesManager.Instance;
-
-        if (MainController.Instance == null)
-            mainController = Instantiate(GO_MainController).GetComponent<MainController>();
-        else mainController = MainController.Instance;
 
         yield break;
     }

@@ -96,10 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d292b1870ba6d4f89a2213f0d1f84939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 3253689177560521952}
-  direction: {x: 0, y: 0, z: 0}
-  gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
-  inventoryStateSO: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
+  m_spriteRenderer: {fileID: 3253689177560521952}
+  m_direction: {x: 0, y: 0, z: 0}
+  m_planeStartPosition: {fileID: 0}
+  m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
+  m_inventoryStateSO: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
 --- !u!61 &7424339006242935325
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44b83086185a41b88c2d83e7fc383e7, type: 3}
-  m_Name: TestBool
+  m_Name: RootInventoryCountChannleSO
   m_EditorClassIdentifier: 
   _guid: 
   description: 

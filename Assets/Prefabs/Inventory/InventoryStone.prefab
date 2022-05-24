@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5076156283107778551}
   - component: {fileID: 3121664663190452169}
   - component: {fileID: 7043999738061381919}
-  - component: {fileID: 6997831539280342603}
+  - component: {fileID: 7835126541721586363}
   m_Layer: 5
   m_Name: InventoryStone
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6997831539280342603}
+      - m_Target: {fileID: 7835126541721586363}
         m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
         m_MethodName: On_Click
         m_Mode: 1
@@ -133,7 +133,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6997831539280342603
+--- !u!114 &7835126541721586363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,10 +142,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4990049202022081723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d65298f4cefa4f6183712f0ef1721b5, type: 3}
+  m_Script: {fileID: 11500000, guid: f55a6faf55d214bf7a5e42c47ec073d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryItemType: 0
-  m_isActive: 0
+  m_inventoryItemType: 3
   m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   _touchChannel: {fileID: 0}

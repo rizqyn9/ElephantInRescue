@@ -6,34 +6,34 @@ namespace EIR.Game
     {
         private static PlayerController m_instance;
         public static PlayerController Instance { get => m_instance; }
-        [SerializeField] SpriteRenderer spriteRenderer;
-        [SerializeField] Vector3 direction;
+        [SerializeField] SpriteRenderer m_spriteRenderer;
+        [SerializeField] Vector3 m_direction;
         public Plane PlanePosition { get; private set; }
 
         [SerializeField] Plane m_planeStartPosition;
 
         [Header("Events")]
-        public GameStateChannelSO gameStateChannel;
-        public InventoryStateSO inventoryStateSO;
+        public GameStateChannelSO m_gameStateChannel;
+        public InventoryStateSO m_inventoryStateSO;
 
         // Get Instances object
         public UI_Game UI_Game => UI_Game.Instance;
 
         private void OnEnable()
         {
-            gameStateChannel.OnEventRaised += HandleGameState;
-            inventoryStateSO.OnEventRaised += HandleInventoryState;
+            m_gameStateChannel.OnEventRaised += HandleGameState;
+            m_inventoryStateSO.OnEventRaised += HandleInventoryState;
         }
 
         private void OnDisable()
         {
-            gameStateChannel.OnEventRaised -= HandleGameState;
-            inventoryStateSO.OnEventRaised -= HandleInventoryState;
+            m_gameStateChannel.OnEventRaised -= HandleGameState;
+            m_inventoryStateSO.OnEventRaised -= HandleInventoryState;
         }
 
         private void Start()
         {
-            spriteRenderer.enabled = false;
+            m_spriteRenderer.enabled = false;
         }
 
         private void Awake()
@@ -72,14 +72,15 @@ namespace EIR.Game
         public void InitializePlayer()
         {
             gameObject.transform.position = m_planeStartPosition.transform.position;
-            spriteRenderer.enabled = true;
+            m_spriteRenderer.enabled = true;
         }
 
         public void SetDirection(Vector3 dir)
         {
-            direction = dir;
+            m_direction = dir;
             RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir, 1f);
 
+            
             foreach (RaycastHit2D ray in raycast)
             {
                 if (ray.collider != null)

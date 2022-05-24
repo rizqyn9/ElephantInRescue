@@ -1,5 +1,6 @@
+using System.Collections;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class UI_Game : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class UI_Game : MonoBehaviour
 
     [SerializeField] UI_Inventory m_uI_Inventory;
     [SerializeField] GameStateChannelSO gameState;
+    [SerializeField] GameObject m_winGO, m_loseGO;
+    [SerializeField] Text m_countDown;
 
     private void OnEnable()
     {
@@ -19,19 +22,9 @@ public class UI_Game : MonoBehaviour
         gameState.OnEventRaised -= HandleGameStateChanged;
     }
 
-    private void HandleGameStateChanged(GameState gameState)
-    {
-        switch (gameState)
-        {
-            case GameState.PLAY:
-
-                break;
-        }
-    }
-
     private void Start()
     {
-        // Get inverntory data from Level Manager
+        
     }
 
     private void Awake()
@@ -40,11 +33,37 @@ public class UI_Game : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void Init()
+    private void HandleGameStateChanged(GameState gameState)
     {
+        switch (gameState)
+        {
+            case GameState.BEFORE_PLAY:
+                m_countDown.text = (10).ToString();
+                StartCoroutine(ICountDown(10));                
+                break;
+            case GameState.PLAY:
+                if (Time.timeScale == 0) Play();
+                break;
+            case GameState.PAUSE:
+                if (Time.timeScale == 0) return;
+                Pause();
+                break;
+        }
     }
 
-    public void UpdateUI() { }
+    IEnumerator ICountDown (int seconds)
+    {
+        int counter = seconds;
+        while (counter > 0)
+        {
+            yield return new WaitForSeconds(1);
+            counter--;
+            m_countDown.text = counter.ToString();
+        }
+    }
+
+    void Pause() => Time.timeScale = 0;
+    void Play() => Time.timeScale = 1;
 
     public void Btn_Pause()
     {

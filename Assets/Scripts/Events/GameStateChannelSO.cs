@@ -20,7 +20,6 @@ public class GameStateChannelSO : DescriptionBaseSO
 
     private void OnEnable()
     {
-        Debug.Log("Instance");
         m_gameState = GameState.BEFORE_PLAY;
     }
 
