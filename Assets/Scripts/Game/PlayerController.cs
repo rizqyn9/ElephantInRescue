@@ -8,6 +8,7 @@ namespace EIR.Game
         public static PlayerController Instance { get => m_instance; }
         [SerializeField] SpriteRenderer m_spriteRenderer;
         [SerializeField] Vector3 m_direction;
+        [HideInInspector][SerializeField] bool m_canMove;
         public Plane PlanePosition { get; private set; }
 
         [SerializeField] Plane m_planeStartPosition;
@@ -55,7 +56,13 @@ namespace EIR.Game
                 case GameState.PLAY:
                     InitializePlayer();
                     break;
-            }
+                case GameState.BEFORE_PLAY:
+                case GameState.PAUSE:
+                case GameState.FINISH:
+                case GameState.TIME_OUT:
+                    m_canMove = false;
+                    break;
+            }       
         }
 
         public void OnHitCivilian(BaseCivilian civilian)
@@ -69,14 +76,17 @@ namespace EIR.Game
 
         }
 
-        public void InitializePlayer()
+        void InitializePlayer()
         {
+            m_canMove = true;
             gameObject.transform.position = m_planeStartPosition.transform.position;
             m_spriteRenderer.enabled = true;
         }
 
         public void SetDirection(Vector3 dir)
         {
+            if (!m_canMove) return;
+
             m_direction = dir;
             RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir, 1f);
 

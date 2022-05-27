@@ -9,6 +9,28 @@ public class CivilianWalk : MonoBehaviour
     [SerializeField] [Range(0, 4)] float m_speed = 2f;
     [SerializeField] bool m_canMove = false;
     [SerializeField] int m_indexNow = 0;
+    [SerializeField] GameStateChannelSO m_gameStateChannel;
+
+    private void OnEnable()
+    {
+        m_gameStateChannel.OnEventRaised += HandleGameStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;        
+    }
+
+    private void HandleGameStateChanged(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.FINISH:
+            case GameState.TIME_OUT:
+                Destroy(gameObject);
+                break;
+        }
+    }
 
     private void Start()
     {

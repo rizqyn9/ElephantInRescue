@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameStateChannelSO gameStateChannel = default;
 
     public LevelBase LevelBase { get; private set; }
+    public int CountTimeOut = 100;
 
     private void OnEnable()
     {
