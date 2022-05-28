@@ -26,7 +26,7 @@ public class UISetting : MonoBehaviour
     public void On_BackContainer()
     {
         if (m_preference.activeInHierarchy) m_Ui_MainMenu.OnClick_Overlay();
-        if(m_credit.activeInHierarchy)
+        if (m_credit.activeInHierarchy)
         {
             m_credit.SetActive(false);
             m_preference.SetActive(true);

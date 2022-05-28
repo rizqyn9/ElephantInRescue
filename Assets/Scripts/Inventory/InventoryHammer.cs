@@ -4,6 +4,6 @@ public class InventoryHammer : InventoryItem
 {
     public override void StartConfiguration()
     {
-        InventoryItemType = InventoryItemType.HAMMER;       
+        InventoryItemType = InventoryItemType.HAMMER;
     }
 }

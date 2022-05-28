@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - InputArea
+  - CountDown
   layers:
   - Default
   - TransparentFX

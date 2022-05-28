@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 
     public static void LoadLevelMap()
     {
+        print("Load Level");
         SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 

@@ -66,7 +66,8 @@ public class Plane : MonoBehaviour
         gameObject.name = planeNameHashed;
     }
 
-    public virtual void OnMouseDown() {
+    public virtual void OnMouseDown()
+    {
         if (m_inventoryChannel.ActiveInventory) m_inventoryChannel.RaiseEvent(null);
     }
 }

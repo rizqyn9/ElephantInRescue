@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +15,8 @@ public class RulesController : MonoBehaviour
 
     [SerializeField] GameStateChannelSO m_gameStateChannel;
 
+    [HideInInspector] [SerializeField] PlayerController PlayerController = null;
+
     void OnEnable()
     {
         m_gameStateChannel.OnEventRaised += HandleGameStateChanged;
@@ -23,34 +24,68 @@ public class RulesController : MonoBehaviour
 
     private void OnDisable()
     {
-        m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;        
+        m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;
     }
 
     private void HandleGameStateChanged(GameState gameState)
     {
         switch (gameState)
         {
-            case GameState.TIME_OUT:
-                StartCoroutine(Instance());
+            case GameState.FINISH:
+                CalculateStar();
                 break;
         }
-    }
-
-    IEnumerator Instance()
-    {
-        m_overlayedEffect.enabled = true;
-        m_containerGO.SetActive(true);
-        LeanTween.moveLocalY(m_containerGO, 0, .4f).setFrom(-500).setEaseOutBounce();
-        SetActiveImageFromList(0, m_stars);
-        LeanTween.rotateZ(SetActiveImageFromList(0, m_emojis), -10f, 1.5f).setEaseInOutCirc().setLoopPingPong();
-        SetActiveImageFromList(0, m_condition);
-        yield return 1;
     }
 
     private void Start()
     {
         m_overlayedEffect.enabled = false;
         m_containerGO.SetActive(false);
+        PlayerController = PlayerController.Instance;
+    }
+
+    void CalculateStar()
+    {
+        CountDown cd = GameObject.FindGameObjectWithTag("CountDown").GetComponent<CountDown>();
+        print(cd.CountTime);
+
+        if (PlayerController.IsDead)
+        {
+            print("My Elepehant die");
+        }
+
+        if (cd.CountTime == 0)
+        {
+            HandleStars(0);
+            return;
+        }
+        else if (cd.CountTime <= 4)
+        {
+            HandleStars(1);
+            return;
+        }
+        else if (cd.CountTime >= 3)
+        {
+
+            return;
+        }
+    }
+
+
+    void HandleStars(int starsCount)
+    {
+        StartCoroutine(Instance(starsCount));
+    }
+
+    IEnumerator Instance(int starsCount)
+    {
+        m_overlayedEffect.enabled = true;
+        m_containerGO.SetActive(true);
+        LeanTween.moveLocalY(m_containerGO, 0, .4f).setFrom(-500).setEaseOutBounce();
+        SetActiveImageFromList(starsCount, m_stars);
+        LeanTween.rotateZ(SetActiveImageFromList(starsCount, m_emojis), -10f, 1.5f).setEaseInOutCirc().setLoopPingPong();
+        SetActiveImageFromList(0, m_condition);
+        yield return 1;
     }
 
     private GameObject SetActiveImageFromList(int indexTarget, List<Image> images)

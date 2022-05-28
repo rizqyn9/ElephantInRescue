@@ -7,9 +7,11 @@ public class InventoryRoot : InventoryItem
     [SerializeField] BoolEventChannelSO m_decreaseIncreaseSO;
     [SerializeField] Text m_text;
 
-    public int Count {
+    public int Count
+    {
         get => m_count;
-        private set {
+        private set
+        {
             OnChange();
             m_count = value;
         }
@@ -27,7 +29,7 @@ public class InventoryRoot : InventoryItem
 
     private void OnDisable()
     {
-        m_decreaseIncreaseSO.OnEventRaised -= HandleDecreaseIncrease;        
+        m_decreaseIncreaseSO.OnEventRaised -= HandleDecreaseIncrease;
     }
 
     private void HandleDecreaseIncrease(bool value)
@@ -42,7 +44,8 @@ public class InventoryRoot : InventoryItem
         InventoryItemType = InventoryItemType.ROOT;
     }
 
-    void OnChange() {
+    void OnChange()
+    {
         m_text.text = m_count.ToString();
     }
 }

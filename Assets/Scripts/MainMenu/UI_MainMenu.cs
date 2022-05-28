@@ -38,32 +38,34 @@ public class UI_MainMenu : MonoBehaviour
 
     public void Btn_Play()
     {
-        UIAnimation.EffectOnClick(btnPlay, MainMenuManager.Instance.Play);
+        print("Play");
+        EffectOnClick(btnPlay, MainMenuManager.Instance.Play);
+        //MainMenuManager.Instance.Play();
     }
 
     public void Btn_Setting()
     {
-        UIAnimation.EffectOnClick(btnSetting, () =>
+        EffectOnClick(btnSetting, () =>
             {
-                toogleWithOverlay(uISetting.gameObject, uISetting.gameObject.SetActive);
+                ToogleWithOverlay(uISetting.gameObject, uISetting.gameObject.SetActive);
                 popDialog(uISetting.gameObject);
             });
     }
 
     public void Btn_Tutorial()
     {
-        UIAnimation.EffectOnClick(btnTutor, () =>
+        EffectOnClick(btnTutor, () =>
         {
-            toogleWithOverlay(goTutorial, goTutorial.SetActive);
+            ToogleWithOverlay(goTutorial, goTutorial.SetActive);
             popDialog(goTutorial);
         });
     }
 
     public void Btn_Notes()
     {
-        UIAnimation.EffectOnClick(btnNotes, () =>
+        EffectOnClick(btnNotes, () =>
         {
-            toogleWithOverlay(goNotes, goNotes.SetActive);
+            ToogleWithOverlay(goNotes, goNotes.SetActive);
             popDialog(goNotes);
         });
     }
@@ -76,7 +78,7 @@ public class UI_MainMenu : MonoBehaviour
         goOverlay.SetActive(false);
     }
 
-    void toogleWithOverlay(GameObject _target, Action<bool> _action)
+    void ToogleWithOverlay(GameObject _target, Action<bool> _action)
     {
         bool _isActive = _target.activeInHierarchy;
         goOverlayActive = _isActive ? null : _target;
@@ -88,6 +90,16 @@ public class UI_MainMenu : MonoBehaviour
     {
         LeanTween.alpha(_dialog, 1, 3f).setFrom(0);
         LeanTween.moveLocalY(_dialog, 0, .4f).setFrom(-500).setEaseOutBounce();
+    }
+
+    public void EffectOnClick(RectTransform _target, Action _onComplete)
+    {
+        Debug.Log("Anim");
+        //LeanTween.scale(_target, new Vector3(1.1f, 1.1f, 1), .1f).setEaseInOutCirc().setLoopPingPong(2).setOnStart(() => { Debug.Log("Satrt"); }).setOnComplete(() =>
+        //{
+        //    _onComplete();
+        //});
+        _onComplete();
     }
 }
 

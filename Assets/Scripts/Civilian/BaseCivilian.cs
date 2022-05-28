@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using EIR.Game;
 using UnityEngine;
 
 public class BaseCivilian : MonoBehaviour
@@ -51,16 +49,21 @@ public class BaseCivilian : MonoBehaviour
         {
             CanSeePlayer = false;
         }
-
     }
 
     private void OnPlayerHit()
     {
         PlayerController.Instance.OnHitCivilian(this);
+        CivilianWalk.Stop();
+    }
+
+    private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees)
+    {
+        angleInDegrees += eulerY;
+        return new Vector2(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 
 #if UNITY_EDITOR
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
@@ -80,12 +83,5 @@ public class BaseCivilian : MonoBehaviour
             Gizmos.DrawLine(transform.position, PlayerController.Instance.transform.position);
         }
     }
-
 #endif
-
-    private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees)
-    {
-        angleInDegrees += eulerY;
-        return new Vector2(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-    }
 }

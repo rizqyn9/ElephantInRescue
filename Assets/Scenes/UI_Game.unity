@@ -691,8 +691,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_uI_Inventory: {fileID: 1606229380}
   gameState: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
-  m_winGO: {fileID: 2139090557}
-  m_loseGO: {fileID: 0}
   m_countDown: {fileID: 0}
 --- !u!1 &487232348
 GameObject:
@@ -2021,7 +2019,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1202743299}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1106038308}
+        m_TargetAssemblyTypeName: UI_Pause, Assembly-CSharp
+        m_MethodName: Btn_MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1202743299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2264,7 +2274,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1356805807}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1106038308}
+        m_TargetAssemblyTypeName: UI_Pause, Assembly-CSharp
+        m_MethodName: Btn_Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1356805807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2998,3 +3020,4 @@ MonoBehaviour:
   m_containerGO: {fileID: 1126732626}
   m_overlayedEffect: {fileID: 2139090559}
   m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
+  PlayerController: {fileID: 0}

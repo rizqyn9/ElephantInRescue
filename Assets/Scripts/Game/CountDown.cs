@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.GameCenter;
 
 public class CountDown : MonoBehaviour
 {
@@ -17,7 +15,7 @@ public class CountDown : MonoBehaviour
 
     private void OnDisable()
     {
-        m_gameStateChannelSO.OnEventRaised -= HandleOnGameStateChanged;        
+        m_gameStateChannelSO.OnEventRaised -= HandleOnGameStateChanged;
     }
 
     private void Start()
@@ -39,14 +37,16 @@ public class CountDown : MonoBehaviour
         }
     }
 
+
+    public int CountTime { get; private set; }
     IEnumerator ICountDown(int seconds)
     {
-        int counter = seconds;
-        while (counter > 0)
+        CountTime = seconds;
+        while (CountTime > 0)
         {
             yield return new WaitForSeconds(1);
-            counter--;
-            text.text = counter.ToString();
+            CountTime--;
+            text.text = CountTime.ToString();
         }
         OnTimeOut();
     }
@@ -54,7 +54,9 @@ public class CountDown : MonoBehaviour
     void OnTimeOut()
     {
         print("Time Out");
-        m_gameStateChannelSO.RaiseEvent(GameState.TIME_OUT);
+        m_gameStateChannelSO.RaiseEvent(GameState.FINISH);
     }
+
+    float RemainingTime() => 1f;
 
 }

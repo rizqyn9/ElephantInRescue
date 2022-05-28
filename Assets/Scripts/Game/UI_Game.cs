@@ -9,7 +9,6 @@ public class UI_Game : MonoBehaviour
 
     [SerializeField] UI_Inventory m_uI_Inventory;
     [SerializeField] GameStateChannelSO gameState;
-    [SerializeField] GameObject m_winGO, m_loseGO;
     [SerializeField] Text m_countDown;
 
     private void OnEnable()
@@ -24,7 +23,7 @@ public class UI_Game : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Awake()
@@ -39,7 +38,7 @@ public class UI_Game : MonoBehaviour
         {
             case GameState.BEFORE_PLAY:
                 m_countDown.text = (10).ToString();
-                StartCoroutine(ICountDown(10));                
+                StartCoroutine(ICountDown(10));
                 break;
             case GameState.PLAY:
                 if (Time.timeScale == 0) Play();
@@ -51,7 +50,7 @@ public class UI_Game : MonoBehaviour
         }
     }
 
-    IEnumerator ICountDown (int seconds)
+    IEnumerator ICountDown(int seconds)
     {
         int counter = seconds;
         while (counter > 0)

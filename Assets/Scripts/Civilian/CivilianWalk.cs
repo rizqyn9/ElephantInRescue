@@ -18,7 +18,7 @@ public class CivilianWalk : MonoBehaviour
 
     private void OnDisable()
     {
-        m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;        
+        m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;
     }
 
     private void HandleGameStateChanged(GameState gameState)
@@ -26,7 +26,6 @@ public class CivilianWalk : MonoBehaviour
         switch (gameState)
         {
             case GameState.FINISH:
-            case GameState.TIME_OUT:
                 Destroy(gameObject);
                 break;
         }

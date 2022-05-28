@@ -51,7 +51,7 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeVolume(float value, string target)
     {
-        mixer.SetFloat(target, Mathf.Log10(value) * 20);       
+        mixer.SetFloat(target, Mathf.Log10(value) * 20);
         SetVolumePref(target, value);
     }
 

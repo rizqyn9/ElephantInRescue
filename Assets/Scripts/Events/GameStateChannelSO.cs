@@ -7,7 +7,6 @@ public enum GameState
     PLAY,
     PAUSE,
     FINISH,
-    TIME_OUT
 }
 
 [CreateAssetMenu(menuName = "Events/Game State Event Channel")]

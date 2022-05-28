@@ -20,7 +20,8 @@ public class PlaneTree : Plane
 
     public override void OnMouseDown()
     {
-        if(m_ShouldDestroyable && m_inventoryChannel.ActiveInventory?.InventoryItemType == InventoryItemType.KNIFE) {
+        if (m_ShouldDestroyable && m_inventoryChannel.ActiveInventory?.InventoryItemType == InventoryItemType.KNIFE)
+        {
             m_spriteRenderer.enabled = false;
             m_channelRootCount.RaiseEvent(true);
         }

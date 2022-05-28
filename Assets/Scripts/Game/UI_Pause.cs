@@ -38,4 +38,9 @@ public class UI_Pause : MonoBehaviour
     {
         GameManager.LoadMainMenu();
     }
+
+    public void Btn_Restart()
+    {
+        GameManager.LoadGameLevel(new LevelBase());
+    }
 }
