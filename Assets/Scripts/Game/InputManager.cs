@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using DG.Tweening;
 
 public class InputManager : MonoBehaviour
 {

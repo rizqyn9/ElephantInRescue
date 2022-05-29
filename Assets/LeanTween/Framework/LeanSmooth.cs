@@ -12,8 +12,7 @@ using UnityEngine;
 * @class LeanSmooth
 */
 
-public class LeanSmooth
-{
+public class LeanSmooth {
 
 
     /**

@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections;
+using DG.Tweening;
 
 public class UI_MainMenu : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class UI_MainMenu : MonoBehaviour
     private void Start()
     {
         ui_Form.gameObject.SetActive(false);
+        LeanTween.reset();
     }
 
     public void FormSetActive(bool value) =>
@@ -38,7 +41,6 @@ public class UI_MainMenu : MonoBehaviour
 
     public void Btn_Play()
     {
-        print("Play");
         EffectOnClick(btnPlay, MainMenuManager.Instance.Play);
         //MainMenuManager.Instance.Play();
     }
@@ -89,17 +91,20 @@ public class UI_MainMenu : MonoBehaviour
     void popDialog(GameObject _dialog)
     {
         LeanTween.alpha(_dialog, 1, 3f).setFrom(0);
-        LeanTween.moveLocalY(_dialog, 0, .4f).setFrom(-500).setEaseOutBounce();
+        LeanTween.moveLocalY(_dialog, 0, .4f).setFrom(-500).setEaseOutElastic();
     }
 
-    public void EffectOnClick(RectTransform _target, Action _onComplete)
+    public void EffectOnClick(RectTransform target, Action onComplete)
     {
-        Debug.Log("Anim");
-        //LeanTween.scale(_target, new Vector3(1.1f, 1.1f, 1), .1f).setEaseInOutCirc().setLoopPingPong(2).setOnStart(() => { Debug.Log("Satrt"); }).setOnComplete(() =>
-        //{
-        //    _onComplete();
-        //});
-        _onComplete();
+        StartCoroutine(IEffect(target, onComplete));
+    }
+
+    IEnumerator IEffect(RectTransform target, Action onComplete)
+    {
+        //LeanTween.scale(target, target.localScale * 1.1f, .2f).setLoopPingPong(1);
+        target.DOScale(target.localScale * 1.1f, .2f);
+        onComplete();
+        yield return new WaitForSeconds(.2f);
     }
 }
 

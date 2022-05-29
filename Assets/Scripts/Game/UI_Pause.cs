@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using EIR;
 
 public class UI_Pause : MonoBehaviour
 {

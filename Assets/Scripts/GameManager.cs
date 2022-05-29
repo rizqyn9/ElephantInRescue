@@ -93,15 +93,21 @@ public class GameManager : MonoBehaviour
     private void handleSceneChanged(Scene _scene, LoadSceneMode _loadMode)
     {
         print($" Load {_scene.name}");
+
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     /**
-        * Back to main menu
-        * Ensure all game environment clearance as properly
-        */
+    * Back to main menu
+    * Ensure all game environment clearance as properly
+    */
     public static void LoadMainMenu()
     {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
+        LeanTween.reset();
     }
 
     public static void LoadLevelMap()
@@ -111,10 +117,10 @@ public class GameManager : MonoBehaviour
     }
 
     /**
-        * Load game level
-        * Params reference to levelTarget with LevelBase 
-        * Set levelWillLoad to targeted _levelBase
-        */
+    * Load game level
+    * Params reference to levelTarget with LevelBase 
+    * Set levelWillLoad to targeted _levelBase
+    */
     public static void LoadGameLevel(LevelBase _levelBase)
     {
         Instance.levelWillLoad = new LevelBase(); // Reset // Todo
