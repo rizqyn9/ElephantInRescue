@@ -3,12 +3,10 @@ using UnityEngine;
 
 public static class UIAnimation
 {
-    public static void EffectOnClick(RectTransform _target, Action _onComplete)
+    public static void EffectOnClick(RectTransform target, Action onComplete)
     {
-        Debug.Log("Anim");
-        LeanTween.scale(_target, new Vector3(1.1f, 1.1f, 1), .1f).setEaseInOutCirc().setLoopPingPong(2).setOnStart(() => { Debug.Log("Satrt"); }).setOnComplete(() =>
-        {
-            _onComplete();
-        });
+        LeanTween.scale(target, target.localScale * 1.1f , .2f)
+            .setEaseInOutCirc()
+            .setOnComplete(() => { onComplete(); });
     }
 }

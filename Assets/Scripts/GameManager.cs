@@ -127,5 +127,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1, LoadSceneMode.Single);
         SceneManager.LoadScene(2, LoadSceneMode.Additive);
     }
+
+    /**
+     * Close Application
+     */
+    public static void CloseApplication ()
+    {
+        // Do something
+        Application.Quit();
+    }
 }
 

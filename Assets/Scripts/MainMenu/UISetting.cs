@@ -7,11 +7,13 @@ public class UISetting : MonoBehaviour
     [SerializeField] Slider m_bgmSlider;
     [SerializeField] Slider m_sfxSlider;
     [SerializeField] GameObject m_preference, m_credit;
+    [SerializeField] UIDialog m_dialog;
 
     private void OnEnable()
     {
         m_bgmSlider.onValueChanged.AddListener(HandleBgmSliderOnChange);
         m_sfxSlider.onValueChanged.AddListener(HandleSfxSliderOnChange);
+        m_dialog = GetComponent<UIDialog>();
     }
 
     private void Start()
@@ -25,7 +27,7 @@ public class UISetting : MonoBehaviour
 
     public void On_BackContainer()
     {
-        if (m_preference.activeInHierarchy) m_Ui_MainMenu.OnClick_Overlay();
+        if (m_preference.activeInHierarchy) m_dialog.OnClose();
         if (m_credit.activeInHierarchy)
         {
             m_credit.SetActive(false);

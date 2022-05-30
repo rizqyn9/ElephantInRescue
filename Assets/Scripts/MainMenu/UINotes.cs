@@ -5,8 +5,9 @@ public class UINotes : MonoBehaviour
     [SerializeField] UI_MainMenu m_Ui_MainMenu;
     [SerializeField] GameObject m_primaryContainer;
     [SerializeField] GameObject m_containerState;
+    [SerializeField] UIDialog m_dialog;
 
-    private GameObject containerState
+    private GameObject ContainerState
     {
         get => m_containerState;
         set
@@ -19,12 +20,13 @@ public class UINotes : MonoBehaviour
 
     private void OnEnable()
     {
-        containerState = m_primaryContainer;
+        ContainerState = m_primaryContainer;
+        m_dialog = GetComponent<UIDialog>();
     }
 
     public void OnChange(GameObject _containerOpen)
     {
-        containerState = _containerOpen;
+        ContainerState = _containerOpen;
     }
 
     public void HandleOnContainerChanged(GameObject _before, GameObject _after)
@@ -35,7 +37,7 @@ public class UINotes : MonoBehaviour
 
     public void On_BackContainer()
     {
-        if (m_primaryContainer.name == m_containerState.name) m_Ui_MainMenu.OnClick_Overlay();
+        if (m_primaryContainer.name == m_containerState.name) m_dialog.OnClose();
         else OnChange(m_primaryContainer);
     }
 }
