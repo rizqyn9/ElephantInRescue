@@ -53,14 +53,18 @@ public class LevelManager : MonoBehaviour
             .setFrom(2)
             .setOnComplete(() =>
             {
-                gameStateChannel.RaiseEvent(GameState.PLAY);
+                if(m_uITutorial)
+                {
+                    m_uITutorial.gameObject.SetActive(true);
+                } else
+                {
+                    gameStateChannel.RaiseEvent(GameState.PLAY);
+                }
             });
 
         LeanTween
             .alpha(m_gameContainer, 1, 2)
             .setFrom(0);
-        if (m_uITutorial)
-            m_uITutorial.gameObject.SetActive(true);
 
         yield return 1;
     }

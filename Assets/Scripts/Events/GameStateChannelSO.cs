@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public enum GameState
 {
     BEFORE_PLAY,
+    TUTORIAL,
     PLAY,
     PAUSE,
     FINISH,
