@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -29,7 +28,7 @@ public class LevelManager : MonoBehaviour
     }
 
     [SerializeField] GameState m_gameState;
-    void HandleGameStateChange(GameState gameState)
+    void HandleGameStateChange(GameState before, GameState gameState)
     {
         m_gameState = gameState;
     }
@@ -49,7 +48,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator StartEnumerator()
     {
         LeanTween
-            .moveZ(m_gameContainer, 0, 3)
+            .moveZ(m_gameContainer, 0, 1f)
             .setFrom(2)
             .setOnComplete(() =>
             {
@@ -63,7 +62,7 @@ public class LevelManager : MonoBehaviour
             });
 
         LeanTween
-            .alpha(m_gameContainer, 1, 2)
+            .alpha(m_gameContainer, 1, 1f)
             .setFrom(0);
 
         yield return 1;

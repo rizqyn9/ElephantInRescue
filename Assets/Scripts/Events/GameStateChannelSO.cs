@@ -13,7 +13,7 @@ public enum GameState
 [CreateAssetMenu(menuName = "Events/Game State Event Channel")]
 public class GameStateChannelSO : DescriptionBaseSO
 {
-    public event UnityAction<GameState> OnEventRaised;
+    public event UnityAction<GameState, GameState> OnEventRaised;
 
     [SerializeField] GameState m_gameState;
 
@@ -27,6 +27,9 @@ public class GameStateChannelSO : DescriptionBaseSO
     public void RaiseEvent(GameState gameState)
     {
         if (OnEventRaised != null && m_gameState != gameState)
-            OnEventRaised.Invoke(gameState);
+        {
+            OnEventRaised.Invoke(m_gameState, gameState);
+            GameState = gameState;
+        }
     }
 }

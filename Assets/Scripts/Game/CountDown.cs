@@ -24,7 +24,7 @@ public class CountDown : MonoBehaviour
         text.text = countTime.ToString();
     }
 
-    private void HandleOnGameStateChanged(GameState gameState)
+    private void HandleOnGameStateChanged(GameState before, GameState gameState)
     {
         switch (gameState)
         {

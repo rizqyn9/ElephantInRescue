@@ -10,9 +10,12 @@ public class CivilianWalk : MonoBehaviour
     [SerializeField] bool m_canMove = false;
     [SerializeField] int m_indexNow = 0;
     [SerializeField] GameStateChannelSO m_gameStateChannel;
+    SpriteRenderer m_renderer;
 
     private void OnEnable()
     {
+        m_renderer = GetComponent<SpriteRenderer>();
+        m_renderer.enabled = false;
         m_gameStateChannel.OnEventRaised += HandleGameStateChanged;
     }
 
@@ -21,12 +24,17 @@ public class CivilianWalk : MonoBehaviour
         m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;
     }
 
-    private void HandleGameStateChanged(GameState gameState)
+    private void HandleGameStateChanged(GameState before, GameState gameState)
     {
         switch (gameState)
         {
+            case GameState.PLAY:
+                if (before == GameState.PAUSE) break;
+                m_renderer.enabled = true;
+                StartCoroutine(StartMove());
+                break;
             case GameState.FINISH:
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 break;
         }
     }
@@ -34,7 +42,6 @@ public class CivilianWalk : MonoBehaviour
     private void Start()
     {
         transform.position = planeWayPoint[0].transform.position;
-        StartCoroutine(StartMove());
     }
 
     IEnumerator StartMove()

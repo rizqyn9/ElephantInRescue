@@ -27,7 +27,7 @@ public class RulesController : MonoBehaviour
         m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;
     }
 
-    private void HandleGameStateChanged(GameState gameState)
+    private void HandleGameStateChanged(GameState before, GameState gameState)
     {
         switch (gameState)
         {

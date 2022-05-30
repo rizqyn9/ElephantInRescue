@@ -47,12 +47,15 @@ public class PlayerController : MonoBehaviour
         m_instance = null;
     }
 
-    void HandleGameState(GameState gameState)
+    void HandleGameState(GameState before, GameState gameState)
     {
         switch (gameState)
         {
             case GameState.PLAY:
-                InitializePlayer();
+                if (before == GameState.PAUSE)
+                    m_canMove = true;
+                else 
+                    InitializePlayer();
                 break;
             case GameState.BEFORE_PLAY:
             case GameState.PAUSE:

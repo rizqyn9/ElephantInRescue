@@ -77,6 +77,7 @@ public class UITutorial : MonoBehaviour
             {
                 print("Clear");
                 m_gameStateChannel.RaiseEvent(GameState.PLAY);
+                gameObject.SetActive(false);
             });
 
         LeanTween

@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
 
     private Camera mainCamera => Camera.main;
 
-    void HandleGameState(GameState _gameState) => m_gameState = _gameState;
+    void HandleGameState(GameState before, GameState _gameState) => m_gameState = _gameState;
 
     private void OnEnable()
     {

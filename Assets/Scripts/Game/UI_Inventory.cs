@@ -31,7 +31,7 @@ public class UI_Inventory : MonoBehaviour
         m_activeInventoryItem = activeInventory;
     }
 
-    private void HandleGameStateChanged(GameState gameState)
+    private void HandleGameStateChanged(GameState before, GameState gameState)
     {
         switch (gameState)
         {

@@ -32,7 +32,7 @@ public class UI_Game : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    private void HandleGameStateChanged(GameState gameState)
+    private void HandleGameStateChanged(GameState before, GameState gameState)
     {
         switch (gameState)
         {

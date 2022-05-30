@@ -6,11 +6,13 @@ public class UIButton : MonoBehaviour
 {
     [SerializeField] UIDialog m_target;
     [SerializeField] UnityEvent onClick;
-    [HideInInspector] Button m_button;
+    Button m_button;
+
+    public UIDialog UIDialog { get => m_target; }
 
     private void OnEnable()
     {
-        m_button = GetComponent<Button>();
+        m_button = gameObject.GetComponent<Button>();
         m_button.onClick.AddListener(On_Click);
     }
 
@@ -21,11 +23,11 @@ public class UIButton : MonoBehaviour
             .scale(rect, rect.localScale * 1.1f, .2f)
             .setLoopPingPong(1)
             .setEaseInBounce()
+            .setIgnoreTimeScale(true)
             .setOnComplete(() => {
                 if (m_target)
                     m_target.gameObject.SetActive(true);
-                else
-                    onClick?.Invoke();
+                onClick?.Invoke();
             });
     }
 
