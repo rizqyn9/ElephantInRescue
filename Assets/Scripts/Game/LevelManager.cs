@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
 
     [Header("Event")]
     [SerializeField] GameStateChannelSO gameStateChannel = default;
+    [SerializeField] UITutorial m_uITutorial;
+    [SerializeField] GameObject m_gameContainer;
 
     public LevelBase LevelBase { get; private set; }
     public int CountTimeOut = 100;
@@ -46,11 +48,19 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator StartEnumerator()
     {
-        // Start the game after all animation have done
-        Camera.main.transform.DOMoveZ(Camera.main.transform.position.z, 3).SetEase(Ease.InOutQuart).From(0).OnComplete(() =>
-        {
-            gameStateChannel.RaiseEvent(GameState.PLAY);
-        });
+        LeanTween
+            .moveZ(m_gameContainer, 0, 3)
+            .setFrom(2)
+            .setOnComplete(() =>
+            {
+                gameStateChannel.RaiseEvent(GameState.PLAY);
+            });
+
+        LeanTween
+            .alpha(m_gameContainer, 1, 2)
+            .setFrom(0);
+        if (m_uITutorial)
+            m_uITutorial.gameObject.SetActive(true);
 
         yield return 1;
     }
