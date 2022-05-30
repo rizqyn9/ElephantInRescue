@@ -7,10 +7,10 @@ public class ResourcesManager : MonoBehaviour
     public static ResourcesManager Instance { get => _instance; }
 
     [Header("Properties")]
-    [SerializeField] List<LevelBase> _levelBases;
+    [SerializeField] List<LevelDataModel> m_levelBases;
 
     // Accessor
-    public static List<LevelBase> LevelBase => Instance._levelBases;
+    public static List<LevelDataModel> LevelDatas { get => Instance.m_levelBases; } 
 
     private void Awake()
     {

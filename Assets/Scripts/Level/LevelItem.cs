@@ -11,24 +11,23 @@ public struct LevelItemProps
 
 public class LevelItem : MonoBehaviour
 {
+    [SerializeField] LevelDataModel m_levelData;
     [SerializeField] int m_level, m_stage;
-    [Range(0, 3)] [SerializeField] int m_levelStarsTotal = 0;
-    [SerializeField] bool m_isOpen = true;
-    [SerializeField] bool m_isNewLevel = true;
     [SerializeField] Sprite m_uiActive, m_uiDisable;
     [SerializeField] Image m_image, m_stars;
     [SerializeField] Sprite[] m_uiStars;
 
     private void Start()
     {
-        if (m_isOpen && m_isNewLevel)
+        m_levelData = GameManager.GetLevelDataByLevelStage(m_level, m_stage);
+        if (m_levelData.IsOpen && m_levelData.IsNewLevel)
         {
             m_image.sprite = m_uiActive;
             m_stars.gameObject.SetActive(false);
         }
-        else if (m_isOpen && !m_isNewLevel)
+        else if (m_levelData.IsOpen && !m_levelData.IsNewLevel)
         {
-            m_stars.sprite = m_uiStars[m_levelStarsTotal];
+            m_stars.sprite = m_uiStars[m_levelData.Stars];
             m_stars.gameObject.SetActive(true);
             m_image.sprite = m_uiActive;
         }
@@ -43,6 +42,6 @@ public class LevelItem : MonoBehaviour
     {
         print($"Select Stage: {m_stage}, Level: {m_level}");
         // HardCode
-        GameManager.LoadGameLevel(ResourcesManager.LevelBase.Find(val => val.level == GameManager.Instance.playerDataModel.currentLevel));
+        GameManager.LoadGameLevel(m_levelData);
     }
 }

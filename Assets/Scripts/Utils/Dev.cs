@@ -6,17 +6,24 @@ public class Dev : MonoBehaviour
 {
     #region Singleton
     private static Dev _instance;
-    public static Dev Instance { get => _instance; private set { } }
+    public static Dev Instance { get => _instance; }
     #endregion
 
     [Header("Properties")]
-    public bool isDevMode = true;
+    public bool isDevMode;
     public bool useCustomUserModel = true;
     public bool useNewDataUser = false;
-    public PlayerDataModel customPlayerModel;
+    public PlayerDataModel m_customPlayerModel;
     public bool useLevelTest = true;
-    public LevelBase levelTest;
     public GameObject gameManagerPrefab;
+
+    private void OnEnable()
+    {
+        isDevMode = false;
+#if UNITY_EDITOR
+        isDevMode = true;  
+#endif
+    }
 
     private void Awake()
     {
@@ -44,11 +51,14 @@ public class Dev : MonoBehaviour
         yield return new WaitUntil(() => GameManager.Instance != null);
 
         if (GameManager.SceneState == SceneState.MAINMENU)
+        {
+            GameManager.Instance.playerDataModel = m_customPlayerModel;
             GameManager.Instance.initialize();
+
+        }
         else
         {
             //LevelManager.Instance.Init();
-
         }
     }
 }

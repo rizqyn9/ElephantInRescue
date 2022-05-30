@@ -38,6 +38,6 @@ public class UI_Pause : MonoBehaviour
 
     public void Btn_Restart()
     {
-        GameManager.LoadGameLevel(new LevelBase());
+        GameManager.LoadGameLevel(new LevelDataModel());
     }
 }

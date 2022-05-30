@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] UITutorial m_uITutorial;
     [SerializeField] GameObject m_gameContainer;
 
-    public LevelBase LevelBase { get; private set; }
+    public LevelDataModel LevelModel { get; private set; }
     public int CountTimeOut = 100;
 
     private void OnEnable()

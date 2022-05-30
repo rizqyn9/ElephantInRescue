@@ -14,7 +14,7 @@ public class PlayerData : MonoBehaviour
             Application.dataPath + "/eir_dev.json" :
             Application.persistentDataPath + "/eir_production.json";
 
-        if (Dev.Instance.isDevMode && Dev.Instance.useCustomUserModel) return Dev.Instance.customPlayerModel;
+        if (Dev.Instance.isDevMode && Dev.Instance.useCustomUserModel) return Dev.Instance.m_customPlayerModel;
         else if (Dev.Instance.isDevMode && Dev.Instance.useNewDataUser) return new PlayerDataModel();
         else if (File.Exists(saveFilePath))
         {

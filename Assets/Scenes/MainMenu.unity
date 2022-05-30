@@ -3476,10 +3476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4c74ecd7b8949a08891eafacb1b56d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui_Form: {fileID: 706238107}
-  profileUserName: {fileID: 0}
-  levelLevel: {fileID: 0}
-  levelStage: {fileID: 0}
 --- !u!224 &596243916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10938,16 +10934,64 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: isDevMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
       propertyPath: useNewDataUser
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
       propertyPath: useCustomUserModel
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
       propertyPath: customPlayerModel.userName
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[0].Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[0].Stage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[0].Stars
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[1].Level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[1].Stage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[1].Stars
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[0].IsOpen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[0].isOpen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[1].IsOpen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468231124850396794, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
+      propertyPath: m_customPlayerModel.LevelDatas.Array.data[1].isOpen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2468231124850396795, guid: 09312b1c78b7443fe933787929b7d9e9, type: 3}
       propertyPath: m_Name

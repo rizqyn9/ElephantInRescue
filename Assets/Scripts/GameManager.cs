@@ -11,15 +11,14 @@ public class GameManager : MonoBehaviour
 
     [Header("Properties")]
     public PlayerData playerData;
-    public GameObject GO_ResourcesManager, GO_MainController;
+    public GameObject GO_ResourcesManager;
 
     [Header("Debug")]
     public PlayerDataModel playerDataModel = new PlayerDataModel();
     [SerializeField] SceneState _sceneState = SceneState.MAINMENU;
     [SerializeField] ResourcesManager resourcesManager;
 
-    // Accessors
-    public static PlayerData PlayerData => Instance.playerData;
+    public static PlayerData PlayerData { get => Instance.playerData; }
     public static SceneState SceneState => updateSceneState();
 
 
@@ -33,9 +32,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /**
-        * Use dev script for starting in dev mode
-        */
     private void Start()
     {
         if (Dev.Instance.isDevMode) return;
@@ -48,25 +44,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ILoadAllResources());
 
         playerDataModel = playerData.load();
-
-        validateNewUser();
-    }
-
-    private void validateNewUser()
-    {
-        if (SceneState == SceneState.GAME && Dev.Instance.isDevMode) return;
-        if (playerDataModel.Equals(default(PlayerDataModel)))
-            MainMenuManager.UI_MainMenu.FormSetActive(true);
-        else
-            MainMenuManager.UI_MainMenu.UpdateUIComponent();
     }
 
     /**
-        * Load all dependencies
-        * Resources Manager
-        * Main Controller
-        * 
-        */
+    * Load all dependencies
+    * Resources Manager
+    * Main Controller
+    * 
+    */
     IEnumerator ILoadAllResources()
     {
         if (ResourcesManager.Instance == null)
@@ -89,7 +74,7 @@ public class GameManager : MonoBehaviour
         else return SceneState.GAME;
     }
 
-    [SerializeField] LevelBase levelWillLoad;
+    [SerializeField] LevelDataModel levelWillLoad;
     private void handleSceneChanged(Scene _scene, LoadSceneMode _loadMode)
     {
         print($" Load {_scene.name}");
@@ -121,11 +106,11 @@ public class GameManager : MonoBehaviour
     * Params reference to levelTarget with LevelBase 
     * Set levelWillLoad to targeted _levelBase
     */
-    public static void LoadGameLevel(LevelBase _levelBase)
+    public static void LoadGameLevel(LevelDataModel level)
     {
-        Instance.levelWillLoad = new LevelBase(); // Reset // Todo
+        Instance.levelWillLoad = level; // Reset // Todo
         SceneManager.LoadScene(1, LoadSceneMode.Single);
-        SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        SceneManager.LoadScene($"Stg{level.Stage}-Lvl{level.Level}", LoadSceneMode.Additive);
     }
 
     /**
@@ -136,5 +121,8 @@ public class GameManager : MonoBehaviour
         // Do something
         Application.Quit();
     }
+
+    public static LevelDataModel GetLevelDataByLevelStage(int level, int stage) =>
+        Instance.playerDataModel.LevelDatas.Find(val => val.Level == level && val.Stage == stage);    
 }
 
