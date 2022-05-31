@@ -2,13 +2,20 @@ using UnityEngine;
 
 public class UILevel : MonoBehaviour
 {
-    public void Btn_Setting()
+    [SerializeField] UIDialog m_uIDialog;
+    [SerializeField] LevelItem m_levelItem;
+
+    public LevelItem LevelItem { get => m_levelItem; private set => m_levelItem = value; }
+
+    public void OpenDialog(LevelItem levelItem)
     {
-        
+        LevelItem = levelItem;
+        m_uIDialog.gameObject.SetActive(true);
     }
 
-    public void Btn_MainMenu()
+    public void PlayLevel()
     {
-        GameManager.LoadMainMenu();
+        if (LevelItem == null) return;
+        GameManager.LoadGameLevel(LevelItem.LevelDataModel);
     }
 }

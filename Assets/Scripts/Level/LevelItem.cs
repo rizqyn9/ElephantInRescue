@@ -16,9 +16,17 @@ public class LevelItem : MonoBehaviour
     [SerializeField] Sprite m_uiActive, m_uiDisable;
     [SerializeField] Image m_image, m_stars;
     [SerializeField] Sprite[] m_uiStars;
+    [SerializeField] internal Sprite m_stageSprite;
+
+    [HideInInspector] UILevel m_uILevel;
+
+    public LevelDataModel LevelDataModel { get => m_levelData; }
+    public Image StarsImage { get => m_stars; }
 
     private void Start()
     {
+        m_uILevel = FindObjectOfType<UILevel>();
+
         m_levelData = GameManager.GetLevelDataByLevelStage(m_level, m_stage);
         if (m_levelData.IsOpen && m_levelData.IsNewLevel)
         {
@@ -41,7 +49,6 @@ public class LevelItem : MonoBehaviour
     public void On_SelectLevel()
     {
         print($"Select Stage: {m_stage}, Level: {m_level}");
-        // HardCode
-        GameManager.LoadGameLevel(m_levelData);
+        m_uILevel.OpenDialog(this);
     }
 }
