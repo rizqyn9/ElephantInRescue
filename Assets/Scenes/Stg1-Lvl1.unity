@@ -4787,7 +4787,7 @@ MonoBehaviour:
   gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_uITutorial: {fileID: 899831709}
   m_gameContainer: {fileID: 1968815180}
-  CountTimeOut: 25
+  CountTimeOut: 5
   m_gameState: 0
 --- !u!4 &1878888549
 Transform:

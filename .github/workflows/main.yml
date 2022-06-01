@@ -1,8 +1,8 @@
 name: 🎮 Elephant In Rescue
 
-on: 
+on:
   push:
-    branches:    
+    branches:
       - master
 
 env:
@@ -29,11 +29,11 @@ jobs:
 
       # Test
       #- name: Run tests
-       # uses: game-ci/unity-test-runner@v2
-        #env:
-         # UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-       # with:
-        #  githubToken: ${{ secrets.GITHUB_TOKEN }}
+      # uses: game-ci/unity-test-runner@v2
+      #env:
+      # UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      # with:
+      #  githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       # Build
       - name: Build cute elephant 🔥
@@ -41,7 +41,9 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          targetPlatform: Android
+          targetPlatform:
+            - Android
+            - WebGL
 
       # Output
       - uses: actions/upload-artifact@v2

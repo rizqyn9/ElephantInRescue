@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 663183262d9e34737b368e93c76c7f38, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5a6904ef5e6e48908f9f9ee133de564, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -123,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6547816432467590183}
         m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-        m_MethodName: On_Click
+        m_MethodName: Btn_OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -145,6 +145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be61f390f7b54f2db852c1c7de2d06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_inventoryItemType: 2
-  m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
-  _touchChannel: {fileID: 0}
+  m_activeColor:
+    serializedVersion: 2
+    rgba: 4288472558
+  m_iddleColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  inventoryStateSO: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
+  m_inventoryState: 1
+  inventoryItemType: 2

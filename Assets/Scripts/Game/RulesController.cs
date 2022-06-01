@@ -9,9 +9,7 @@ public class RulesController : MonoBehaviour
     [SerializeField] List<Image> m_emojis = new List<Image>();
     [SerializeField] List<Image> m_stages = new List<Image>();
     [SerializeField] List<Image> m_condition = new List<Image>();
-
-    [SerializeField] GameObject m_containerGO;
-    [SerializeField] Image m_overlayedEffect;
+    [SerializeField] UIDialog m_uIDialog;
 
     [SerializeField] GameStateChannelSO m_gameStateChannel;
 
@@ -22,7 +20,7 @@ public class RulesController : MonoBehaviour
         m_gameStateChannel.OnEventRaised += HandleGameStateChanged;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;
     }
@@ -39,8 +37,6 @@ public class RulesController : MonoBehaviour
 
     private void Start()
     {
-        m_overlayedEffect.enabled = false;
-        m_containerGO.SetActive(false);
         PlayerController = PlayerController.Instance;
     }
 
@@ -66,11 +62,9 @@ public class RulesController : MonoBehaviour
         }
         else if (cd.CountTime >= 3)
         {
-
             return;
         }
     }
-
 
     void HandleStars(int starsCount)
     {
@@ -79,9 +73,7 @@ public class RulesController : MonoBehaviour
 
     IEnumerator Instance(int starsCount)
     {
-        m_overlayedEffect.enabled = true;
-        m_containerGO.SetActive(true);
-        LeanTween.moveLocalY(m_containerGO, 0, .4f).setFrom(-500).setEaseOutBounce();
+        m_uIDialog.gameObject.SetActive(true);
         SetActiveImageFromList(starsCount, m_stars);
         LeanTween.rotateZ(SetActiveImageFromList(starsCount, m_emojis), -10f, 1.5f).setEaseInOutCirc().setLoopPingPong();
         SetActiveImageFromList(0, m_condition);

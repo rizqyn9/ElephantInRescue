@@ -21,81 +21,96 @@ public enum InventoryState
 [RequireComponent(typeof(Button))]
 public class InventoryItem : MonoBehaviour
 {
-    [SerializeField] InventoryItemType m_inventoryItemType;
-
-    [SerializeField] InventoryStateSO m_inventoryChannel;
-    [SerializeField] TouchStateSO _touchChannel;
-
-    public InventoryItemType InventoryItemType { get => m_inventoryItemType; internal set => m_inventoryItemType = value; }
-    public InventoryState InventoryState { get; private set; }
-
-    private void OnEnable()
+    internal Image image;
+    internal Button button;
+    RectTransform rectTransform;
+    [SerializeField] Color32 m_activeColor, m_iddleColor;
+    [SerializeField] internal InventoryStateSO inventoryStateSO;
+    [SerializeField] InventoryState m_inventoryState = InventoryState.IDDLE;
+    public InventoryState InventoryState
     {
-        m_inventoryChannel.OnEventRaised += HandleInventoryChanged;
-    }
-
-    private void OnDisable()
-    {
-        m_inventoryChannel.OnEventRaised -= HandleInventoryChanged;
-    }
-
-    private void Start()
-    {
-        InventoryState = InventoryState.IDDLE;
-        StartConfiguration();
-    }
-
-    /// <summary>
-    /// Trigggered on first init
-    /// </summary>
-    public virtual void StartConfiguration() { }
-
-    private void HandleInventoryChanged(InventoryItem activeInventory)
-    {
-        if (InventoryItemType == activeInventory?.InventoryItemType)
+        get => m_inventoryState;
+        set
         {
-            Enable();
-        }
-        else
-        {
-            Iddle();
+            m_inventoryState = value;
+            HandleStateOnChange(m_inventoryState, value);
         }
     }
 
-    private void Iddle()
+    [SerializeField] InventoryItemType inventoryItemType; 
+    public InventoryItemType InventoryItemType { get => inventoryItemType; internal set => inventoryItemType = value; }
+
+    internal virtual void HandleStateOnChange(InventoryState before, InventoryState after)
     {
-        InventoryState = InventoryState.IDDLE;
+        if(after == InventoryState.IDDLE)
+        {
+            if(rectTransform.localScale != Vector3.one)
+            {
+                LeanTween
+                    .scale(rectTransform, Vector3.one, .2f).setEaseInBounce();
+            }
+            button.interactable = true;
+            image.color = m_iddleColor;
+        } else if(after == InventoryState.ACTIVE)
+        {
+            inventoryStateSO.RaiseEvent(this);
+            LeanTween
+                .scale(rectTransform, rectTransform.localScale * 1.1f, .2f).setEaseInBounce();
+
+            image.color = m_activeColor;
+        } else
+        {
+            button.interactable = false;
+        }
     }
 
-    private void Enable()
+    internal virtual void OnEnable()
     {
-        InventoryState = InventoryState.ACTIVE;
+        image = GetComponent<Image>();
+        button = GetComponent<Button>();
+        rectTransform = GetComponent<RectTransform>();
+        inventoryStateSO.OnEventRaised += HandleInventoryEvent;
     }
 
-    private void Disable()
+    internal virtual void OnDisable()
     {
-        InventoryState = InventoryState.DISABLE;
+        inventoryStateSO.OnEventRaised -= HandleInventoryEvent;        
     }
 
-    public void On_Click()
+    internal virtual void Start()
     {
-        if (m_inventoryChannel.ActiveInventory?.InventoryItemType == InventoryItemType) return;
-        m_inventoryChannel.RaiseEvent(this);
+        InventoryState = m_inventoryState;
     }
 
-    public void ChangeState(InventoryState state)
+    internal virtual void Btn_OnClick()
     {
-        OnStateChanged(InventoryState, state);
-        InventoryState = state;
+        switch (InventoryState)
+        {
+            case InventoryState.ACTIVE:
+                InventoryState = InventoryState.IDDLE;
+                break;
+            case InventoryState.IDDLE:
+                InventoryState = InventoryState.ACTIVE;
+                break;
+            default:
+                break;
+        }
     }
 
-    PlaneBase GetPlane(RaycastHit2D[] rays)
+    internal virtual void HandleInventoryEvent(InventoryItem active)
     {
-        if (rays.Length == 0) return null;
-        var res = Array.Find(rays, val => val.collider.GetComponent<PlaneBase>() != null);
-        if (!res) return null;
-        return res.collider.GetComponent<PlaneBase>();
+        if(active && active.InventoryItemType != inventoryItemType && InventoryState == InventoryState.ACTIVE)
+        {
+            InventoryState = InventoryState.IDDLE;
+        }
     }
 
-    public virtual void OnStateChanged(InventoryState before, InventoryState after) { }
+    internal virtual void Update()
+    {
+        // TODO refocus when user not touch grid object
+        if(InventoryState == InventoryState.ACTIVE)
+        {        
+            //RaycastHit2D[] hit2Ds = Physics2D.RaycastAll()
+        }
+    }
 }

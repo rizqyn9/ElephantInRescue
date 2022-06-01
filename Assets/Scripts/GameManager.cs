@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
         else return SceneState.GAME;
     }
 
-    [SerializeField] LevelDataModel levelWillLoad;
     private void handleSceneChanged(Scene _scene, LoadSceneMode _loadMode)
     {
         print($" Load {_scene.name}");
@@ -106,9 +105,11 @@ public class GameManager : MonoBehaviour
     * Params reference to levelTarget with LevelBase 
     * Set levelWillLoad to targeted _levelBase
     */
+    [SerializeField] LevelDataModel m_levelLoaded;
+    public LevelDataModel LevelDataModel { get => m_levelLoaded; private set => m_levelLoaded = value; }
     public static void LoadGameLevel(LevelDataModel level)
     {
-        Instance.levelWillLoad = level; // Reset // Todo
+        Instance.LevelDataModel = level; // Reset // Todo
         SceneManager.LoadScene(1, LoadSceneMode.Single);
         SceneManager.LoadScene($"Stg{level.Stage}-Lvl{level.Level}", LoadSceneMode.Additive);
     }

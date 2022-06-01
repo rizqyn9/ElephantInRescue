@@ -1,51 +1,42 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class InventoryRoot : InventoryItem
 {
-    [SerializeField] int m_count = 0;
-    [SerializeField] BoolEventChannelSO m_decreaseIncreaseSO;
-    [SerializeField] Text m_text;
-
+    [SerializeField] TMP_Text text;
+    [SerializeField] BoolEventChannelSO m_addRemoveRoot;
+    [SerializeField] int m_countRoot = 0;
     public int Count
     {
-        get => m_count;
-        private set
+        get => m_countRoot;
+        internal set
         {
-            OnChange();
-            m_count = value;
+            m_countRoot = value;
+            text.text = m_countRoot.ToString();
         }
     }
 
-    private void Start()
+    internal override void OnEnable()
     {
-        OnChange();
+        base.OnEnable();
+        m_addRemoveRoot.OnEventRaised += HandleAddRemoveRoot;
+
+        Count = 2;
+        if (m_countRoot == 0)
+        {
+            InventoryState = InventoryState.DISABLE;
+        }
     }
 
-    private void OnEnable()
+    internal override void OnDisable()
     {
-        m_decreaseIncreaseSO.OnEventRaised += HandleDecreaseIncrease;
+        base.OnDisable();
+        m_addRemoveRoot.OnEventRaised -= HandleAddRemoveRoot;
     }
 
-    private void OnDisable()
+    private void HandleAddRemoveRoot(bool shouldAdd)
     {
-        m_decreaseIncreaseSO.OnEventRaised -= HandleDecreaseIncrease;
-    }
-
-    private void HandleDecreaseIncrease(bool value)
-    {
-        if (value) m_count++;
-        else m_count--;
-        OnChange();
-    }
-
-    public override void StartConfiguration()
-    {
-        InventoryItemType = InventoryItemType.ROOT;
-    }
-
-    void OnChange()
-    {
-        m_text.text = m_count.ToString();
+        if (shouldAdd) Count++;
+        else Count--;
     }
 }
