@@ -20,9 +20,9 @@ public class Dev : MonoBehaviour
     private void OnEnable()
     {
         isDevMode = false;
-#if UNITY_EDITOR
-        isDevMode = true;  
-#endif
+//#if UNITY_EDITOR
+//        isDevMode = true;  
+//#endif
     }
 
     private void Awake()

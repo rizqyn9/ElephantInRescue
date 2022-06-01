@@ -99,7 +99,8 @@ public class InventoryItem : MonoBehaviour
 
     internal virtual void HandleInventoryEvent(InventoryItem active)
     {
-        if(active && active.InventoryItemType != inventoryItemType && InventoryState == InventoryState.ACTIVE)
+        if( (active == null && InventoryState == InventoryState.ACTIVE)
+            || (active && active.InventoryItemType != inventoryItemType && InventoryState == InventoryState.ACTIVE))
         {
             InventoryState = InventoryState.IDDLE;
         }

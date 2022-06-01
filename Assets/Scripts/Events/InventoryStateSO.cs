@@ -1,5 +1,6 @@
 using UnityEngine.Events;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// This class is used for Events that have a bool argument.
@@ -18,17 +19,8 @@ public class InventoryStateSO : DescriptionBaseSO
 {
     public UnityAction<InventoryItem> OnEventRaised;
 
-    public InventoryItem ActiveInventory { get; private set; }
-
-    private void OnEnable()
-    {
-        ActiveInventory = null;
-    }
-
     public void RaiseEvent(InventoryItem value)
     {
-        ActiveInventory = value;
-
         if (OnEventRaised != null)
         {
             OnEventRaised.Invoke(value);

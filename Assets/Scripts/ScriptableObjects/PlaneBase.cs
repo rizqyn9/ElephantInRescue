@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaneBase : Plane
 {
     // Start is called before the first frame update
-    public override void Start()
+    internal override void Start()
     {
         base.Start();
     }

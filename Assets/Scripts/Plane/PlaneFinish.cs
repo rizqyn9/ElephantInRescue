@@ -4,7 +4,7 @@ public class PlaneFinish : Plane
 {
     [SerializeField] VoidEventChannelSO m_handleOnFinish;
 
-    public override void Start()
+    internal override void Start()
     {
         base.Start();
         PlaneType = PlaneTypeEnum.FINISH;

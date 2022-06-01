@@ -11,6 +11,12 @@ public class PlaneManager : MonoBehaviour
 
     public readonly Dictionary<string, Plane> Planes = new Dictionary<string, Plane>();
 
+    public InventoryItem ActiveInventory { get; private set; }
+    private void HandleInventoryChanged(InventoryItem active)
+    {
+        ActiveInventory = active;
+    }
+
     public void Awake()
     {
         if (_instance != null) Destroy(gameObject);

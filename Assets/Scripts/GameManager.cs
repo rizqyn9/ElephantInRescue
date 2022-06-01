@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -14,13 +15,12 @@ public class GameManager : MonoBehaviour
     public GameObject GO_ResourcesManager;
 
     [Header("Debug")]
-    public PlayerDataModel playerDataModel = new PlayerDataModel();
+    public PlayerDataModel playerDataModel = new PlayerDataModel() { LevelDatas = new List<LevelDataModel>()};
     [SerializeField] SceneState _sceneState = SceneState.MAINMENU;
     [SerializeField] ResourcesManager resourcesManager;
 
     public static PlayerData PlayerData { get => Instance.playerData; }
     public static SceneState SceneState => updateSceneState();
-
 
     private void Awake()
     {
@@ -35,15 +35,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         if (Dev.Instance.isDevMode) return;
-        else initialize();
+        else initialize();        
     }
 
     public void initialize()
     {
         updateSceneState();
-        StartCoroutine(ILoadAllResources());
-
         playerDataModel = playerData.load();
+        StartCoroutine(ILoadAllResources());
     }
 
     /**
@@ -123,7 +122,20 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public static LevelDataModel GetLevelDataByLevelStage(int level, int stage) =>
-        Instance.playerDataModel.LevelDatas.Find(val => val.Level == level && val.Stage == stage);    
+    public static LevelDataModel GetLevelDataByLevelStage(int level, int stage)
+    {
+        LevelDataModel levelDataModel= Instance.playerDataModel.LevelDatas.Find(val => val.Level == level && val.Stage == stage);
+        if (levelDataModel.Equals(default(LevelDataModel)))
+            return new LevelDataModel()
+            {
+                Level = level,
+                Stage = stage,
+                IsOpen = false,
+                Stars = 0,
+                IsNewLevel = false,
+                HighScore = 0
+            };
+        else return levelDataModel;
+    }
 }
 

@@ -1,4 +1,5 @@
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -26,10 +27,10 @@ public class PlayerData : MonoBehaviour
             catch (System.Exception e)
             {
                 Debug.LogError(e);
-                return new PlayerDataModel();
+                return GenerateNewData();
             }
         }
-        else return new PlayerDataModel();
+        else return GenerateNewData();
     }
 
     public void Save()
@@ -45,7 +46,21 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    PlayerDataModel getNewUserTemp() =>
-        new PlayerDataModel();
+    PlayerDataModel GenerateNewData() =>
+        new PlayerDataModel()
+        {
+            LevelDatas = new List<LevelDataModel>()
+            {
+                new LevelDataModel()
+                {
+                    Level = 1,
+                    Stage = 1,
+                    IsOpen = true,
+                    Stars = 0,
+                    IsNewLevel = true,
+                    HighScore = 0
+                }
+            }
+        };
 }
 

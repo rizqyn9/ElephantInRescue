@@ -11,28 +11,24 @@ public enum PlaneTypeEnum
 public class Plane : MonoBehaviour
 {
     [Header("Events")]
-    [SerializeField] internal InventoryStateSO m_inventoryChannel = default;
+    [SerializeField] internal InventoryStateSO m_inventoryChannel;
 
     [SerializeField] bool m_isPlayerInstancePlace = false;
 
     public PlaneTypeEnum PlaneType { get; internal set; }
     public bool IsPlayerInstancePlace { get => m_isPlayerInstancePlace; }
 
-    private void OnEnable()
+    internal virtual void OnEnable()
     {
         m_inventoryChannel.OnEventRaised += HandleInventoryChange;
     }
 
-    private void OnDisable()
+    internal virtual void OnDisable()
     {
         m_inventoryChannel.OnEventRaised -= HandleInventoryChange;
     }
 
-    private void OnValidate()
-    {
-    }
-
-    public virtual void Start()
+    internal virtual void Start()
     {
         CheckValidity();
         RegisterPlaneToPlaneManager();
@@ -42,20 +38,17 @@ public class Plane : MonoBehaviour
     {
         if (m_isPlayerInstancePlace && PlaneType != PlaneTypeEnum.ROUTE)
             throw new System.Exception("Instanced place but Plane type not use Route Plane");
-
     }
+
+    public InventoryItem ActiveInventory { get; private set; }
 
     void HandleInventoryChange(InventoryItem activeInventory)
     {
-        //switch (cmd)
-        //{
-        //    case InventoryCommand.ACTIVE:
-        //        if (PlaneType == PlaneTypeEnum.TREE && item.InventoryItemType == InventoryItemType.TEST2)
-        //        {
-        //            Destroy(gameObject);
-        //        }
-        //        break;
-        //}
+        if(PlaneType == PlaneTypeEnum.TREE)
+        {
+            print(activeInventory.gameObject.name);
+        }
+        ActiveInventory = activeInventory;
     }
 
     public virtual void OnElephant() { }
@@ -66,8 +59,5 @@ public class Plane : MonoBehaviour
         gameObject.name = planeNameHashed;
     }
 
-    public virtual void OnMouseDown()
-    {
-        if (m_inventoryChannel.ActiveInventory) m_inventoryChannel.RaiseEvent(null);
-    }
+    internal virtual void OnMouseDown() { }
 }
