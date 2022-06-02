@@ -9,102 +9,99 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  buildForLinuxDistro:
+  buildAndroid:
     name: Linux Breeding my Elephant 🐘
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
-      matrix:
-        projectPath:
-          - Elephant
-        targetPlatform:
-          - WebGL
-          - Android
+      
     steps:
       # Checkout
       - name: Checkout repository ↘️
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          lfs: true
+          lfs: true          
 
-      # Cache
-#       - name: Cache for faster build 🏃🏼‍♂️
-#         uses: actions/cache@v2
-#         with:
-#           path: ${{ matrix.projectPath }}/Library
-#           key:
-#             Library-${{ matrix.projectPath }}-${{ hashFiles(matrix.projectPath) }}
-#           restore-keys: |
-#             Library-${{ matrix.projectPath }}-
-#             Library-
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
-      # Test
-      #- name: Run tests
-      # uses: game-ci/unity-test-runner@v2
-      #env:
-      # UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      # with:
-      #  githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      # Build
-      - name: Build cute elephant 🔥
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
         with:
-          targetPlatform: ${{ matrix.targetPlatform }}
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
-      # Output
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+          
+      - name: Restore Library cache
+        uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-build-Android
+          restore-keys: |
+            Library-build-
+            Library-
+    
+      - uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: Android
+
       - uses: actions/upload-artifact@v2
         with:
-          name: Elephant In Rescue
-          path: build
-
-  buildForWindows:
-    name: Windows Breeding my Elephant 🐘
-    runs-on: windows-2019
-    strategy:
-      fail-fast: true
-      matrix:
-        projectPath:
-          - Elephant
-        targetPlatform:
-          - StandaloneWindows64
-
+          name: build-Android
+          path: build/Android
+      
+  buildWebGL:
+    name: Build for WebGL 🖥️
+    runs-on: ubuntu-latest
+    strategy: 
+      fail-fast: false
     steps:
-      # Checkout
-      - name: Checkout repository ↘️
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          lfs: true
+      - name: Checkout
+        uses: actions/checkout@v2        
+        
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
-      # Cache
-#       - name: Cache for faster build 🏃🏼‍♂️
-#         uses: actions/cache@v2
-#         with:
-#           path: ${{ matrix.projectPath }}/Library
-#           key:
-#             Library-${{ matrix.projectPath }}-${{ hashFiles(matrix.projectPath) }}
-#           restore-keys: |
-#             Library-${{ matrix.projectPath }}-
-#             Library-
-
-      # Build
-      - name: Build cute elephant 🔥
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
         with:
-          projectPath: ${{ matrix.projectPath }}
-          targetPlatform: ${{ matrix.targetPlatform }}
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
-      # Output
-      - name: Upload 🚀
-        uses: actions/upload-artifact@v2
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+          
+      - name: Restore Library cache
+        uses: actions/cache@v2
         with:
-          name: Elephant In Rescue Windows
-          path: build
+          path: Library
+          key: Library-build-WebGL
+          restore-keys: |
+            Library-build-
+            Library-
+            
+      - uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: WebGL
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-WebGL
+          path: build/WebGL
+
+        
+    
+    
+    
+    
