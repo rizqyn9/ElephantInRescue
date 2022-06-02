@@ -1,4 +1,4 @@
-name: 🎮 Elephant In Rescue
+name: 🐘 Elephant In Rescue
 
 on:
   push:
@@ -10,36 +10,35 @@ env:
 
 jobs:
   buildAndroid:
-    name: Linux Breeding my Elephant 🐘
+    name: 🐘 Elephant Android
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
-      
+
     steps:
-      # Checkout
-      - name: Checkout repository ↘️
+      - name: ↘️ Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          lfs: true          
+          lfs: true
 
-      - name: Create LFS file list
+      - name: 🔖 Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
-      - name: Restore LFS cache
+      - name: ♻️ Restore LFS cache
         uses: actions/cache@v2
         id: lfs-cache
         with:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
-      - name: Git LFS Pull
+      - name: 🛩 Git LFS Pull
         run: |
           git lfs pull
           git add .
           git reset --hard
-          
-      - name: Restore Library cache
+
+      - name: 🗑 Restore Library cache
         uses: actions/cache@v2
         with:
           path: Library
@@ -47,25 +46,27 @@ jobs:
           restore-keys: |
             Library-build-
             Library-
-    
-      - uses: game-ci/unity-builder@v2
+
+      - name: 🌟 Breeding my Elephant
+        uses: game-ci/unity-builder@v2
         with:
           targetPlatform: Android
 
-      - uses: actions/upload-artifact@v2
+      - name: 🚀 Upload Artifact
+        uses: actions/upload-artifact@v2
         with:
           name: build-Android
           path: build/Android
-      
+
   buildWebGL:
-    name: Build for WebGL 🖥️
+    name: 🐘 Elephant WebGL
     runs-on: ubuntu-latest
-    strategy: 
+    strategy:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2        
-        
+        uses: actions/checkout@v2
+
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
@@ -81,7 +82,7 @@ jobs:
           git lfs pull
           git add .
           git reset --hard
-          
+
       - name: Restore Library cache
         uses: actions/cache@v2
         with:
@@ -90,7 +91,7 @@ jobs:
           restore-keys: |
             Library-build-
             Library-
-            
+
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: WebGL
@@ -99,13 +100,13 @@ jobs:
         with:
           name: build-WebGL
           path: build/WebGL
-          
-  buildWindows: 
-    name: Windows Builder
+
+  buildWindows:
+    name: 🐘 Elephant Windows
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -125,7 +126,7 @@ jobs:
           git lfs pull
           git add .
           git reset --hard
-          
+
       - name: Restore Library cache
         uses: actions/cache@v2
         with:
@@ -134,7 +135,7 @@ jobs:
           restore-keys: |
             Library-build-
             Library-
-            
+
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: StandaloneWindows64
@@ -143,9 +144,3 @@ jobs:
         with:
           name: build-StandaloneWindows64
           path: build/StandaloneWindows64
-
-        
-    
-    
-    
-    

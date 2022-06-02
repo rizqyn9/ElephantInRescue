@@ -107,8 +107,12 @@ public class PlayerController : MonoBehaviour
                 Plane target = ray.collider.GetComponent<Plane>();
                 if (target)
                 {
-                    if (target.PlaneType == PlaneTypeEnum.ROUTE || target.PlaneType == PlaneTypeEnum.FINISH)
+                    if (target.PlaneType == PlaneTypeEnum.ROUTE
+                        || target.PlaneType == PlaneTypeEnum.FINISH
+                        || (target.PlaneType == PlaneTypeEnum.TREE && (target as PlaneTree).Destroyed)
+                    )
                     {
+                        print(target.name);
                         m_animator.SetFloat("X", dir.x);
                         m_animator.SetFloat("Y", dir.y);
 
@@ -123,7 +127,6 @@ public class PlayerController : MonoBehaviour
                                 target.OnElephant();
                                 PlanePosition = target;
                             });
-                        //transform.position = ray.transform.position;
                     }
                 }
             }

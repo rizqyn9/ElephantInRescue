@@ -1,19 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RulesController : MonoBehaviour
 {
-    [SerializeField] List<Image> m_stars = new List<Image>();
-    [SerializeField] List<Image> m_emojis = new List<Image>();
-    [SerializeField] List<Image> m_stages = new List<Image>();
-    [SerializeField] List<Image> m_condition = new List<Image>();
+    [SerializeField] Image m_stars, m_title, m_emotion;
+    [SerializeField] GameObject m_winContainer, m_loseContainer;
     [SerializeField] UIDialog m_uIDialog;
+    [SerializeField] List<RulesProps> m_rulesProps = new List<RulesProps>();
 
     [SerializeField] GameStateChannelSO m_gameStateChannel;
 
-    [HideInInspector] [SerializeField] PlayerController PlayerController = null;
+    [HideInInspector] [SerializeField] PlayerController PlayerController { get => PlayerController.Instance; }
 
     void OnEnable()
     {
@@ -35,55 +33,48 @@ public class RulesController : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        PlayerController = PlayerController.Instance;
-    }
-
     void CalculateStar()
     {
-        CountDown cd = GameObject.FindGameObjectWithTag("CountDown").GetComponent<CountDown>();
-        print(cd.CountTime);
+        float remainingTime = GameObject.FindGameObjectWithTag("CountDown").GetComponent<CountDown>().CountTime;
 
-        if (PlayerController.IsDead)
-        {
-            print("My Elepehant die");
-        }
-
-        if (cd.CountTime == 0)
-        {
-            HandleStars(0);
-            return;
-        }
-        else if (cd.CountTime <= 4)
-        {
-            HandleStars(1);
-            return;
-        }
-        else if (cd.CountTime >= 3)
-        {
-            return;
-        }
+        if (PlayerController.IsDead) HandlePoint(WinLoseType.LOSE);
+        else if (remainingTime >= 12) HandlePoint(WinLoseType.STARS3);
+        else if (remainingTime >= 8) HandlePoint(WinLoseType.STARS2);
+        else if (remainingTime >= 4) HandlePoint(WinLoseType.STARS1);
+        else HandlePoint(WinLoseType.TIME_OUT);
     }
 
-    void HandleStars(int starsCount)
+    void HandlePoint(WinLoseType type)
     {
-        StartCoroutine(Instance(starsCount));
+        RenderUI(m_rulesProps.Find(val => val.WinLoseType == type));
     }
 
-    IEnumerator Instance(int starsCount)
+    void RenderUI(RulesProps props)
     {
+        m_title.sprite = props.Title;
+        m_stars.sprite = props.Stars;
+        m_emotion.sprite = props.Emotion;
+        m_winContainer.SetActive(props.IsWin);
+        m_loseContainer.SetActive(!props.IsWin);
         m_uIDialog.gameObject.SetActive(true);
-        SetActiveImageFromList(starsCount, m_stars);
-        LeanTween.rotateZ(SetActiveImageFromList(starsCount, m_emojis), -10f, 1.5f).setEaseInOutCirc().setLoopPingPong();
-        SetActiveImageFromList(0, m_condition);
-        yield return 1;
     }
+}
 
-    private GameObject SetActiveImageFromList(int indexTarget, List<Image> images)
-    {
-        images.ForEach(val => val.gameObject.SetActive(false));
-        images[indexTarget].gameObject.SetActive(true);
-        return images[indexTarget].gameObject;
-    }
+public enum WinLoseType
+{
+    TIME_OUT,
+    LOSE,
+    STARS1,
+    STARS2,
+    STARS3
+}
+
+[System.Serializable]
+public struct RulesProps
+{
+    public WinLoseType WinLoseType;
+    public Sprite Title;
+    public Sprite Stars;
+    public Sprite Emotion;
+    public bool IsWin;
 }

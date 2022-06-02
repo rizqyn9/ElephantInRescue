@@ -14,7 +14,7 @@ public class PlaneTree : Plane
 
     internal override void OnEnable()
     {
-        base.OnEnable();        
+        base.OnEnable();
     }
 
     internal override void OnDisable()
@@ -25,6 +25,7 @@ public class PlaneTree : Plane
     internal override void Start()
     {
         base.Start();
+        PlaneType = PlaneTypeEnum.TREE;
         Destroyed = false;
         if (ShouldDestroyable) m_spriteRenderer.sprite = m_destroyableTree;
         else m_spriteRenderer.sprite = m_notDestroyableTree;
@@ -37,6 +38,7 @@ public class PlaneTree : Plane
 
         if (m_ShouldDestroyable && ActiveInventory?.InventoryItemType == InventoryItemType.KNIFE)
         {
+            Destroyed = true;
             m_spriteRenderer.enabled = false;
             m_channelRootCount.RaiseEvent(true);
             m_inventoryChannel.RaiseEvent(null);

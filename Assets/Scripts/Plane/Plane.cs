@@ -17,6 +17,7 @@ public class Plane : MonoBehaviour
 
     public PlaneTypeEnum PlaneType { get; internal set; }
     public bool IsPlayerInstancePlace { get => m_isPlayerInstancePlace; }
+    public InventoryItem ActiveInventory { get; private set; }
 
     internal virtual void OnEnable()
     {
@@ -40,14 +41,8 @@ public class Plane : MonoBehaviour
             throw new System.Exception("Instanced place but Plane type not use Route Plane");
     }
 
-    public InventoryItem ActiveInventory { get; private set; }
-
     void HandleInventoryChange(InventoryItem activeInventory)
     {
-        if(PlaneType == PlaneTypeEnum.TREE)
-        {
-            print(activeInventory.gameObject.name);
-        }
         ActiveInventory = activeInventory;
     }
 

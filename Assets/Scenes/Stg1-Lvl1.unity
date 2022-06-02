@@ -542,6 +542,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1836091928101832553, guid: 0eec4bd9eac864cb084454dd3f15fc62, type: 3}
+      propertyPath: CountTimeOut
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836091928101832553, guid: 0eec4bd9eac864cb084454dd3f15fc62, type: 3}
       propertyPath: m_uITutorial
       value: 
       objectReference: {fileID: 899831709}
