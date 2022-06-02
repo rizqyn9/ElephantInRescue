@@ -9,18 +9,26 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  build:
-    name: Breeding my Elephant 🐘
+  buildForLinuxDistro:
+    name: Linux Breeding my Elephant 🐘
     runs-on: ubuntu-latest
+    strategy: 
+      fail-fast: true
+      matrix: 
+        targetPlatform: 
+          - WebGL
+          - Android
     steps:
       # Checkout
-      - name: Checkout repository
+      - name: Checkout repository ↘️
         uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           lfs: true
 
       # Cache
-      - uses: actions/cache@v2
+      - name: Cache for faster build 🏃🏼‍♂️
+        uses: actions/cache@v2
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
@@ -41,12 +49,55 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          targetPlatform:
-            - Android
-            - WebGL
+          targetPlatform: ${{ matrix.targetPlatform }}
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
+          name: Elephant In Rescue
           path: build
+          
+  buildForWindows:
+    name: Windows Breeding my Elephant 🐘
+    runs-on: windows-2019
+    strategy: 
+      fail-fast: true
+      matrix: 
+        targetPlatform: 
+          - StandaloneWindows64
+          
+    steps:
+      # Checkout
+      - name: Checkout repository ↘️
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      # Cache
+      - name: Cache for faster build 🏃🏼‍♂️
+        uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+
+      # Build
+      - name: Build cute elephant 🔥
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+
+      # Output
+      - name: Upload 🚀
+        uses: actions/upload-artifact@v2
+        with:
+          name: Elephant In Rescue Windows
+          path: build          
+    
+  
