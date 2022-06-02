@@ -15,6 +15,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
+        projectPath:
+          - Elephant
         targetPlatform:
           - WebGL
           - Android
@@ -30,9 +32,11 @@ jobs:
       - name: Cache for faster build 🏃🏼‍♂️
         uses: actions/cache@v2
         with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          path: ${{ matrix.projectPath }}/Library
+          key:
+            Library-${{ matrix.projectPath }}-${{ hashFiles(matrix.projectPath) }}
           restore-keys: |
+            Library-${{ matrix.projectPath }}-
             Library-
 
       # Test
@@ -82,10 +86,8 @@ jobs:
         with:
           path: ${{ matrix.projectPath }}/Library
           key:
-            Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}-${{
-            hashFiles(matrix.projectPath) }}
+            Library-${{ matrix.projectPath }}-${{ hashFiles(matrix.projectPath) }}
           restore-keys: |
-            Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}-
             Library-${{ matrix.projectPath }}-
             Library-
 
