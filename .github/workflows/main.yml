@@ -12,10 +12,10 @@ jobs:
   buildForLinuxDistro:
     name: Linux Breeding my Elephant 🐘
     runs-on: ubuntu-latest
-    strategy: 
+    strategy:
       fail-fast: true
-      matrix: 
-        targetPlatform: 
+      matrix:
+        targetPlatform:
           - WebGL
           - Android
     steps:
@@ -56,16 +56,18 @@ jobs:
         with:
           name: Elephant In Rescue
           path: build
-          
+
   buildForWindows:
     name: Windows Breeding my Elephant 🐘
     runs-on: windows-2019
-    strategy: 
+    strategy:
       fail-fast: true
-      matrix: 
-        targetPlatform: 
+      matrix:
+        projectPath:
+          - Elephant
+        targetPlatform:
           - StandaloneWindows64
-          
+
     steps:
       # Checkout
       - name: Checkout repository ↘️
@@ -78,9 +80,13 @@ jobs:
       - name: Cache for faster build 🏃🏼‍♂️
         uses: actions/cache@v2
         with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          path: ${{ matrix.projectPath }}/Library
+          key:
+            Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}-${{
+            hashFiles(matrix.projectPath) }}
           restore-keys: |
+            Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}-
+            Library-${{ matrix.projectPath }}-
             Library-
 
       # Build
@@ -91,6 +97,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          projectPath: ${{ matrix.projectPath }}
           targetPlatform: ${{ matrix.targetPlatform }}
 
       # Output
@@ -98,6 +105,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Elephant In Rescue Windows
-          path: build          
-    
-  
+          path: build

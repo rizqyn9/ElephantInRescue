@@ -770,6 +770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_uI_Inventory: {fileID: 1606229380}
   gameState: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
+  gameUI: {fileID: 1883833052}
 --- !u!1 &487232348
 GameObject:
   m_ObjectHideFlags: 0

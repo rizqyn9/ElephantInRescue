@@ -7,6 +7,7 @@ public class BaseCivilian : MonoBehaviour
     [SerializeField] float radius = 3f;
     [SerializeField] float angle = 360f;
     [SerializeField] LayerMask targetLayer;
+    [SerializeField] GameObject m_throwedGO;
 
     public bool CanSeePlayer { get; private set; }
 
@@ -53,8 +54,15 @@ public class BaseCivilian : MonoBehaviour
 
     private void OnPlayerHit()
     {
+        ThrowSomething();
         PlayerController.Instance.OnHitCivilian(this);
         CivilianWalk.Stop();
+    }
+
+    void ThrowSomething()
+    {
+        GameObject throwed = Instantiate(m_throwedGO, transform);
+        LeanTween.move(throwed, PlayerController.Instance.gameObject.transform.position, 2f);
     }
 
     private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees)

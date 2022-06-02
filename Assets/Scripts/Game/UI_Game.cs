@@ -7,10 +7,13 @@ public class UI_Game : MonoBehaviour
 
     [SerializeField] UI_Inventory m_uI_Inventory;
     [SerializeField] GameStateChannelSO gameState;
+    [SerializeField] CanvasGroup gameUI;
 
     private void OnEnable()
     {
         gameState.OnEventRaised += HandleGameStateChanged;
+        gameUI.alpha = 0;
+        gameUI.interactable = false;
     }
 
     private void OnDisable()
@@ -32,6 +35,10 @@ public class UI_Game : MonoBehaviour
                 break;
             case GameState.PLAY:
                 if (Time.timeScale == 0) Play();
+                LeanTween
+                    .alphaCanvas(gameUI, 1, .3f)
+                    .setOnComplete(() => { gameUI.interactable = true; });
+
                 break;
             case GameState.PAUSE:
                 if (Time.timeScale == 0) return;

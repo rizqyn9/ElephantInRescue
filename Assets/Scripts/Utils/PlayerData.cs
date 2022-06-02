@@ -59,6 +59,15 @@ public class PlayerData : MonoBehaviour
                     Stars = 0,
                     IsNewLevel = true,
                     HighScore = 0
+                },
+                new LevelDataModel()
+                {
+                    Level = 2,
+                    Stage = 1,
+                    IsOpen = true,
+                    Stars = 0,
+                    IsNewLevel = true,
+                    HighScore = 0
                 }
             }
         };
