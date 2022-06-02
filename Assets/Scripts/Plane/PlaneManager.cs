@@ -30,7 +30,6 @@ public class PlaneManager : MonoBehaviour
 
         if (plane.IsPlayerInstancePlace)
         {
-            print(plane.IsPlayerInstancePlace);
             Instance.PlayerPlaneInstance = plane;
         }
 

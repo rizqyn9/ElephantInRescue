@@ -3,7 +3,7 @@ using UnityEngine;
 public class UILevel : MonoBehaviour
 {
     [SerializeField] UIDialog m_uIDialog;
-    [SerializeField] LevelItem m_levelItem;
+    [HideInInspector] [SerializeField] LevelItem m_levelItem;
 
     public LevelItem LevelItem { get => m_levelItem; private set => m_levelItem = value; }
 
@@ -17,5 +17,10 @@ public class UILevel : MonoBehaviour
     {
         if (LevelItem == null) return;
         GameManager.LoadGameLevel(LevelItem.LevelDataModel);
+    }
+
+    public void Btn_BackToMainMenu()
+    {
+        GameManager.LoadMainMenu();
     }
 }

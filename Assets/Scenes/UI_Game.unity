@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 437540054}
     m_Modifications:
+    - target: {fileID: 464204983341183897, guid: e40510b13bd5e4f47ba5b77e4779f7cf, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 464204983580862074, guid: e40510b13bd5e4f47ba5b77e4779f7cf, type: 3}
       propertyPath: m_Name
       value: WinLoseDialog

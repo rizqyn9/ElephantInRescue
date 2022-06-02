@@ -812,7 +812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 464318211}
         m_TargetAssemblyTypeName: UISetting, Assembly-CSharp
         m_MethodName: On_CreditClick
         m_Mode: 1
@@ -7933,7 +7933,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 464318211}
         m_TargetAssemblyTypeName: UISetting, Assembly-CSharp
         m_MethodName: On_BackContainer
         m_Mode: 1
