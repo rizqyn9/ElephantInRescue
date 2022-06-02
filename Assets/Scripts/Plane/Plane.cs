@@ -4,7 +4,8 @@ public enum PlaneTypeEnum
 {
     ROUTE,
     TREE,
-    FINISH
+    FINISH,
+    HOLE
 }
 
 [RequireComponent(typeof(BoxCollider2D))]

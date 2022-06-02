@@ -291,3 +291,4 @@ MonoBehaviour:
   m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   m_isPlayerInstancePlace: 0
   m_handleOnFinish: {fileID: 0}
+  m_renderer: {fileID: 2188591419542733845}

@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlaneFinish : Plane
 {
     [SerializeField] VoidEventChannelSO m_handleOnFinish;
+    [SerializeField] GameStateChannelSO m_gameStateChannelSO;
+    [SerializeField] SpriteRenderer m_renderer;
 
     internal override void Start()
     {
@@ -16,7 +18,22 @@ public class PlaneFinish : Plane
     /// </summary>
     public override void OnElephant()
     {
-        print("Win");
-        m_handleOnFinish?.RaiseEvent();
+        LeanTween
+            .scale(m_renderer.gameObject, m_renderer.transform.localScale * 4, .5f)
+            .setOnStart(() =>
+            {
+                m_renderer.sortingOrder = 100;
+            })
+            .setOnComplete(() =>
+            {
+                m_gameStateChannelSO.RaiseEvent(GameState.FINISH);
+            })
+            .setEaseInOutBounce();
+
+        LeanTween
+            .move(m_renderer.gameObject, Vector2.zero, .5f)
+            .setEaseInOutBounce();
+
+
     }
 }

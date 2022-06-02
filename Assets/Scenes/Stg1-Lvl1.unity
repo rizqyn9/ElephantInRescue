@@ -426,6 +426,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: --Components
       objectReference: {fileID: 0}
+    - target: {fileID: 5144395380763985176, guid: d6957b29528904f16819d59c5db6b922, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6140545299663317377, guid: d6957b29528904f16819d59c5db6b922, type: 3}
+      propertyPath: m_gameStateChannelSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6957b29528904f16819d59c5db6b922, type: 3}
 --- !u!1 &540165127799040426 stripped
@@ -543,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1836091928101832553, guid: 0eec4bd9eac864cb084454dd3f15fc62, type: 3}
       propertyPath: CountTimeOut
-      value: 5
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1836091928101832553, guid: 0eec4bd9eac864cb084454dd3f15fc62, type: 3}
       propertyPath: m_uITutorial
