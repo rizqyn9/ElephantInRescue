@@ -101,10 +101,11 @@ jobs:
           path: build/WebGL
           
   buildWindows: 
-    name: Build for Windows 🖥️
+    name: Windows Builder
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -124,6 +125,7 @@ jobs:
           git lfs pull
           git add .
           git reset --hard
+          
       - name: Restore Library cache
         uses: actions/cache@v2
         with:
