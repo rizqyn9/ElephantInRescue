@@ -5,6 +5,7 @@ public class InventoryStone : InventoryItem
     [SerializeField] TMPro.TMP_Text text;
     [SerializeField] BoolEventChannelSO m_addRemoveStone;
     [SerializeField] int m_countStone = 0;
+
     public int Count
     {
         get => m_countStone;

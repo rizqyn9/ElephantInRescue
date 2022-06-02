@@ -1,31 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    private Camera mainCamera;
-
-    private void Start()
+    [SerializeField] Animator animator;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    private void OnEnable()
     {
-        mainCamera = Camera.main;
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        Vector3 touchPos = Input.mousePosition;
-        Transform camTrans = Camera.main.transform;
-        //float dist = Vector3.Dot(camTrans.position, camTrans.forward);
-        //touchPos.z = dist;
-        Vector3 pos = Camera.main.ScreenToWorldPoint(touchPos);
+        ListenWithKeys();   
+    }
 
-        var a = Physics2D.RaycastAll(pos, Vector2.zero);
+    void ListenWithKeys()
+    {
+        Vector3 direction = Vector3.zero;
 
-        foreach (var b in a)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            direction = Vector3.up;
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+            direction = Vector3.right;
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+            direction = Vector3.down;
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            direction = Vector3.left;
+
+        if (direction == Vector3.zero) return;
+        SetDirection(direction);
+    }
+
+    private void SetDirection(Vector3 direction)
+    {
+        animator.SetBool("Walk", true);
+        if(direction.x > 0)
         {
-            print(b.collider.name);
+            spriteRenderer.flipX = true;
+        } else
+        {
+            spriteRenderer.flipX = false;
         }
+        animator.SetFloat("X", direction.x);
+        animator.SetFloat("Y", direction.y);
 
-        //transform.position = new Vector2(pos.x, pos.y);
+        LeanTween.value(0, 1, 5f).setOnComplete(() =>
+        {
+            animator.SetBool("Walk", false);
+        });
     }
 }

@@ -914,6 +914,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1968815181}
     m_Modifications:
+    - target: {fileID: 456990471799893444, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
+      propertyPath: m_Size.x
+      value: 6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 456990471799893444, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
+      propertyPath: m_Size.y
+      value: 6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 456990471799893444, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3253689177560521952, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -970,7 +982,8 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3253689177560521952, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5c9a547e4fb534002bd9d8ad2fabfc96, type: 3}
 --- !u!4 &432652896 stripped
 Transform:
@@ -4787,7 +4800,7 @@ MonoBehaviour:
   gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_uITutorial: {fileID: 899831709}
   m_gameContainer: {fileID: 1968815180}
-  CountTimeOut: 5
+  CountTimeOut: 200
   m_gameState: 0
 --- !u!4 &1878888549
 Transform:
