@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -238.52, y: -141.5}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1261840989483860005
 MonoBehaviour:
@@ -51,10 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101a7a423e59e4da2a79e1ff33d7fd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_levelData:
+    Level: 0
+    Stage: 0
+    IsOpen: 0
+    Stars: 0
+    IsNewLevel: 0
+    HighScore: 0
   m_level: 1
   m_stage: 1
-  m_levelStarsTotal: 0
-  m_isOpen: 0
   m_uiActive: {fileID: 21300000, guid: 9a374c35dfc204f4d855253fe7195677, type: 3}
   m_uiDisable: {fileID: 21300000, guid: efbbcb93c19ec40efbad8c2aba3d7ab6, type: 3}
   m_image: {fileID: 1261840990069038006}
@@ -64,6 +69,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1b6e7fbd1d59b4811921268b4ed67cc0, type: 3}
   - {fileID: 21300000, guid: f556a208c088b4edfb004a0f3d59c1ea, type: 3}
   - {fileID: 21300000, guid: 3f2167bc267674b4e9f58c9be54fede3, type: 3}
+  m_stageSprite: {fileID: 0}
 --- !u!114 &1261840989483860006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,10 +158,10 @@ RectTransform:
   m_Father: {fileID: 1261840989483860007}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1261840990069038005
 CanvasRenderer:
@@ -227,11 +233,11 @@ RectTransform:
   m_Father: {fileID: 1261840989483860007}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.49, y: -49.7}
-  m_SizeDelta: {x: 110, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 12.2}
+  m_SizeDelta: {x: -40, y: 23.298}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5978039679604698249
 CanvasRenderer:
   m_ObjectHideFlags: 0

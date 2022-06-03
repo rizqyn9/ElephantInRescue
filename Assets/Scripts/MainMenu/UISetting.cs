@@ -8,6 +8,7 @@ public class UISetting : MonoBehaviour
     [SerializeField] Slider m_sfxSlider;
     [SerializeField] GameObject m_preference, m_credit;
     [SerializeField] UIDialog m_dialog;
+    [SerializeField] bool m_isMainMenu;
 
     private void OnEnable()
     {
@@ -21,12 +22,16 @@ public class UISetting : MonoBehaviour
         m_bgmSlider.value = SoundManager.GetVolumePref(SoundManager.BGM_VOL);
         m_sfxSlider.value = SoundManager.GetVolumePref(SoundManager.SFX_VOL);
 
-        m_preference.SetActive(true);
-        m_credit.SetActive(false);
+        if(m_isMainMenu)
+        {
+            m_preference.SetActive(true);
+            m_credit.SetActive(false);
+        }
     }
 
     public void On_BackContainer()
     {
+        if (!m_isMainMenu) return;
         if (m_preference.activeInHierarchy) m_dialog.OnClose();
         if (m_credit.activeInHierarchy)
         {
@@ -37,6 +42,7 @@ public class UISetting : MonoBehaviour
 
     public void On_CreditClick()
     {
+        if (!m_isMainMenu) return;
         if (m_credit.activeInHierarchy) return;
         else
         {
