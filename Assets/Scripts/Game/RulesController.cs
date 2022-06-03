@@ -57,6 +57,15 @@ public class RulesController : MonoBehaviour
         m_winContainer.SetActive(props.IsWin);
         m_loseContainer.SetActive(!props.IsWin);
         m_uIDialog.gameObject.SetActive(true);
+        SaveToPersistant();
+    }
+
+    private void SaveToPersistant()
+    {
+        // Level Stage
+        // stars
+        // remaining time
+        GameManager.Instance.playerData.Save();
     }
 }
 

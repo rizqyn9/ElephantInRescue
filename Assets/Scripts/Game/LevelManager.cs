@@ -19,7 +19,8 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        LevelModel = GameManager.Instance.LevelDataModel;
+        //LevelModel = GameManager.Instance.LevelDataModel;
+        LevelModel = new LevelDataModel() { };
         gameStateChannel.OnEventRaised += HandleGameStateChange;
     }
 

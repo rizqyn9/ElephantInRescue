@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 1646333675}
   - component: {fileID: 1646333674}
   - component: {fileID: 1646333673}
+  - component: {fileID: 1646333676}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -227,7 +228,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -242,10 +243,10 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
+  field of view: 62
+  orthographic: 1
+  orthographic size: 6.5
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -274,6 +275,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1646333676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646333672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9420f5aea32df7646ab1a75a6346d5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matteColor: {r: 0, g: 0, b: 0, a: 1}
+  referenceMode: 0
+  x: 9
+  y: 16
+  width: 960
+  height: 540
+  onAwake: 1
+  onUpdate: 1
 --- !u!1001 &113288611291688600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,6 +302,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 113288610706729753, guid: 726af95f754594d5ca3a1e32ac0ae626, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -49.299805
+      objectReference: {fileID: 0}
+    - target: {fileID: 113288611311696721, guid: 726af95f754594d5ca3a1e32ac0ae626, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1646333674}
+    - target: {fileID: 113288611311696721, guid: 726af95f754594d5ca3a1e32ac0ae626, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 113288611311696721, guid: 726af95f754594d5ca3a1e32ac0ae626, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 113288611311696722, guid: 726af95f754594d5ca3a1e32ac0ae626, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -369,6 +406,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: --Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 113288611686782169, guid: 726af95f754594d5ca3a1e32ac0ae626, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -246.70996
+      objectReference: {fileID: 0}
+    - target: {fileID: 113288612153473283, guid: 726af95f754594d5ca3a1e32ac0ae626, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726af95f754594d5ca3a1e32ac0ae626, type: 3}
 --- !u!1001 &540165127799040425
@@ -434,6 +479,14 @@ PrefabInstance:
       propertyPath: m_gameStateChannelSO
       value: 
       objectReference: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
+    - target: {fileID: 7836221962017450953, guid: d6957b29528904f16819d59c5db6b922, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836221962017450953, guid: d6957b29528904f16819d59c5db6b922, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6957b29528904f16819d59c5db6b922, type: 3}
 --- !u!1 &540165127799040426 stripped

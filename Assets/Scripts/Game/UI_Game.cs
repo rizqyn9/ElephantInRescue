@@ -8,12 +8,20 @@ public class UI_Game : MonoBehaviour
     [SerializeField] UI_Inventory m_uI_Inventory;
     [SerializeField] GameStateChannelSO gameState;
     [SerializeField] CanvasGroup gameUI;
+    [SerializeField] Canvas m_canvas;
 
     private void OnEnable()
     {
         gameState.OnEventRaised += HandleGameStateChanged;
         gameUI.alpha = 0;
         gameUI.interactable = false;
+        m_canvas = GetComponent<Canvas>();
+
+    }
+
+    private void Start()
+    {
+        m_canvas.worldCamera = Camera.main;
     }
 
     private void OnDisable()

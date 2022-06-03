@@ -46,12 +46,11 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         if (m_gameState != GameState.PLAY) return;
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
+//#endif
         ListenWithKeys();
         MoveInput();
-#elif UNITY_IOS || UNITY_ANDROID
         TouchInput();
-#endif
     }
 
     /// <summary>

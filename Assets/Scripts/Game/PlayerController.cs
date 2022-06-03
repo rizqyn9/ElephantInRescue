@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
                         || (target.PlaneType == PlaneTypeEnum.TREE && (target as PlaneTree).Destroyed)
                     )
                     {
-                        print(target.name);
                         m_animator.SetFloat("X", dir.x);
                         m_animator.SetFloat("Y", dir.y);
 
