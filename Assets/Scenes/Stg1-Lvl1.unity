@@ -549,7 +549,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: --InputManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1337894908976645379, guid: a93ba65f7d81d4c42a5b9ca37ed35395, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a93ba65f7d81d4c42a5b9ca37ed35395, type: 3}
 --- !u!1001 &1836091926307493645
 PrefabInstance:

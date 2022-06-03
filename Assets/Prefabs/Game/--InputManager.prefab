@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c85dc1e811be4734bc0cc35440288f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshHold: 100
+  threshHold: 50
   m_GameStateChannelSO: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_TouchState: {fileID: 11400000, guid: cd825276d94684d6cb91dd076390025a, type: 2}
   m_gameState: 0
@@ -115,7 +115,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 0.11792451, b: 0.11792451, a: 1}
   m_FlipX: 0
