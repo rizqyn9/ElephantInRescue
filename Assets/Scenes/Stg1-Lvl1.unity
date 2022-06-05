@@ -473,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5144395380763985176, guid: d6957b29528904f16819d59c5db6b922, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6140545299663317377, guid: d6957b29528904f16819d59c5db6b922, type: 3}
       propertyPath: m_gameStateChannelSO
