@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!1001 &1379045961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207,6 +208,22 @@ PrefabInstance:
     - target: {fileID: 5527028228339343424, guid: 8d1d21d19a1084de2ac9a4738858ac51, type: 3}
       propertyPath: m_Name
       value: Biru
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356415193546416088, guid: 8d1d21d19a1084de2ac9a4738858ac51, type: 3}
+      propertyPath: m_Size.x
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356415193546416088, guid: 8d1d21d19a1084de2ac9a4738858ac51, type: 3}
+      propertyPath: m_Size.y
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356415193546416088, guid: 8d1d21d19a1084de2ac9a4738858ac51, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dd35c72a283a84a5aa92b0c6732d778b, type: 3}
+    - target: {fileID: 7356415193546416088, guid: 8d1d21d19a1084de2ac9a4738858ac51, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d1d21d19a1084de2ac9a4738858ac51, type: 3}
