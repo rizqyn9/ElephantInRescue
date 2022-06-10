@@ -7,6 +7,7 @@ public class TestScript : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] bool isKnocked = false;
     private void OnEnable()
     {
         animator = GetComponent<Animator>();
@@ -31,22 +32,26 @@ public class TestScript : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
             direction = Vector3.left;
 
-        if (direction == Vector3.zero) return;
+        if (Input.GetKeyDown(KeyCode.Space))
+            animator.SetBool("KnockedOut", true);
+
+
+        if (direction == Vector3.zero || isKnocked) return;
         SetDirection(direction);
     }
 
     private void SetDirection(Vector3 direction)
     {
-        animator.SetBool("Walk", true);
-        if(direction.x > 0)
+        if (isKnocked)
         {
-            spriteRenderer.flipX = true;
+            animator.SetBool("KnockedOut", true);
         } else
         {
-            spriteRenderer.flipX = false;
+            animator.SetBool("Walk", true);
         }
-        animator.SetFloat("X", direction.x);
+
         animator.SetFloat("Y", direction.y);
+        animator.SetFloat("X", direction.x);
 
         LeanTween.value(0, 1, 5f).setOnComplete(() =>
         {
