@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     public Plane PlanePosition { get; private set; }
 
     [SerializeField] Plane m_planeStartPosition;
+    [SerializeField] ElephantAnimation m_elephantAnimation;
     SpriteRenderer m_spriteRenderer;
-    Animator m_animator;
     GameObject m_player;
     [HideInInspector] [SerializeField] bool m_canMove;
     Vector3 m_direction;
@@ -27,8 +27,7 @@ public class PlayerController : MonoBehaviour
         m_inventoryStateSO.OnEventRaised += HandleInventoryState;
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         m_player = m_spriteRenderer.gameObject;
-        m_animator = m_player.GetComponent<Animator>();
-
+        m_elephantAnimation = GetComponentInChildren<ElephantAnimation>();
     }
 
     private void OnDisable()
@@ -76,8 +75,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnHitCivilian(BaseCivilian civilian)
     {
-        //Destroy(gameObject);
         IsDead = true;
+        m_elephantAnimation.Knock(m_direction);
         LevelManager.Instance.LoseCondition();
     }
 
@@ -112,16 +111,16 @@ public class PlayerController : MonoBehaviour
                         || (target.PlaneType == PlaneTypeEnum.TREE && (target as PlaneTree).Destroyed)
                     )
                     {
-                        m_animator.SetFloat("X", dir.x);
-                        m_animator.SetFloat("Y", dir.y);
-
                         LeanTween
                             .move(gameObject, target.transform.position, .5f)
-                            .setOnStart(() => { m_canMove = false; })
+                            .setOnStart(() =>
+                            {
+                                m_canMove = false;
+                                m_elephantAnimation.Walk(m_direction);
+                            })
                             .setOnComplete(() =>
                             {
-                                m_animator.SetFloat("X", 0);
-                                m_animator.SetFloat("Y", 0);
+                                m_elephantAnimation.Iddle(m_direction);
                                 m_canMove = true;
                                 target.OnElephant();
                                 PlanePosition = target;
