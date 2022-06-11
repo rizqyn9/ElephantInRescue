@@ -8,6 +8,7 @@ public class TestScript : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] bool isKnocked = false;
+
     private void OnEnable()
     {
         animator = GetComponent<Animator>();
