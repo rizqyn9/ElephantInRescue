@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    [SerializeField] Animator animator;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] bool isKnocked = false;
+    [SerializeField] ElephantAnimation m_elephantAnimation;
 
     private void OnEnable()
     {
-        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        m_elephantAnimation = GetComponent<ElephantAnimation>();
     }
 
     private void Update()
@@ -34,29 +34,10 @@ public class TestScript : MonoBehaviour
             direction = Vector3.left;
 
         if (Input.GetKeyDown(KeyCode.Space))
-            animator.SetBool("KnockedOut", true);
+            m_elephantAnimation.Knock(direction);
 
 
-        if (direction == Vector3.zero || isKnocked) return;
-        SetDirection(direction);
-    }
-
-    private void SetDirection(Vector3 direction)
-    {
-        if (isKnocked)
-        {
-            animator.SetBool("KnockedOut", true);
-        } else
-        {
-            animator.SetBool("Walk", true);
-        }
-
-        animator.SetFloat("Y", direction.y);
-        animator.SetFloat("X", direction.x);
-
-        LeanTween.value(0, 1, 5f).setOnComplete(() =>
-        {
-            animator.SetBool("Walk", false);
-        });
+        if (direction == Vector3.zero) return;
+        m_elephantAnimation.Walk(direction);
     }
 }

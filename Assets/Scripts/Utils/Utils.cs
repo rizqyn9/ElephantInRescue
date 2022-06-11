@@ -6,6 +6,5 @@ public class Utils : MonoBehaviour
     private void Update()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
     }
 }

@@ -140,8 +140,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4aaef131f99405da2d6b554c6339ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  isKnocked: 0
+  m_elephantAnimation: {fileID: 0}
+--- !u!114 &633676803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633676798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4d65f09b9ee4fe1bacd80d78b23724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_direction: {x: 0, y: 0, z: 0}
+  m_animator: {fileID: 0}
 --- !u!1001 &1379045961
 PrefabInstance:
   m_ObjectHideFlags: 0
