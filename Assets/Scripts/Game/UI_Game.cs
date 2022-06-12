@@ -60,7 +60,7 @@ public class UI_Game : MonoBehaviour
 
     public void Btn_Restart()
     {
-        GameManager.LoadGameLevel(LevelManager.Instance.LevelModel);
+        GameManager.LoadGameLevel(GameManager.Instance.LevelDataModel);
     }
 
     public void Btn_BackToMainMenu()

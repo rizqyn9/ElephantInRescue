@@ -8,6 +8,7 @@ public enum PlaneTypeEnum
     HOLE
 }
 
+[System.Serializable]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Plane : MonoBehaviour
 {

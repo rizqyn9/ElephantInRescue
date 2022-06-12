@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
         m_spriteRenderer.enabled = true;
     }
 
+    [SerializeField] Plane target;
     public void SetDirection(Vector3 dir)
     {
         if (!m_canMove) return;
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
         {
             if (ray.collider != null)
             {
-                Plane target = ray.collider.GetComponent<Plane>();
+                target = ray.collider.GetComponent<Plane>();
                 if (target)
                 {
                     if (target.PlaneType == PlaneTypeEnum.ROUTE
@@ -111,6 +112,8 @@ public class PlayerController : MonoBehaviour
                         || (target.PlaneType == PlaneTypeEnum.TREE && (target as PlaneTree).Destroyed)
                     )
                     {
+                        if (target.name == PlanePosition?.name) continue;
+                        print($"Move {target.PlaneType}");
                         LeanTween
                             .move(gameObject, target.transform.position, .5f)
                             .setOnStart(() =>
@@ -125,6 +128,9 @@ public class PlayerController : MonoBehaviour
                                 target.OnElephant();
                                 PlanePosition = target;
                             });
+                    } else
+                    {
+                        continue;
                     }
                 }
             }
