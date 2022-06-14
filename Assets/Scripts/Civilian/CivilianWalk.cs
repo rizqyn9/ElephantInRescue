@@ -10,10 +10,12 @@ public class CivilianWalk : MonoBehaviour
     [SerializeField] bool m_canMove = false;
     [SerializeField] int m_indexNow = 0;
     [SerializeField] GameStateChannelSO m_gameStateChannel;
+    BaseCivilian m_baseCivilian;
     SpriteRenderer m_renderer;
 
     private void OnEnable()
     {
+        m_baseCivilian = GetComponent<BaseCivilian>();
         m_renderer = GetComponentInChildren<SpriteRenderer>();
         m_renderer.enabled = false;
         m_gameStateChannel.OnEventRaised += HandleGameStateChanged;
@@ -62,11 +64,10 @@ public class CivilianWalk : MonoBehaviour
         }
     }
 
-    [SerializeField] Vector2 test;
     IEnumerator Move(Transform target)
     {
-        test = Utils.DecideDirection(transform.position, target.position);
-        OnChangeTarget(target);
+        m_baseCivilian.Direction = Utils.DecideDirection(transform.position, target.position);
+        //OnChangeTarget(target);
         while (Vector3.Distance(transform.position, target.position) > 0.05f && m_canMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, m_speed * Time.deltaTime);

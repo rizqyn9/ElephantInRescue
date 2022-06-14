@@ -10,7 +10,21 @@ public class BaseCivilian : MonoBehaviour
     [SerializeField] GameObject m_throwedGO;
     [SerializeField] Vector3 m_direction;
 
-    public Vector3 Direction { get => m_direction; set => m_direction = value; }
+    CivilianAnimation m_civilianAnimation;
+
+    public Vector3 Direction { get => m_direction; set => OnDirectionChanged(value); }
+
+    private void OnEnable()
+    {
+        m_civilianAnimation = GetComponentInChildren<CivilianAnimation>();
+    }
+
+    private void OnDirectionChanged(Vector3 value)
+    {
+        m_direction = value;
+        m_civilianAnimation.Walk(value);
+        print(value);
+    }
 
     public bool CanSeePlayer { get; private set; }
 
@@ -27,13 +41,19 @@ public class BaseCivilian : MonoBehaviour
         while (true)
         {
             yield return wait;
-            //FOV();
+            FOV2();
         }
     }
 
     private void FOV2()
     {
-        //RaycastHit2D[] hits = Physics2D.Raycast(transform.position, )
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Direction, radius);
+        Debug.DrawRay(transform.position, Direction, Color.red);
+
+        foreach(var a in hits)
+        {
+            print(a.collider.name);
+        }
     }
 
     private void FOV()
