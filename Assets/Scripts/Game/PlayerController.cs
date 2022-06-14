@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get => m_instance; }
 
     public Plane PlanePosition { get; private set; }
+    public bool IsDead { get; private set; }
 
     [SerializeField] Plane m_planeStartPosition;
     [SerializeField] ElephantAnimation m_elephantAnimation;
@@ -71,13 +72,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool IsDead { get; private set; }
-
     public void OnHitCivilian(BaseCivilian civilian)
     {
         IsDead = true;
         m_elephantAnimation.Knock(m_direction);
-        LevelManager.Instance.LoseCondition();
+        LeanTween.value(0, 1, 5f).setOnComplete(LevelManager.Instance.LoseCondition);
     }
 
     void HandleInventoryState(InventoryItem activeInventory)
@@ -88,6 +87,7 @@ public class PlayerController : MonoBehaviour
     void InitializePlayer()
     {
         m_canMove = true;
+        IsDead = false;
         gameObject.transform.position = m_planeStartPosition.transform.position;
         m_spriteRenderer.enabled = true;
     }
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Plane target;
     public void SetDirection(Vector3 dir)
     {
-        if (!m_canMove) return;
+        if (!m_canMove || IsDead) return;
 
         m_direction = dir;
         RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir, 1f);
@@ -113,7 +113,6 @@ public class PlayerController : MonoBehaviour
                     )
                     {
                         if (target.name == PlanePosition?.name) continue;
-                        print($"Move {target.PlaneType}");
                         LeanTween
                             .move(gameObject, target.transform.position, .5f)
                             .setOnStart(() =>

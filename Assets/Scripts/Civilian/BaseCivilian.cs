@@ -23,7 +23,6 @@ public class BaseCivilian : MonoBehaviour
     {
         m_direction = value;
         m_civilianAnimation.Walk(value);
-        print(value);
     }
 
     public bool CanSeePlayer { get; private set; }
@@ -50,9 +49,10 @@ public class BaseCivilian : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Direction, radius);
         Debug.DrawRay(transform.position, Direction, Color.red);
 
-        foreach(var a in hits)
+        foreach(RaycastHit2D hit in hits)
         {
-            print(a.collider.name);
+            if (!hit.collider.CompareTag("Player")) continue;
+            OnPlayerHit();
         }
     }
 
@@ -82,6 +82,7 @@ public class BaseCivilian : MonoBehaviour
 
     private void OnPlayerHit()
     {
+        m_civilianAnimation.Attack(m_direction);
         ThrowSomething();
         PlayerController.Instance.OnHitCivilian(this);
         CivilianWalk.Stop();
@@ -89,6 +90,7 @@ public class BaseCivilian : MonoBehaviour
 
     void ThrowSomething()
     {
+        if (!m_throwedGO) return;
         GameObject throwed = Instantiate(m_throwedGO, transform);
         LeanTween.move(throwed, PlayerController.Instance.gameObject.transform.position, 2f);
     }

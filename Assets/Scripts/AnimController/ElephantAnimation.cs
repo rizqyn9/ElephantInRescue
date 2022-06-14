@@ -44,21 +44,25 @@ public class ElephantAnimation : MonoBehaviour
         MotionStateUpdate(IDDLE);
     }
 
+    string m_latestStateMotion = null;
     public void MotionStateUpdate(string state)
     {
         ConditionActive(state);
-        m_animator.SetFloat("X", m_direction.x);
-        m_animator.SetFloat("Y", m_direction.y);
+        m_animator?.SetFloat("X", m_direction.x);
+        m_animator?.SetFloat("Y", m_direction.y);
     }
 
     void ConditionActive(string active)
     {
+        if (m_latestStateMotion == active) return;
         if (!m_registeredMotionState.Contains(active))
             throw new System.Exception($"{active} not registered as animation state");
 
+        m_latestStateMotion = active;
+
         m_registeredMotionState.ForEach(val =>
         {
-            m_animator.SetBool(val, val == active);
+            m_animator?.SetBool(val, val == active);
         });
     }
 }
