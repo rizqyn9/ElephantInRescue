@@ -14,7 +14,7 @@ public class CivilianWalk : MonoBehaviour
 
     private void OnEnable()
     {
-        m_renderer = GetComponent<SpriteRenderer>();
+        m_renderer = GetComponentInChildren<SpriteRenderer>();
         m_renderer.enabled = false;
         m_gameStateChannel.OnEventRaised += HandleGameStateChanged;
     }
@@ -42,6 +42,9 @@ public class CivilianWalk : MonoBehaviour
     private void Start()
     {
         transform.position = planeWayPoint[0].transform.position;
+
+        // Check valid moveable
+        if (planeWayPoint.Count == 0) throw new System.Exception("plane way must greater more than 1");
     }
 
     IEnumerator StartMove()
@@ -59,8 +62,10 @@ public class CivilianWalk : MonoBehaviour
         }
     }
 
+    [SerializeField] Vector2 test;
     IEnumerator Move(Transform target)
     {
+        test = Utils.DecideDirection(transform.position, target.position);
         OnChangeTarget(target);
         while (Vector3.Distance(transform.position, target.position) > 0.05f && m_canMove)
         {

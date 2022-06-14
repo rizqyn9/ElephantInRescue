@@ -8,6 +8,9 @@ public class BaseCivilian : MonoBehaviour
     [SerializeField] float angle = 360f;
     [SerializeField] LayerMask targetLayer;
     [SerializeField] GameObject m_throwedGO;
+    [SerializeField] Vector3 m_direction;
+
+    public Vector3 Direction { get => m_direction; set => m_direction = value; }
 
     public bool CanSeePlayer { get; private set; }
 
@@ -24,8 +27,13 @@ public class BaseCivilian : MonoBehaviour
         while (true)
         {
             yield return wait;
-            FOV();
+            //FOV();
         }
+    }
+
+    private void FOV2()
+    {
+        //RaycastHit2D[] hits = Physics2D.Raycast(transform.position, )
     }
 
     private void FOV()
@@ -74,22 +82,34 @@ public class BaseCivilian : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, radius);
+        //Gizmos.color = Color.white;
+        //UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, radius);
 
-        Vector3 angle1 = DirectionFromAngle(-transform.eulerAngles.z, -angle / 2);
-        Vector3 angle2 = DirectionFromAngle(-transform.eulerAngles.z, angle / 2);
+        //Vector3 angle1 = DirectionFromAngle(-transform.eulerAngles.z, -angle / 2);
+        //Vector3 angle2 = DirectionFromAngle(-transform.eulerAngles.z, angle / 2);
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + angle1 * radius);
-        Gizmos.DrawLine(transform.position, transform.position + angle2 * radius);
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawLine(transform.position, transform.position + angle1 * radius);
+        //Gizmos.DrawLine(transform.position, transform.position + angle2 * radius);
 
-        if (CanSeePlayer)
-        {
-            Gizmos.color = Color.green;
-            if (PlayerController.Instance == null) return;
-            Gizmos.DrawLine(transform.position, PlayerController.Instance.transform.position);
-        }
+        //if (CanSeePlayer)
+        //{
+        //    Gizmos.color = Color.green;
+        //    if (PlayerController.Instance == null) return;
+        //    Gizmos.DrawLine(transform.position, PlayerController.Instance.transform.position);
+        //}
+
+        Gizmos.color = Color.red;
+        Vector3 direction = transform.TransformDirection(Vector3.forward) * 5;
+        Gizmos.DrawRay(transform.position, direction);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Vector3 direction = transform.TransformDirection(Vector3.forward) * 5;
+        Gizmos.DrawRay(transform.position, direction);
+
     }
 #endif
 }
