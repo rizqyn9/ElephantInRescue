@@ -290,5 +290,5 @@ MonoBehaviour:
   m_inventoryState: 1
   inventoryItemType: 0
   text: {fileID: 8798200422469215055}
-  m_addRemoveStone: {fileID: 11400000, guid: e3f729996e0b44c8bbfdc7bfb9f64aea, type: 2}
+  m_StoneController: {fileID: 11400000, guid: 71ce70d952eda4a63aa5b7bea2c11b44, type: 2}
   m_countStone: 0

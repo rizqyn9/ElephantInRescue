@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e44b83086185a41b88c2d83e7fc383e7, type: 3}
-  m_Name: RootInventoryCountChannleSO
+  m_Script: {fileID: 11500000, guid: aaf7f08b54b8a44b7b1e22e5f487712e, type: 3}
+  m_Name: InventoryStone
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: 71ce70d952eda4a63aa5b7bea2c11b44
+  description: 'Inventory Stone state event
+
+'
+  m_count: 0

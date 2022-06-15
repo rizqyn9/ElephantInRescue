@@ -13,14 +13,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameStateChannelSO gameStateChannel = default;
     [SerializeField] UITutorial m_uITutorial;
     [SerializeField] GameObject m_gameContainer;
+    [SerializeField] InventorySO m_rootController;
+    [SerializeField] InventorySO m_stoneController;
 
     public LevelDataModel LevelModel { get; private set; }
     public int CountTimeOut = 100;
 
     private void OnEnable()
     {
-        //LevelModel = GameManager.Instance.LevelDataModel;
-        LevelModel = new LevelDataModel() { };
         gameStateChannel.OnEventRaised += HandleGameStateChange;
     }
 
@@ -35,7 +35,6 @@ public class LevelManager : MonoBehaviour
         m_gameState = gameState;
     }
 
-
     private void Awake()
     {
         if (_instance == null) _instance = this;
@@ -43,6 +42,9 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        m_rootController.Set(0);
+        m_stoneController.Set(0);
+
         gameStateChannel.RaiseEvent(GameState.BEFORE_PLAY); // Reset
         StartCoroutine(StartEnumerator());
     }
@@ -82,4 +84,3 @@ public class LevelManager : MonoBehaviour
         gameStateChannel.RaiseEvent(GameState.FINISH);
     }
 }
-

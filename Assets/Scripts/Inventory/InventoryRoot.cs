@@ -4,8 +4,8 @@ using TMPro;
 public class InventoryRoot : InventoryItem
 {
     [SerializeField] TMP_Text text;
-    [SerializeField] BoolEventChannelSO m_addRemoveRoot;
-    [SerializeField] int m_countRoot = 0;
+    [SerializeField] InventorySO m_rootController;
+    private int m_countRoot = 0;
     public int Count
     {
         get => m_countRoot;
@@ -23,7 +23,7 @@ public class InventoryRoot : InventoryItem
     internal override void OnEnable()
     {
         base.OnEnable();
-        m_addRemoveRoot.OnEventRaised += HandleAddRemoveRoot;
+        m_rootController.OnEventRaised += HandleRootOnChange;
 
         Count = 0;
 
@@ -32,12 +32,12 @@ public class InventoryRoot : InventoryItem
     internal override void OnDisable()
     {
         base.OnDisable();
-        m_addRemoveRoot.OnEventRaised -= HandleAddRemoveRoot;
+        m_rootController.OnEventRaised -= HandleRootOnChange;
     }
 
-    private void HandleAddRemoveRoot(bool shouldAdd)
+    private void HandleRootOnChange(int arg0, int arg1)
     {
-        if (shouldAdd) Count++;
-        else Count--;
+        Count = arg1;
     }
+
 }

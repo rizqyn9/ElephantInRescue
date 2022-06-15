@@ -6,7 +6,7 @@ public class PlaneTree : Plane
     [SerializeField] bool m_ShouldDestroyable = false;
     [SerializeField] Sprite m_destroyableTree, m_notDestroyableTree;
     [SerializeField] SpriteRenderer m_spriteRenderer;
-    [SerializeField] BoolEventChannelSO m_channelRootCount;
+    [SerializeField] InventorySO m_rootSO;
 
     public bool Destroyed { get; private set; }
 
@@ -40,7 +40,7 @@ public class PlaneTree : Plane
         {
             Destroyed = true;
             m_spriteRenderer.enabled = false;
-            m_channelRootCount.RaiseEvent(true);
+            m_rootSO.Add();
             m_inventoryChannel.RaiseEvent(null);
         }
     }

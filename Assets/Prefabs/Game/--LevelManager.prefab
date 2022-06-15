@@ -51,5 +51,7 @@ MonoBehaviour:
   gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_uITutorial: {fileID: 0}
   m_gameContainer: {fileID: 0}
+  m_rootController: {fileID: 11400000, guid: c3b7d28f417ba46709fb78b9ab49028b, type: 2}
+  m_stoneController: {fileID: 11400000, guid: 71ce70d952eda4a63aa5b7bea2c11b44, type: 2}
   CountTimeOut: 200
   m_gameState: 0

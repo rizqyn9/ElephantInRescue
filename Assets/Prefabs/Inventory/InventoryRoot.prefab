@@ -290,5 +290,5 @@ MonoBehaviour:
   m_inventoryState: 1
   inventoryItemType: 1
   text: {fileID: 5474842307200041033}
-  m_addRemoveRoot: {fileID: 11400000, guid: 2bf66d7283b8148e8b74fa88b36dfbed, type: 2}
+  m_rootController: {fileID: 11400000, guid: c3b7d28f417ba46709fb78b9ab49028b, type: 2}
   m_countRoot: 0

@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class InventoryStone : InventoryItem
 {
     [SerializeField] TMPro.TMP_Text text;
-    [SerializeField] BoolEventChannelSO m_addRemoveStone;
-    [SerializeField] int m_countStone = 0;
+    [SerializeField] InventorySO m_StoneController;
+    private int m_countStone = 0;
 
     public int Count
     {
@@ -23,7 +24,7 @@ public class InventoryStone : InventoryItem
     internal override void OnEnable()
     {
         base.OnEnable();
-        m_addRemoveStone.OnEventRaised += HandleAddRemoveStone;
+        m_StoneController.OnEventRaised += HandleInventoryCountChange;
 
         Count = 0;
     }
@@ -31,12 +32,12 @@ public class InventoryStone : InventoryItem
     internal override void OnDisable()
     {
         base.OnDisable();
-        m_addRemoveStone.OnEventRaised -= HandleAddRemoveStone;
+        m_StoneController.OnEventRaised -= HandleInventoryCountChange;
     }
 
-    private void HandleAddRemoveStone(bool shouldAdd)
+
+    private void HandleInventoryCountChange(int last, int update)
     {
-        if (shouldAdd) Count++;
-        else Count--;
+        Count = update;
     }
 }

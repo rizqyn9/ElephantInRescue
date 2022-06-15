@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if (target.name == PlanePosition?.name) continue;
                         LeanTween
-                            .move(gameObject, target.transform.position, .5f)
+                            .move(gameObject, ray.collider.bounds.center, .5f)
                             .setOnStart(() =>
                             {
                                 m_canMove = false;

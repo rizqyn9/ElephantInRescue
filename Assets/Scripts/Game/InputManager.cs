@@ -23,19 +23,19 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         m_GameStateChannelSO.OnEventRaised += HandleGameState;
-        m_TouchState.OnEventRaised += HandleTouchState;
+        //m_TouchState.OnEventRaised += HandleTouchState;
     }
 
     private void OnDisable()
     {
         m_GameStateChannelSO.OnEventRaised -= HandleGameState;
-        m_TouchState.OnEventRaised -= HandleTouchState;
+        //m_TouchState.OnEventRaised -= HandleTouchState;
     }
 
-    private void HandleTouchState(TouchState arg1)
-    {
-        print(m_TouchState.cachedState.Count);
-    }
+    //private void HandleTouchState(TouchState arg1)
+    //{
+    //    print(m_TouchState.cachedState.Count);
+    //}
 
     void Start()
     {
@@ -46,8 +46,8 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         if (m_gameState != GameState.PLAY) return;
-//#if UNITY_EDITOR
-//#endif
+        UnityEditor.EditorUserBuildSettings.development = true;
+
         ListenWithKeys();
         MoveInput();
         TouchInput();
