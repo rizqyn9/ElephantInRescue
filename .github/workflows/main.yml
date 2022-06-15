@@ -51,7 +51,7 @@ jobs:
         uses: game-ci/unity-builder@v2
         with:
           targetPlatform: Android
-          customParameters: -executeMethod BuildScript.PerformBuild
+          customParameters: "${{ github.event.inputs.debugMode && '-Development -AllowDebugging' }}"
 
       - name: 🚀 Upload Artifact
         uses: actions/upload-artifact@v2
@@ -96,7 +96,7 @@ jobs:
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: WebGL
-          customParameters: -executeMethod BuildScript.PerformBuild
+          customParameters: "${{ github.event.inputs.debugMode && '-Development -AllowDebugging' }}"
 
       - uses: actions/upload-artifact@v2
         with:
@@ -141,7 +141,7 @@ jobs:
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: StandaloneWindows64
-          customParameters: -executeMethod BuildScript.PerformBuild
+          customParameters: "${{ github.event.inputs.debugMode && '-Development -AllowDebugging' }}"
 
       - uses: actions/upload-artifact@v2
         with:

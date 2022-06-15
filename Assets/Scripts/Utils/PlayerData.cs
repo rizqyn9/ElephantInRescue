@@ -51,6 +51,7 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    // TODO
     PlayerDataModel GenerateNewData() =>
         new PlayerDataModel()
         {

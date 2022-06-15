@@ -164,7 +164,6 @@ public class GameManager : MonoBehaviour
 
     public static void OpenNextLevel(int currentLevelIndex)
     {
-        print("Open next Level");
     }
 }
 
