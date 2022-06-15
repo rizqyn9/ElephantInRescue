@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -24,3 +26,5 @@ public class BuildScript
         EditorUserBuildSettings.development = true;
     }
 }
+
+#endif

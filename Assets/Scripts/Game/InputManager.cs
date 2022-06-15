@@ -46,7 +46,6 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         if (m_gameState != GameState.PLAY) return;
-        UnityEditor.EditorUserBuildSettings.development = true;
 
         ListenWithKeys();
         MoveInput();
