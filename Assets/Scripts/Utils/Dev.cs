@@ -52,7 +52,7 @@ public class Dev : MonoBehaviour
 
         if (GameManager.SceneState == SceneState.MAINMENU)
         {
-            GameManager.Instance.playerDataModel = m_customPlayerModel;
+            GameManager.PlayerDataModel = m_customPlayerModel;
             GameManager.Instance.initialize();
 
         }

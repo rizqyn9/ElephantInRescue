@@ -21,8 +21,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void Play()
     {
-        //GameManager.LoadGameLevel(ResourcesManager.LevelBase.Find(val => val.level == GameManager.Instance.playerDataModel.currentLevel));
-        print("Main");
         GameManager.LoadLevelMap();
     }
 }

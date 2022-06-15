@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        gameStateChannel.RaiseEvent(GameState.BEFORE_PLAY);
+        gameStateChannel.RaiseEvent(GameState.BEFORE_PLAY); // Reset
         StartCoroutine(StartEnumerator());
     }
 

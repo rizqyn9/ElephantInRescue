@@ -47,6 +47,7 @@ public class ElephantAnimation : MonoBehaviour
     string m_latestStateMotion = null;
     public void MotionStateUpdate(string state)
     {
+        if (m_latestStateMotion == KNOCK || !m_animator) return;
         ConditionActive(state);
         m_animator?.SetFloat("X", m_direction.x);
         m_animator?.SetFloat("Y", m_direction.y);

@@ -47,7 +47,7 @@ public class CivilianAnimation : MonoBehaviour
     string m_latestStateMotion = null;
     public void MotionStateUpdate(string state)
     {
-        if (m_latestStateMotion == ATTACK) return;
+        if (m_latestStateMotion == ATTACK || !m_animator) return;
         ConditionActive(state);
         m_animator?.SetFloat("X", m_direction.x);
         m_animator?.SetFloat("Y", m_direction.y);
@@ -61,7 +61,7 @@ public class CivilianAnimation : MonoBehaviour
 
         m_latestStateMotion = active;
 
-        print(active);
+        //print(active);
         m_registeredMotionState.ForEach(val =>
         {
             m_animator?.SetBool(val, val == active);

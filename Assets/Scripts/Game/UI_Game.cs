@@ -63,6 +63,11 @@ public class UI_Game : MonoBehaviour
         GameManager.LoadGameLevel(GameManager.Instance.LevelDataModel);
     }
 
+    public void Btn_NextLevel()
+    {
+        print("Next Level unhandled now");
+    }
+
     public void Btn_BackToMainMenu()
     {
         GameManager.LoadMainMenu();

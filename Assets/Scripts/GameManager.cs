@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -13,12 +12,11 @@ public class GameManager : MonoBehaviour
     [Header("Properties")]
     public PlayerData playerData;
     public GameObject GO_ResourcesManager;
-
-    [Header("Debug")]
-    public PlayerDataModel playerDataModel = new PlayerDataModel() { LevelDatas = new List<LevelDataModel>()};
     [SerializeField] SceneState _sceneState = SceneState.MAINMENU;
     [SerializeField] ResourcesManager resourcesManager;
+    [SerializeField] PlayerDataModel m_playerDataModel;
 
+    public static PlayerDataModel PlayerDataModel { get => Instance.m_playerDataModel; internal set => Instance.m_playerDataModel = value; }
     public static PlayerData PlayerData { get => Instance.playerData; }
     public static SceneState SceneState => updateSceneState();
 
@@ -41,7 +39,7 @@ public class GameManager : MonoBehaviour
     public void initialize()
     {
         updateSceneState();
-        playerDataModel = playerData.load();
+        PlayerDataModel = playerData.Load();
         StartCoroutine(ILoadAllResources());
     }
 
@@ -73,10 +71,12 @@ public class GameManager : MonoBehaviour
         else return SceneState.GAME;
     }
 
-    private void handleSceneChanged(Scene _scene, LoadSceneMode _loadMode)
+    private void handleSceneChanged(Scene scene, LoadSceneMode loadMode)
     {
-        print($" Load {_scene.name}");
+        PlayerDataModel = playerData.Load(); // Sync persistant data with runtime
+        print($"Load {scene.name}");
 
+        if (scene.name == "Level") LevelDataModel = new LevelDataModel(); 
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
@@ -96,10 +96,10 @@ public class GameManager : MonoBehaviour
     public static void LoadLevelMap()
     {
         print("Load Level");
-#if UNITY_EDITOR
-        LoadGameLevel(GetLevelDataByLevelStage(1, 1));
-        return;
-#endif
+//#if UNITY_EDITOR
+//        LoadGameLevel(GetLevelDataByLevelStage(1, 1));
+//        return;
+//#endif
         SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
 
     public static LevelDataModel GetLevelDataByLevelStage(int level, int stage)
     {
-        LevelDataModel levelDataModel= Instance.playerDataModel.LevelDatas.Find(val => val.Level == level && val.Stage == stage);
+        LevelDataModel levelDataModel= PlayerDataModel.LevelDatas.Find(val => val.Level == level && val.Stage == stage);
         if (levelDataModel.Equals(default(LevelDataModel)))
             return new LevelDataModel()
             {
@@ -140,6 +140,28 @@ public class GameManager : MonoBehaviour
                 HighScore = 0
             };
         else return levelDataModel;
+    }
+
+    public static void UpdatePlayerData(LevelDataModel levelDataModel)
+    {
+        int indexLevel = PlayerDataModel.LevelDatas.FindIndex(level => level.Level == levelDataModel.Level && level.Stage == levelDataModel.Stage);
+
+        if (indexLevel < 0)
+            throw new System.Exception($"Level not found {levelDataModel.ToString()}");
+
+
+        PlayerDataModel.LevelDatas[indexLevel] = levelDataModel;
+
+        OpenNextLevel(indexLevel);
+
+        print($"Update level data {levelDataModel.IsNewLevel.ToString()}");
+
+        Instance.playerData.Save();
+    }
+
+    public static void OpenNextLevel(int currentLevelIndex)
+    {
+        print("Open next Level");
     }
 }
 

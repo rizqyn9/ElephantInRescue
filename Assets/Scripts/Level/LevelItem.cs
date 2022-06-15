@@ -15,7 +15,7 @@ public class LevelItem : MonoBehaviour
     [SerializeField] int m_level, m_stage;
     [SerializeField] Sprite m_uiDisable;
     [SerializeField] Image m_image, m_stars;
-    [SerializeField] Sprite[] m_uiStars;
+    [SerializeField] internal Sprite[] m_uiStars;
     [SerializeField] internal Sprite m_stageSprite;
 
     [HideInInspector] UILevel m_uILevel;

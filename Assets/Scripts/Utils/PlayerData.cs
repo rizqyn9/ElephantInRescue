@@ -7,13 +7,12 @@ public class PlayerData : MonoBehaviour
     [Header("Debug")]
     [SerializeField] string saveFilePath;
 
-    public PlayerDataModel playerDataModel => GameManager.Instance.playerDataModel;
+    public PlayerDataModel PlayerDataModel { get => GameManager.PlayerDataModel; }
 
-    public PlayerDataModel load()
+    [SerializeField] PlayerDataModel m_debug;
+    public PlayerDataModel Load()
     {
-        saveFilePath = Dev.Instance.isDevMode ?
-            Application.dataPath + "/eir_dev.json" :
-            Application.persistentDataPath + "/eir_production.json";
+        saveFilePath = Application.persistentDataPath + "/eir_production.json";
 
         if (Dev.Instance.isDevMode && Dev.Instance.useCustomUserModel) return Dev.Instance.m_customPlayerModel;
         else if (Dev.Instance.isDevMode && Dev.Instance.useNewDataUser) return new PlayerDataModel();
@@ -21,7 +20,9 @@ public class PlayerData : MonoBehaviour
         {
             try
             {
+                Debug.Log("<color=green>Load persistant data</color>");
                 PlayerDataModel res = JsonUtility.FromJson<PlayerDataModel>(File.ReadAllText(saveFilePath));
+                m_debug = res;
                 return res;
             }
             catch (System.Exception e)
@@ -30,14 +31,18 @@ public class PlayerData : MonoBehaviour
                 return GenerateNewData();
             }
         }
-        else return GenerateNewData();
+        else
+        {
+            print("<color=red>Generate New data</color>");
+            return GenerateNewData();
+        }
     }
 
     public void Save()
     {
         try
         {
-            File.WriteAllText(saveFilePath, JsonUtility.ToJson(playerDataModel));
+            File.WriteAllText(saveFilePath, JsonUtility.ToJson(PlayerDataModel));
             Debug.Log("<color=green>Success update data</color>");
         }
         catch (System.Exception e)
@@ -60,6 +65,7 @@ public class PlayerData : MonoBehaviour
                     IsNewLevel = true,
                     HighScore = 0
                 },
+# if UNITY_EDITOR
                 new LevelDataModel()
                 {
                     Level = 1,
@@ -69,6 +75,7 @@ public class PlayerData : MonoBehaviour
                     IsNewLevel = true,
                     HighScore = 0
                 }
+#endif
             }
         };
 }

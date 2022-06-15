@@ -22,7 +22,7 @@ public class PlaneFinish : Plane
             .scale(m_renderer.gameObject, m_renderer.transform.localScale * 4, .5f)
             .setOnStart(() =>
             {
-                m_renderer.sortingOrder = 100;
+                m_renderer.sortingOrder = 30;
             })
             .setOnComplete(() =>
             {
