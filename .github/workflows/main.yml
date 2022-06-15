@@ -51,6 +51,7 @@ jobs:
         uses: game-ci/unity-builder@v2
         with:
           targetPlatform: Android
+          customParameters: -executeMethod BuildScript.PerformBuild
 
       - name: 🚀 Upload Artifact
         uses: actions/upload-artifact@v2
@@ -95,6 +96,7 @@ jobs:
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: WebGL
+          customParameters: -executeMethod BuildScript.PerformBuild
 
       - uses: actions/upload-artifact@v2
         with:
