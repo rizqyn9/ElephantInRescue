@@ -16,7 +16,6 @@ public class UI_Game : MonoBehaviour
         gameUI.alpha = 0;
         gameUI.interactable = false;
         m_canvas = GetComponent<Canvas>();
-
     }
 
     private void Start()

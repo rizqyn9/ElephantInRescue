@@ -59,10 +59,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void OnEnable() =>
-        SceneManager.sceneLoaded += handleSceneChanged;
+        SceneManager.sceneLoaded += HandleSceneChanged;
 
     private void OnDisable() =>
-        SceneManager.sceneLoaded -= handleSceneChanged;
+        SceneManager.sceneLoaded -= HandleSceneChanged;
 
     static SceneState updateSceneState()
     {
@@ -71,12 +71,11 @@ public class GameManager : MonoBehaviour
         else return SceneState.GAME;
     }
 
-    private void handleSceneChanged(Scene scene, LoadSceneMode loadMode)
+    private void HandleSceneChanged(Scene scene, LoadSceneMode loadMode)
     {
         PlayerDataModel = playerData.Load(); // Sync persistant data with runtime
         print($"Load {scene.name}");
 
-        if (scene.name == "Level") LevelDataModel = new LevelDataModel(); 
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
@@ -147,7 +146,11 @@ public class GameManager : MonoBehaviour
         int indexLevel = PlayerDataModel.LevelDatas.FindIndex(level => level.Level == levelDataModel.Level && level.Stage == levelDataModel.Stage);
 
         if (indexLevel < 0)
+#if UNITY_EDITOR
             throw new System.Exception($"Level not found {levelDataModel.ToString()}");
+#else
+            return;
+#endif
 
 
         PlayerDataModel.LevelDatas[indexLevel] = levelDataModel;

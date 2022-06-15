@@ -11,7 +11,7 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] GameStateChannelSO m_gameStateChannelSO;
 
     [Header("Debug")]
-    [SerializeField] InventoryItem m_activeInventoryItem;
+    [SerializeField] internal InventoryItem m_activeInventoryItem;
 
     private void OnEnable()
     {

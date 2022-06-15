@@ -28,8 +28,11 @@ public class RulesController : MonoBehaviour
     {
         switch (gameState)
         {
-            case GameState.PLAY:
+            case GameState.BEFORE_PLAY:
+                m_uIDialog.gameObject.SetActive(false);
                 m_levelDataModel = GameManager.Instance.LevelDataModel;
+                break;
+            case GameState.PLAY:
                 break;
             case GameState.FINISH:
                 CalculateStar();
@@ -51,6 +54,7 @@ public class RulesController : MonoBehaviour
 
     void HandlePoint(WinLoseType type)
     {
+        m_levelDataModel = GameManager.Instance.LevelDataModel;
         RenderUI(m_rulesProps.Find(val => val.WinLoseType == type));
 
         m_levelDataModel.IsNewLevel = false;    // Update recently play
@@ -66,10 +70,10 @@ public class RulesController : MonoBehaviour
                 m_levelDataModel.Stars = 1;
                 break;
             case WinLoseType.STARS2:
-                m_levelDataModel.Stars = 1;
+                m_levelDataModel.Stars = 2;
                 break;
             case WinLoseType.STARS3:
-                m_levelDataModel.Stars = 1;
+                m_levelDataModel.Stars = 3;
                 break;
             default:
                 throw new System.Exception("Unhandled Win Lose Type");
@@ -90,13 +94,7 @@ public class RulesController : MonoBehaviour
 
     private void SaveToPersistant()
     {
-        // Level Stage
-        // stars
-        // remaining time
-
-
         GameManager.UpdatePlayerData(m_levelDataModel);
-        //GameManager.Instance.playerData.Save();
     }
 }
 
