@@ -76,7 +76,7 @@ public class PlayerData : MonoBehaviour
 #if UNITY_EDITOR
                 if (level == 1 && stage <= 2) // Change this for development only
 #else
-                if (level == 1 && stage == 2)
+                if (level == 1 && stage == 1)
 #endif
                     generated.Add(GenerateLevelData(stage, level, true, true));
                 else 
