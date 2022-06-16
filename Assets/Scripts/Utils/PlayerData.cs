@@ -69,10 +69,9 @@ public class PlayerData : MonoBehaviour
     PlayerDataModel GenerateNewData()
     {
         List<LevelDataModel> generated = new List<LevelDataModel>();
+
         for(int level = 1; level < 4; level++)
-        {
             for(int stage = 1; stage < 4; stage++)
-            {
 #if UNITY_EDITOR
                 if (level == 1 && stage <= 2) // Change this for development only
 #else
@@ -81,10 +80,7 @@ public class PlayerData : MonoBehaviour
                     generated.Add(GenerateLevelData(stage, level, true, true));
                 else 
                     generated.Add(GenerateLevelData(stage, level));
-            }
-        }
 
-        print(generated.Count);
         return new PlayerDataModel() { LevelDatas = generated };
     }
 

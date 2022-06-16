@@ -26,6 +26,13 @@ public class CivilianWalk : MonoBehaviour
         m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;
     }
 
+#if UNITY_EDITOR
+    //private void OnValidate()
+    //{
+    //    gameObject.transform.position = planeWayPoint[0].transform.position;
+    //}
+#endif
+
     private void HandleGameStateChanged(GameState before, GameState gameState)
     {
         switch (gameState)

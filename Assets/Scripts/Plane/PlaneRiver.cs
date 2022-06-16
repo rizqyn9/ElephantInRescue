@@ -46,6 +46,7 @@ public class PlaneRiver : Plane
             .alpha(effect, 0, .5f)                    
             .setOnComplete(() => {
                 PlaneType = PlaneTypeEnum.ROUTE;
+                CanPassable = true;
                 Destroy(effect);
             });                
     }

@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
     * Load all dependencies
     * Resources Manager
     * Main Controller
-    * 
     */
     IEnumerator ILoadAllResources()
     {
@@ -95,10 +94,10 @@ public class GameManager : MonoBehaviour
     public static void LoadLevelMap()
     {
         print("Load Level");
-//#if UNITY_EDITOR
-//        LoadGameLevel(GetLevelDataByLevelStage(1, 1));
-//        return;
-//#endif
+#if UNITY_EDITOR
+        LoadGameLevel(GetLevelDataByLevelStage(1, 2));
+        return;
+#endif
         SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 
@@ -155,11 +154,10 @@ public class GameManager : MonoBehaviour
 
         if (indexLevel < 0)
 #if UNITY_EDITOR
-            throw new System.Exception($"Level not found {levelDataModel.ToString()}");
+            Debug.LogError($"Level not found {levelDataModel.ToString()}");
 #else
             return;
 #endif
-
 
         PlayerDataModel.LevelDatas[indexLevel] = levelDataModel;
 
