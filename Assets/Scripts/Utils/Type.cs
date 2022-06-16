@@ -10,11 +10,11 @@ public struct PlayerDataModel
 [Serializable]
 public struct LevelDataModel
 {
-    public int Level;
     public int Stage;
+    public int Level;
+    public bool IsNewLevel;
     public bool IsOpen;
     public int Stars;
-    public bool IsNewLevel;
     public int HighScore;
 }
 

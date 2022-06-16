@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class PlaneFinish : Plane
 {
-    [SerializeField] VoidEventChannelSO m_handleOnFinish;
     [SerializeField] GameStateChannelSO m_gameStateChannelSO;
     [SerializeField] SpriteRenderer m_renderer;
+
+    internal override void OnEnable()
+    {
+        base.OnEnable();
+    }
 
     internal override void Start()
     {

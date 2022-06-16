@@ -12,37 +12,51 @@ public class PlayerData : MonoBehaviour
     [SerializeField] PlayerDataModel m_debug;
     public PlayerDataModel Load()
     {
-        saveFilePath = Application.persistentDataPath + "/eir_production.json";
+        try
+        {
+            saveFilePath = Application.persistentDataPath + "/eir_production.json";
 
-        if (Dev.Instance.isDevMode && Dev.Instance.useCustomUserModel) return Dev.Instance.m_customPlayerModel;
-        else if (Dev.Instance.isDevMode && Dev.Instance.useNewDataUser) return new PlayerDataModel();
-        else if (File.Exists(saveFilePath))
-        {
-            try
+            if (File.Exists(saveFilePath))
             {
-                Debug.Log("<color=green>Load persistant data</color>");
-                PlayerDataModel res = JsonUtility.FromJson<PlayerDataModel>(File.ReadAllText(saveFilePath));
-                m_debug = res;
-                return res;
+                try
+                {
+                    Debug.Log("<color=green>Load persistant data</color>");
+                    PlayerDataModel res = JsonUtility.FromJson<PlayerDataModel>(File.ReadAllText(saveFilePath));
+                    m_debug = res;
+                    return res;
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
             }
-            catch (System.Exception e)
+            else
             {
-                Debug.LogError(e);
-                return GenerateNewData();
+                throw new System.Exception("JSON not found");
             }
-        }
-        else
+        } catch (System.Exception e)
         {
+#if UNITY_EDITOR
+            Debug.LogWarning(e);
+#endif
             print("<color=red>Generate New data</color>");
-            return GenerateNewData();
+
+            PlayerDataModel newPlayerData = GenerateNewData();
+            print(newPlayerData.LevelDatas.Count);
+            Save(newPlayerData);
+            return newPlayerData;
         }
     }
 
-    public void Save()
+    public void Save(PlayerDataModel playerDataModel = new PlayerDataModel())
     {
         try
         {
-            File.WriteAllText(saveFilePath, JsonUtility.ToJson(PlayerDataModel));
+            if(playerDataModel.Equals(default(PlayerDataModel)))
+                File.WriteAllText(saveFilePath, JsonUtility.ToJson(PlayerDataModel));
+            else
+                File.WriteAllText(saveFilePath, JsonUtility.ToJson(playerDataModel));
+
             Debug.Log("<color=green>Success update data</color>");
         }
         catch (System.Exception e)
@@ -52,32 +66,37 @@ public class PlayerData : MonoBehaviour
     }
 
     // TODO
-    PlayerDataModel GenerateNewData() =>
-        new PlayerDataModel()
+    PlayerDataModel GenerateNewData()
+    {
+        List<LevelDataModel> generated = new List<LevelDataModel>();
+        for(int level = 1; level < 4; level++)
         {
-            LevelDatas = new List<LevelDataModel>()
+            for(int stage = 1; stage < 4; stage++)
             {
-                new LevelDataModel()
-                {
-                    Level = 1,
-                    Stage = 1,
-                    IsOpen = true,
-                    Stars = 0,
-                    IsNewLevel = true,
-                    HighScore = 0
-                },
-# if UNITY_EDITOR
-                new LevelDataModel()
-                {
-                    Level = 1,
-                    Stage = 2,
-                    IsOpen = true,
-                    Stars = 0,
-                    IsNewLevel = true,
-                    HighScore = 0
-                }
+#if UNITY_EDITOR
+                if (level == 1 && stage <= 2) // Change this for development only
+#else
+                if (level == 1 && stage == 2)
 #endif
+                    generated.Add(GenerateLevelData(stage, level, true, true));
+                else 
+                    generated.Add(GenerateLevelData(stage, level));
             }
+        }
+
+        print(generated.Count);
+        return new PlayerDataModel() { LevelDatas = generated };
+    }
+
+    LevelDataModel GenerateLevelData(int stage, int level, bool isNewLevel = true, bool isOpen = false) =>
+        new LevelDataModel
+        {
+            Stage= stage,
+            Level = level,
+            IsNewLevel = isNewLevel,
+            IsOpen = isOpen,
+            Stars = 0,
+            HighScore = 0
         };
 }
 

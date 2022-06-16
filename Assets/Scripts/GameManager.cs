@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     public static void OpenNextLevel(int currentLevelIndex)
     {
-        if (currentLevelIndex == PlayerDataModel.LevelDatas.Count) return;
+        if (currentLevelIndex + 1 == PlayerDataModel.LevelDatas.Count) return;
 
         print($"Open Level : {currentLevelIndex + 1}");
 
