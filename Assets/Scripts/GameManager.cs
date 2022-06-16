@@ -111,9 +111,17 @@ public class GameManager : MonoBehaviour
     public LevelDataModel LevelDataModel { get => m_levelLoaded; private set => m_levelLoaded = value; }
     public static void LoadGameLevel(LevelDataModel level)
     {
-        Instance.LevelDataModel = level; // Reset // Todo
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
-        SceneManager.LoadScene($"Stg{level.Stage}-Lvl{level.Level}", LoadSceneMode.Additive);
+        try
+        {
+            if (!Utils.DoesSceneExist($"Stg{level.Stage}-Lvl{level.Level}")) throw new System.Exception("asd");
+            Instance.LevelDataModel = level; // Reset // Todo
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.LoadScene($"Stg{level.Stage}-Lvl{level.Level}", LoadSceneMode.Additive);
+        } catch
+        {
+            // Handle coming soon level
+            LoadMainMenu();
+        }
     }
 
     /**
