@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,65 +5,76 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     [SerializeField] GameStateChannelSO m_GameStateChannelSO = null;
-    [SerializeField] LayerMask m_ObstacleLayerMask;
-    [SerializeField] PlaneBase initalPos;
+    [SerializeField] PlaneBase m_boxPlane; // Initialize position
+    [SerializeField] LayerMask m_LayerGrid;
+
     List<Vector2> m_dirs = new List<Vector2>() { Vector2.down, Vector2.up, Vector2.left, Vector2.right };
-    List<PlaneBase> m_targets = new List<PlaneBase>();
+    List<PlaneBase> m_PlaneTargets = new List<PlaneBase>();
+
+    public bool IsActive { get; set; }
 
     private void Start()
     {
-        //m_boxPlane = Physics2D.Raycast(transform.position, Vector2.zero)
+        transform.position = m_boxPlane.transform.position;
+        m_boxPlane?.OnBox(this);
+    }
+
+    private void Update()
+    {
+        if (!IsActive) return;
+        // If active & click away notify box false
+        if (Input.GetMouseButton(0))
+        {
+            RaycastHit2D hit = Utils.RaycastCamera(Input.mousePosition, Vector2.zero, gameObject.layer);
+            if (hit.collider.GetComponent<Box>() == this) return;
+            CloseFocus();
+        }
     }
 
     private void OnMouseDown()
     {
-        m_targets = new List<PlaneBase>();
+        IsActive = !IsActive;   // Toggle
 
-        foreach (Vector2 dir in m_dirs)
-            NotifyPlaneBaseByDir(dir);
+        if(IsActive)
+            m_PlaneTargets = new List<PlaneBase>();
+            foreach (Vector2 dir in m_dirs)
+                NotifyActivePlaneBaseByDir(dir);
+        if (!IsActive && m_PlaneTargets.Count != 0)
+            CloseFocus();
     }
 
-    void NotifyPlaneBaseByDir(Vector2 dir)
+    void NotifyActivePlaneBaseByDir(Vector2 dir)
     {
+        RaycastHit2D[] targets = Physics2D.RaycastAll(transform.position, dir, 1f, m_LayerGrid);
 
-        PlaneBase target = Physics2D.Raycast(transform.position, dir, 1f).collider.GetComponent<PlaneBase>();
-        print(Physics2D.Raycast(transform.position, dir, 1f).collider.name);
-        print("Notify");
-        if (!target) return;
+        PlaneBase planeBase = null;
+        RaycastHit2D target =
+            System.Array.Find(targets, (plane) => {
+                planeBase = plane.collider.GetComponent<PlaneBase>();
+                return planeBase && planeBase.name != m_boxPlane.name;
+            });
 
-        target.OnBoxNotify(true);
-        m_targets.Add(target);
+        if (!target || !planeBase) return;
+
+        planeBase.OnBoxNotify(true, this);
+        m_PlaneTargets.Add(planeBase);
     }
 
-    void Update()
+    public void MoveToPlane(PlaneBase plane)
     {
-        TouchInput();
-        if (m_GameStateChannelSO.GameState != GameState.PLAY) return;
-
+        LeanTween
+            .move(gameObject, plane.transform.position, .5f)
+            .setOnStart(CloseFocus)
+            .setOnComplete(() =>
+            {
+                m_boxPlane = plane;
+                m_boxPlane.OnBox(this);
+            });
     }
 
-    void TouchInput()
+    void CloseFocus ()
     {
-        if (Input.touchCount > 0)
-        {
-        print("Touch");
-            Touch touch = Input.GetTouch(0);
-
-            RaycastHit2D target = Physics2D.Raycast(touch.position, Vector2.zero, m_ObstacleLayerMask);
-
-            if (!target || target.collider.name != gameObject.name) return;
-
-            print("Touched");
-
-            //if (touch.phase == TouchPhase.Began)
-            //    startPos = touch.position;
-
-            //if (touch.phase == TouchPhase.Moved)
-            //    endPos = touch.position;
-
-            //if (touch.phase == TouchPhase.Ended)
-            //    if (DecideDirection() != Vector3.zero)
-            //        playerController.SetDirection(DecideDirection());
-        }
+        IsActive = false;
+        m_PlaneTargets.ForEach(plane => plane.OnBoxNotify(false, this));
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8395025158800121745}
   - component: {fileID: 1502834179567244648}
   - component: {fileID: 1706347862450109813}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane_River
   m_TagString: Untagged
   m_Icon: {fileID: 0}

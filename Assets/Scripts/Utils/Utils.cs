@@ -54,4 +54,7 @@ public static class Utils
 
         return false;
     }
+
+    public static RaycastHit2D RaycastCamera(Vector3 position, Vector2 dir, LayerMask layerMask = default(LayerMask)) =>
+        Physics2D.Raycast(Camera.main.ScreenToWorldPoint(position), dir, layerMask);
 }

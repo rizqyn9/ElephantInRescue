@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 1482590433089205907}
   - component: {fileID: 2867619195543746099}
   - component: {fileID: 4145637337278991940}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane_Finish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,6 +238,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   m_isPlayerInstancePlace: 0
-  m_handleOnFinish: {fileID: 0}
   m_gameStateChannelSO: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_renderer: {fileID: 2188591419542733845}
