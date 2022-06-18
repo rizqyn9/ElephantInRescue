@@ -22,12 +22,13 @@ public class Box : MonoBehaviour
     private void Update()
     {
         if (!IsActive) return;
+
         // If active & click away notify box false
         if (Input.GetMouseButton(0))
         {
             RaycastHit2D hit = Utils.RaycastCamera(Input.mousePosition, Vector2.zero, gameObject.layer);
             if (hit.collider.GetComponent<Box>() == this) return;
-            CloseFocus();
+            CloseFocus(); 
         }
     }
 
@@ -39,6 +40,7 @@ public class Box : MonoBehaviour
             m_PlaneTargets = new List<PlaneBase>();
             foreach (Vector2 dir in m_dirs)
                 NotifyActivePlaneBaseByDir(dir);
+
         if (!IsActive && m_PlaneTargets.Count != 0)
             CloseFocus();
     }
@@ -76,5 +78,11 @@ public class Box : MonoBehaviour
     {
         IsActive = false;
         m_PlaneTargets.ForEach(plane => plane.OnBoxNotify(false, this));
+        m_PlaneTargets = new List<PlaneBase>();
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Validate Position")]
+    void ValidatePosition() => transform.position = m_boxPlane.transform.position;
+#endif
 }

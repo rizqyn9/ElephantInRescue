@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(BaseCivilian))]
 public class CivilianWalk : MonoBehaviour
 {
-    [SerializeField] List<Plane> planeWayPoint;
+    [SerializeField] List<PlaneBase> planeWayPoint;
     [SerializeField] [Range(0, 4)] float m_speed = 2f;
     [SerializeField] bool m_canMove = false;
     [SerializeField] int m_indexNow = 0;
@@ -56,30 +56,75 @@ public class CivilianWalk : MonoBehaviour
         if (planeWayPoint.Count == 0) throw new System.Exception("plane way must greater more than 1");
     }
 
+    int currentIndex = 0;
+    int nextTarget = 1;
+    int WayCount => planeWayPoint.Count; // 3
+
+    void RecalculateTarget()
+    {
+        // NEXT
+        if(currentIndex < nextTarget)
+        {
+            currentIndex++;
+            if(nextTarget + 1 >= WayCount) // Reserve
+            {
+                nextTarget--;
+            } else
+            {
+                nextTarget++;
+            }
+        }
+
+        // PREV
+        else if(currentIndex > nextTarget)
+        {
+            currentIndex--;
+            if(nextTarget <= 0) //Reserve
+            {
+                nextTarget++;
+            } else
+            {
+                nextTarget--;
+            }
+        }
+
+        print($"{currentIndex} {nextTarget}");
+    }
+
     IEnumerator StartMove()
     {
         m_canMove = true;
 
         while (m_canMove)
         {
-            while (m_indexNow <= planeWayPoint.Count - 1)
-            {
-                yield return StartCoroutine(Move(planeWayPoint[m_indexNow].transform));
-                m_indexNow++;
-            }
-            if (m_indexNow <= planeWayPoint.Count) m_indexNow = 0;
+            //Debug.Log("1");
+
+            yield return
+                StartCoroutine(
+                    Move(planeWayPoint[nextTarget].transform,
+                        () => {
+                            RecalculateTarget();
+                        }
+                    ));
+            m_indexNow++;
+            //if (m_indexNow <= planeWayPoint.Count) m_indexNow = 0;
+            //Debug.Log("2");
         }
     }
 
-    IEnumerator Move(Transform target)
+    IEnumerator Move(Transform target, System.Action cb)
     {
+        Debug.Log("Start");
         m_baseCivilian.Direction = Utils.DecideDirection(transform.position, target.position);
-        //OnChangeTarget(target);
+
         while (Vector3.Distance(transform.position, target.position) > 0.05f && m_canMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, m_speed * Time.deltaTime);
             yield return null;
         }
+
+        Debug.Log("Finsi");
+        cb();
     }
 
     public void Stop()

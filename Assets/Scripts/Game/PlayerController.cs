@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
                             {
                                 m_elephantAnimation.Iddle(m_direction);
                                 m_canMove = true;
-                                target.OnElephant();
+                                target?.OnElephant();
                                 PlanePosition = target;
                             });
                     } else

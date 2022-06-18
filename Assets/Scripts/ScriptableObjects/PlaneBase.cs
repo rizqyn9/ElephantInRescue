@@ -11,6 +11,7 @@ public class PlaneBase : Plane
     internal override void Start()
     {
         base.Start();
+        PlaneType = PlaneTypeEnum.ROUTE;
         m_sprite = GetComponentInChildren<SpriteRenderer>();
         Box = null;
     }

@@ -51,32 +51,17 @@ public class BaseCivilian : MonoBehaviour
 
         foreach(RaycastHit2D hit in hits)
         {
-            if (!hit.collider.CompareTag("Player")) continue;
-            OnPlayerHit();
-        }
-    }
-
-    private void FOV()
-    {
-        Collider2D target = Physics2D.OverlapCircle(transform.position, radius, targetLayer);
-
-        if (target && target.CompareTag("Player"))
-        {
-            Vector2 directionToTarget = (transform.position - PlayerController.Instance.transform.position).normalized;
-
-            if (Vector2.Angle(transform.up, directionToTarget) > angle / 2)
+            if (hit.collider.CompareTag("Obstacle"))
             {
-                CanSeePlayer = true;
+                OnObstacleHit(hit);
+                break;
+            }
+
+            if (hit.collider.CompareTag("Player"))
+            {
                 OnPlayerHit();
+                break;
             }
-            else
-            {
-                CanSeePlayer = false;
-            }
-        }
-        else
-        {
-            CanSeePlayer = false;
         }
     }
 
@@ -88,6 +73,15 @@ public class BaseCivilian : MonoBehaviour
         CivilianWalk.Stop();
     }
 
+    private void OnObstacleHit(RaycastHit2D obstacle)
+    {
+        //Box box = obstacle.collider.GetComponent<Box>();
+        //if (box)
+        //{
+        //    CivilianWalk.RecalculateMove();    
+        //}
+    }
+
     void ThrowSomething()
     {
         if (!m_throwedGO) return;
@@ -95,12 +89,13 @@ public class BaseCivilian : MonoBehaviour
         LeanTween.move(throwed, PlayerController.Instance.gameObject.transform.position, 2f);
     }
 
+
+    #region Not used now
     private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees)
     {
         angleInDegrees += eulerY;
         return new Vector2(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
-
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
@@ -134,4 +129,30 @@ public class BaseCivilian : MonoBehaviour
 
     }
 #endif
+    #endregion
+
+    private void FOV()
+    {
+        Collider2D target = Physics2D.OverlapCircle(transform.position, radius, targetLayer);
+
+        if (target && target.CompareTag("Player"))
+        {
+            Vector2 directionToTarget = (transform.position - PlayerController.Instance.transform.position).normalized;
+
+            if (Vector2.Angle(transform.up, directionToTarget) > angle / 2)
+            {
+                CanSeePlayer = true;
+                OnPlayerHit();
+            }
+            else
+            {
+                CanSeePlayer = false;
+            }
+        }
+        else
+        {
+            CanSeePlayer = false;
+        }
+    }
+
 }

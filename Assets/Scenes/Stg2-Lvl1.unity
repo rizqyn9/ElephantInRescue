@@ -264,7 +264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1419271400967171710, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
       propertyPath: planeWayPoint.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1419271400967171710, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
       propertyPath: planeWayPoint.Array.data[0]
@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: planeWayPoint.Array.data[1]
       value: 
       objectReference: {fileID: 1889926614}
+    - target: {fileID: 1419271400967171710, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+      propertyPath: planeWayPoint.Array.data[2]
+      value: 
+      objectReference: {fileID: 1520191462}
     - target: {fileID: 1419271400967171711, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1005,6 +1009,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4087401623542263225, guid: 411537da7c0824d8e838f6b1a3a8e897, type: 3}
   m_PrefabInstance: {fileID: 451734917}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &451734919 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3627664617377025728, guid: 411537da7c0824d8e838f6b1a3a8e897, type: 3}
+  m_PrefabInstance: {fileID: 451734917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e43a8e47f2e49e5809facc7cd72561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &513354020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2035,7 +2050,7 @@ GameObject:
   - component: {fileID: 1094566077}
   m_Layer: 9
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2144,10 +2159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameStateChannelSO: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
-  m_ObstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  m_boxPlane: {fileID: 5795018225597036570}
+  m_boxPlane: {fileID: 451734919}
   m_LayerGrid:
     serializedVersion: 2
     m_Bits: 64
@@ -3336,6 +3348,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4087401623542263225, guid: 411537da7c0824d8e838f6b1a3a8e897, type: 3}
   m_PrefabInstance: {fileID: 1520191460}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1520191462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3627664617377025728, guid: 411537da7c0824d8e838f6b1a3a8e897, type: 3}
+  m_PrefabInstance: {fileID: 1520191460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e43a8e47f2e49e5809facc7cd72561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1614095525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4381,17 +4404,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4087401623542263225, guid: 411537da7c0824d8e838f6b1a3a8e897, type: 3}
   m_PrefabInstance: {fileID: 5795018225597036568}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5795018225597036570 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3627664617377025728, guid: 411537da7c0824d8e838f6b1a3a8e897, type: 3}
-  m_PrefabInstance: {fileID: 5795018225597036568}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e43a8e47f2e49e5809facc7cd72561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6807238815665473549
 PrefabInstance:
   m_ObjectHideFlags: 0
