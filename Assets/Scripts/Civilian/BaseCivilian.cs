@@ -75,11 +75,11 @@ public class BaseCivilian : MonoBehaviour
 
     private void OnObstacleHit(RaycastHit2D obstacle)
     {
-        //Box box = obstacle.collider.GetComponent<Box>();
-        //if (box)
-        //{
-        //    CivilianWalk.RecalculateMove();    
-        //}
+        Box box = obstacle.collider.GetComponent<Box>();
+        if (box)
+        {
+            CivilianWalk.OnHitBox();
+        }
     }
 
     void ThrowSomething()
@@ -88,7 +88,6 @@ public class BaseCivilian : MonoBehaviour
         GameObject throwed = Instantiate(m_throwedGO, transform);
         LeanTween.move(throwed, PlayerController.Instance.gameObject.transform.position, 2f);
     }
-
 
     #region Not used now
     private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees)

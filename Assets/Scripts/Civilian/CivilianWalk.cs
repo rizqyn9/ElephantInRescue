@@ -26,13 +26,6 @@ public class CivilianWalk : MonoBehaviour
         m_gameStateChannel.OnEventRaised -= HandleGameStateChanged;
     }
 
-#if UNITY_EDITOR
-    //private void OnValidate()
-    //{
-    //    gameObject.transform.position = planeWayPoint[0].transform.position;
-    //}
-#endif
-
     private void HandleGameStateChanged(GameState before, GameState gameState)
     {
         switch (gameState)
@@ -87,8 +80,24 @@ public class CivilianWalk : MonoBehaviour
                 nextTarget--;
             }
         }
+    }
 
-        print($"{currentIndex} {nextTarget}");
+    public void OnHitBox() // Reverse
+    {
+        print(currentIndex + "-" + nextTarget);
+        StopAllCoroutines();
+        if(currentIndex < nextTarget)
+        {
+            currentIndex = nextTarget;
+            nextTarget--;
+        } else if (currentIndex > nextTarget)
+        {
+            currentIndex = nextTarget;
+            nextTarget++;
+        }
+        print(currentIndex + "-" + nextTarget);
+
+        StartCoroutine(StartMove());
     }
 
     IEnumerator StartMove()
@@ -97,8 +106,6 @@ public class CivilianWalk : MonoBehaviour
 
         while (m_canMove)
         {
-            //Debug.Log("1");
-
             yield return
                 StartCoroutine(
                     Move(planeWayPoint[nextTarget].transform,
@@ -106,24 +113,23 @@ public class CivilianWalk : MonoBehaviour
                             RecalculateTarget();
                         }
                     ));
-            m_indexNow++;
-            //if (m_indexNow <= planeWayPoint.Count) m_indexNow = 0;
-            //Debug.Log("2");
         }
     }
 
+    bool isUpdatingMove = false;
     IEnumerator Move(Transform target, System.Action cb)
     {
-        Debug.Log("Start");
         m_baseCivilian.Direction = Utils.DecideDirection(transform.position, target.position);
 
-        while (Vector3.Distance(transform.position, target.position) > 0.05f && m_canMove)
+        while (Vector3.Distance(transform.position, target.position) > 0.05f
+            && m_canMove
+            && !isUpdatingMove
+            )
         {
+            isUpdatingMove = false;
             transform.position = Vector3.MoveTowards(transform.position, target.position, m_speed * Time.deltaTime);
             yield return null;
         }
-
-        Debug.Log("Finsi");
         cb();
     }
 
@@ -144,4 +150,13 @@ public class CivilianWalk : MonoBehaviour
         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
+
+
+#if UNITY_EDITOR
+    //private void OnValidate()
+    //{
+    //    gameObject.transform.position = planeWayPoint[0].transform.position;
+    //}
+#endif
+
 }
