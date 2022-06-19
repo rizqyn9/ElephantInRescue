@@ -9,76 +9,86 @@ public class Box : MonoBehaviour
     [SerializeField] LayerMask m_LayerGrid;
 
     List<Vector2> m_dirs = new List<Vector2>() { Vector2.down, Vector2.up, Vector2.left, Vector2.right };
-    List<PlaneBase> m_PlaneTargets = new List<PlaneBase>();
+    List<Plane> m_activePlanes = new List<Plane>();
 
-    public bool IsActive { get; set; }
+    public bool IsActive { get; private set; }
 
     private void Start()
     {
         transform.position = m_boxPlane.transform.position;
-        m_boxPlane?.OnBox(this);
+        IsActive = false;
+        m_boxPlane.SetBox(this);
     }
 
     private void Update()
     {
         if (!IsActive) return;
 
-        // If active & click away notify box false
-        if (Input.GetMouseButton(0))
+        if (IsActive)
+            SetFocus();
+        // Close click away
+        if (IsActive && Input.GetMouseButton(0))
         {
             RaycastHit2D hit = Utils.RaycastCamera(Input.mousePosition, Vector2.zero, gameObject.layer);
             if (hit.collider.GetComponent<Box>() == this) return;
-            CloseFocus(); 
+            CloseFocus();
         }
     }
 
     private void OnMouseDown()
     {
-        IsActive = !IsActive;   // Toggle
-
-        if(IsActive)
-            m_PlaneTargets = new List<PlaneBase>();
-            foreach (Vector2 dir in m_dirs)
-                NotifyActivePlaneBaseByDir(dir);
-
-        if (!IsActive && m_PlaneTargets.Count != 0)
+        if (IsActive && m_activePlanes.Count != 0)
             CloseFocus();
-    }
 
-    void NotifyActivePlaneBaseByDir(Vector2 dir)
-    {
-        RaycastHit2D[] targets = Physics2D.RaycastAll(transform.position, dir, 1f, m_LayerGrid);
-
-        PlaneBase planeBase = null;
-        RaycastHit2D target =
-            System.Array.Find(targets, (plane) => {
-                planeBase = plane.collider.GetComponent<PlaneBase>();
-                return planeBase && planeBase.name != m_boxPlane.name;
-            });
-
-        if (!target || !planeBase) return;
-
-        planeBase.OnBoxNotify(true, this);
-        m_PlaneTargets.Add(planeBase);
+        else if (!IsActive) SetFocus();
     }
 
     public void MoveToPlane(PlaneBase plane)
     {
+        CloseFocus();
         LeanTween
             .move(gameObject, plane.transform.position, .5f)
             .setOnStart(CloseFocus)
             .setOnComplete(() =>
             {
                 m_boxPlane = plane;
-                m_boxPlane.OnBox(this);
+                m_boxPlane.SetBox(this);
             });
     }
 
+    void SetFocus()
+    {
+        m_activePlanes = new List<Plane>();
+        foreach (Vector2 dir in m_dirs)
+            NotifyActivePlaneBaseByDir(dir);
+
+        IsActive = true;
+    }
+
+    void NotifyActivePlaneBaseByDir(Vector2 dir)
+    {
+        RaycastHit2D[] targets = Physics2D.RaycastAll(transform.position, dir, 1f, m_LayerGrid);
+
+        Plane plane = null;
+        RaycastHit2D target =
+            System.Array.Find(targets, ((planeTarget) => {
+                plane = planeTarget.collider.GetComponent<Plane>();
+                return (bool)(plane && plane.name != m_boxPlane.name);
+            }));
+
+        if (!target || !plane || plane.Civilian || plane.PlaneType != PlaneTypeEnum.ROUTE) return;
+
+        plane.SetFocus(true, this);
+        m_activePlanes.Add(plane);
+    }
+
+
     void CloseFocus ()
     {
+        m_activePlanes.ForEach(plane => plane.SetFocus(false, this));
+        m_activePlanes = new List<Plane>(); // Reset
+
         IsActive = false;
-        m_PlaneTargets.ForEach(plane => plane.OnBoxNotify(false, this));
-        m_PlaneTargets = new List<PlaneBase>();
     }
 
 #if UNITY_EDITOR

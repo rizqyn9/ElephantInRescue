@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(BaseCivilian))]
 public class CivilianWalk : MonoBehaviour
 {
+    [SerializeField] LayerMask m_gridLayer;
     [SerializeField] List<PlaneBase> planeWayPoint;
     [SerializeField] [Range(0, 4)] float m_speed = 2f;
     [SerializeField] bool m_canMove = false;
@@ -45,7 +46,6 @@ public class CivilianWalk : MonoBehaviour
     {
         transform.position = planeWayPoint[0].transform.position;
 
-        // Check valid moveable
         if (planeWayPoint.Count == 0) throw new System.Exception("plane way must greater more than 1");
     }
 
@@ -82,7 +82,25 @@ public class CivilianWalk : MonoBehaviour
         }
     }
 
-    public void OnHitBox() // Reverse
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Plane plane = collision?.GetComponent<Plane>();
+        if (plane) {
+            if (plane.Box && !plane.IsFocus) OnHitBox();
+            else plane.SetCivilian(m_baseCivilian);
+        };
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Plane plane = collision.GetComponent<Plane>();
+        if (plane)
+        {
+            plane.SetCivilian(null);
+        }
+    }
+
+    void OnHitBox() // Reverse
     {
         print(currentIndex + "-" + nextTarget);
         StopAllCoroutines();
@@ -116,18 +134,16 @@ public class CivilianWalk : MonoBehaviour
         }
     }
 
-    bool isUpdatingMove = false;
     IEnumerator Move(Transform target, System.Action cb)
     {
         m_baseCivilian.Direction = Utils.DecideDirection(transform.position, target.position);
 
         while (Vector3.Distance(transform.position, target.position) > 0.05f
             && m_canMove
-            && !isUpdatingMove
             )
         {
-            isUpdatingMove = false;
             transform.position = Vector3.MoveTowards(transform.position, target.position, m_speed * Time.deltaTime);
+
             yield return null;
         }
         cb();
@@ -138,7 +154,31 @@ public class CivilianWalk : MonoBehaviour
         m_canMove = false;
     }
 
-    private void OnChangeTarget(Transform target)
+
+#if UNITY_EDITOR
+    PlaneBase CurrentGrid() =>
+        Physics2D
+                .Raycast(transform.position, Vector2.zero, m_gridLayer)
+                .collider
+                .GetComponent<PlaneBase>() ?? null;
+
+    PlaneBase GetGrid(Vector2 direction)
+    {
+        PlaneBase plane = null;
+        RaycastHit2D[] hits =
+            Physics2D
+                .RaycastAll(transform.position, direction, .5f, m_gridLayer);
+        foreach(RaycastHit2D hit in hits)
+        {
+            plane = hit.collider.GetComponent<PlaneBase>();
+            if (!plane) continue;
+            if (CurrentGrid()?.name == hit.collider.name) continue;
+            break;
+        }
+
+        return plane;
+    }
+  private void OnChangeTarget(Transform target)
     {
         Vector3 targ = target.transform.position;
         targ.z = 0f;
@@ -151,8 +191,6 @@ public class CivilianWalk : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
 
-
-#if UNITY_EDITOR
     //private void OnValidate()
     //{
     //    gameObject.transform.position = planeWayPoint[0].transform.position;

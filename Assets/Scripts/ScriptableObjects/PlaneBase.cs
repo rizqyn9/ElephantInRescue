@@ -3,34 +3,37 @@ using UnityEngine;
 public class PlaneBase : Plane
 {
     [SerializeField] Color m_activeColor;
-    bool m_isActive = false;
-    SpriteRenderer m_sprite; 
-
-    public Box Box { get; set; }
+    SpriteRenderer m_sprite;
 
     internal override void Start()
     {
         base.Start();
         PlaneType = PlaneTypeEnum.ROUTE;
         m_sprite = GetComponentInChildren<SpriteRenderer>();
-        Box = null;
     }
 
     internal override void OnMouseDown()
     {
         base.OnMouseDown();
-        if(m_isActive && Box)
+        if(Box)
         {
             Box.MoveToPlane(this);
         }
     }
 
-    public void OnBox(Box box) => Box = box;
-
-    public void OnBoxNotify(bool active, Box box)
+    internal override void OnFocusChanged()
     {
-        m_isActive = active;
-        Box = active ? box : null;
-        m_sprite.color = active ? m_activeColor : Color.white;
+        base.OnFocusChanged();
+        print(IsFocus);
+        SetBox(IsFocus ? Box : null);
+        m_sprite.color = IsFocus ? m_activeColor : Color.white;
     }
+
+    public override void SetCivilian(BaseCivilian civilian)
+    {
+        base.SetCivilian(civilian);
+        SetFocus(false, Box);
+    }
+
+
 }

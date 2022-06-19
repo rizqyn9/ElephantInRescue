@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4087401623542263225}
   - component: {fileID: 6405072223765473088}
   - component: {fileID: 3627664617377025728}
+  - component: {fileID: 7615277320657731576}
   m_Layer: 6
   m_Name: Plane_Base
   m_TagString: Untagged
@@ -43,7 +44,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -74,6 +75,27 @@ MonoBehaviour:
   m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   m_isPlayerInstancePlace: 0
   m_activeColor: {r: 0.6792453, g: 0.5358521, b: 0.18262726, a: 0.34117648}
+--- !u!50 &7615277320657731576
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6599579602933059420}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7949586061597449039
 GameObject:
   m_ObjectHideFlags: 0

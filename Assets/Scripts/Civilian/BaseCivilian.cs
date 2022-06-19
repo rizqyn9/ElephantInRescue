@@ -51,11 +51,11 @@ public class BaseCivilian : MonoBehaviour
 
         foreach(RaycastHit2D hit in hits)
         {
-            if (hit.collider.CompareTag("Obstacle"))
-            {
-                OnObstacleHit(hit);
-                break;
-            }
+            //if (hit.collider.CompareTag("Obstacle"))
+            //{
+            //    OnObstacleHit(hit);
+            //    break;
+            //}
 
             if (hit.collider.CompareTag("Player"))
             {
@@ -73,14 +73,14 @@ public class BaseCivilian : MonoBehaviour
         CivilianWalk.Stop();
     }
 
-    private void OnObstacleHit(RaycastHit2D obstacle)
-    {
-        Box box = obstacle.collider.GetComponent<Box>();
-        if (box)
-        {
-            CivilianWalk.OnHitBox();
-        }
-    }
+    //private void OnObstacleHit(RaycastHit2D obstacle)
+    //{
+    //    Box box = obstacle.collider.GetComponent<Box>();
+    //    if (box)
+    //    {
+    //        CivilianWalk.OnHitBox();
+    //    }
+    //}
 
     void ThrowSomething()
     {
@@ -128,8 +128,6 @@ public class BaseCivilian : MonoBehaviour
 
     }
 #endif
-    #endregion
-
     private void FOV()
     {
         Collider2D target = Physics2D.OverlapCircle(transform.position, radius, targetLayer);
@@ -153,5 +151,7 @@ public class BaseCivilian : MonoBehaviour
             CanSeePlayer = false;
         }
     }
+    #endregion
+
 
 }

@@ -21,6 +21,11 @@ public class Plane : MonoBehaviour
     public bool IsPlayerInstancePlace { get => m_isPlayerInstancePlace; }
     public InventoryItem ActiveInventory { get; private set; }
 
+    // Handle State
+    public BaseCivilian Civilian { get; private set; }
+    public Box Box { get; private set; }
+    public PlayerController PlayerController { get; private set; }
+
     internal virtual void OnEnable()
     {
         m_inventoryChannel.OnEventRaised += HandleInventoryChange;
@@ -57,4 +62,49 @@ public class Plane : MonoBehaviour
     }
 
     internal virtual void OnMouseDown() { }
+
+    internal virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PlayerController>()) OnElephant();
+    }
+
+    internal void OnTriggerStay2D(Collider2D collision) { }
+
+    internal void OnTriggerExit2D(Collider2D collision) { }
+
+    /// <summary>
+    /// Trigger every Civilian property has changed
+    /// </summary>
+    /// <param name="civilian">Can be null</param>
+    public virtual void SetCivilian(BaseCivilian civilian) =>
+        Civilian = civilian;
+
+    /// <summary>
+    /// Trigger every Box property has changed
+    /// </summary>
+    /// <param name="box"></param>
+    public void SetBox(Box box) => Box = box;
+
+    /// <summary>
+    /// Trigger every Player property has changed
+    /// </summary>
+    /// <param name="Player"></param>
+    public void SetPlayer(PlayerController player) => PlayerController = player;
+
+    public bool IsFocus { get; private set; }
+    public void SetFocus(bool isFocus, Box box)
+    {
+        print(isFocus);
+        IsFocus = isFocus;
+        SetBox(box);
+        OnFocusChanged();
+    }
+
+    public void SetFocus(bool isFocus)
+    {
+        IsFocus = isFocus;
+        OnFocusChanged();
+    }
+
+    internal virtual void OnFocusChanged() { }
 }

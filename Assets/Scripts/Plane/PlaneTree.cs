@@ -39,6 +39,7 @@ public class PlaneTree : Plane
         if (m_ShouldDestroyable && ActiveInventory?.InventoryItemType == InventoryItemType.KNIFE)
         {
             Destroyed = true;
+
             m_spriteRenderer.enabled = false;
             m_rootSO.Add();
             m_inventoryChannel.RaiseEvent(null);

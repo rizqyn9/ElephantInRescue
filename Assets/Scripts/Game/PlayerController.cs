@@ -79,6 +79,11 @@ public class PlayerController : MonoBehaviour
         LeanTween.value(0, 1, 5f).setOnComplete(LevelManager.Instance.LoseCondition);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //print(collision.gameObject.name);
+    }
+
     void HandleInventoryState(InventoryItem activeInventory)
     {
 
@@ -128,9 +133,7 @@ public class PlayerController : MonoBehaviour
                                 PlanePosition = target;
                             });
                     } else
-                    {
                         continue;
-                    }
                 }
             }
         }
