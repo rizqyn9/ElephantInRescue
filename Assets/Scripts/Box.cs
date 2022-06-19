@@ -5,7 +5,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     [SerializeField] GameStateChannelSO m_GameStateChannelSO = null;
-    [SerializeField] PlaneBase m_boxPlane; // Initialize position
+    [SerializeField] Plane m_boxPlane; // Initialize position
     [SerializeField] LayerMask m_LayerGrid;
 
     List<Vector2> m_dirs = new List<Vector2>() { Vector2.down, Vector2.up, Vector2.left, Vector2.right };
@@ -30,7 +30,7 @@ public class Box : MonoBehaviour
         if (IsActive && Input.GetMouseButton(0))
         {
             RaycastHit2D hit = Utils.RaycastCamera(Input.mousePosition, Vector2.zero, gameObject.layer);
-            if (hit.collider.GetComponent<Box>() == this) return;
+            if (hit.collider?.GetComponent<Box>() == this) return;
             CloseFocus();
         }
     }
@@ -43,7 +43,7 @@ public class Box : MonoBehaviour
         else if (!IsActive) SetFocus();
     }
 
-    public void MoveToPlane(PlaneBase plane)
+    public void MoveToPlane(Plane plane)
     {
         CloseFocus();
         LeanTween
@@ -73,7 +73,7 @@ public class Box : MonoBehaviour
         RaycastHit2D target =
             System.Array.Find(targets, ((planeTarget) => {
                 plane = planeTarget.collider.GetComponent<Plane>();
-                return (bool)(plane && plane.name != m_boxPlane.name);
+                return plane && (plane.name != m_boxPlane.name);
             }));
 
         if (!target || !plane || plane.Civilian || plane.PlaneType != PlaneTypeEnum.ROUTE) return;

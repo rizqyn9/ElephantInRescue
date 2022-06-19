@@ -94,7 +94,6 @@ public class Plane : MonoBehaviour
     public bool IsFocus { get; private set; }
     public void SetFocus(bool isFocus, Box box)
     {
-        print(isFocus);
         IsFocus = isFocus;
         SetBox(box);
         OnFocusChanged();
