@@ -86,7 +86,7 @@ public class CivilianWalk : MonoBehaviour
     {
         Plane plane = collision?.GetComponent<Plane>();
         if (plane) {
-            if (plane.Box && !plane.IsFocus) OnHitBox();
+            if (plane.Box && !plane) OnHitBox();
             else plane.SetCivilian(m_baseCivilian);
         };
     }

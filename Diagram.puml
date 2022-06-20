@@ -1,0 +1,49 @@
+@startuml
+
+' package Civilian {
+'     class CivilianBase {}
+
+' }
+
+' package Player {
+'     class PlayerController {}
+' }
+
+package WithoutMonobehaviour {    
+}
+
+package Plane #DDDDDD {
+    class Plane {
+        -m_inventoryChannel
+        -m_isPlayerInstancePlace 
+        #PlaneTypeEnum
+        -SetPlaneType
+        -CheckValidty()
+        -HandleInventoryOnChange()
+        -OnElephant()
+        -RegisterPlaneToPlaneManager()
+        -SetCivilian()
+        -SetBox()
+        -SetPlayer()        
+    }
+
+    Plane::PlaneTypeEnum -|> PlaneTypeEnum
+
+    class PlaneBase {}
+    class PlaneTree {}
+    class PlaneRiver {}  
+
+    Plane <|-- PlaneBase
+    Plane <|-- PlaneTree
+    Plane <|-- PlaneRiver
+}
+
+enum PlaneTypeEnum {
+    ROUTE
+    TREE
+    FINISH
+    HOLE
+}
+
+@enduml
+
