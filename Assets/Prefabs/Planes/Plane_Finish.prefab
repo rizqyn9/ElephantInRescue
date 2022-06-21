@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0846b43225d499eaad22678fff709a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_groundRenderer: {fileID: 7405488698173983645}
   m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   m_isPlayerInstancePlace: 0
   m_gameStateChannelSO: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}

@@ -33,6 +33,7 @@ public class PlaneManager : MonoBehaviour
             Instance.PlayerPlaneInstance = plane;
         }
 
+        plane.name = planeHashed;
         Instance.Planes.Add(planeHashed, plane);
     }
 }

@@ -10,9 +10,9 @@ public class PlaneRiver : Plane
 
     internal override void OnEnable()
     {
+        SetPlaneType(PlaneTypeEnum.HOLE); // Prevent passable
         base.OnEnable();
         CanPassable = false;            // Wait until bridge has success builded
-        PlaneType = PlaneTypeEnum.HOLE; // Prevent passable
         m_boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
@@ -45,7 +45,7 @@ public class PlaneRiver : Plane
         LeanTween
             .alpha(effect, 0, .5f)                    
             .setOnComplete(() => {
-                PlaneType = PlaneTypeEnum.ROUTE;
+                SetPlaneType(PlaneTypeEnum.ROUTE);
                 CanPassable = true;
                 Destroy(effect);
             });                

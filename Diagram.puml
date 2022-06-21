@@ -9,11 +9,12 @@
 '     class PlayerController {}
 ' }
 
-package WithoutMonobehaviour {    
-}
+' package WithoutMonobehaviour {    
+' }
 
 package Plane #DDDDDD {
     class Plane {
+        -planeState: PlaneState
         -m_inventoryChannel
         -m_isPlayerInstancePlace 
         #PlaneTypeEnum
@@ -27,23 +28,36 @@ package Plane #DDDDDD {
         -SetPlayer()        
     }
 
-    Plane::PlaneTypeEnum -|> PlaneTypeEnum
+    Plane::planeState *-- PlaneState
 
-    class PlaneBase {}
-    class PlaneTree {}
-    class PlaneRiver {}  
+    package PlaneType {
+        class PlaneBase {}
+        class PlaneTree {}
+        class PlaneRiver {}  
+    }
 
-    Plane <|-- PlaneBase
-    Plane <|-- PlaneTree
-    Plane <|-- PlaneRiver
+    note : Inheritance from Plane as N1
+
+    class PlaneState {
+        +SetFocus()    
+    }
+
+
+    class PlaneUtils {
+        -AxisDirection: List<Left, Right, Top, Bottom>
+
+    }
+
+    PlaneType --|> Plane 
+
+    enum PlaneTypeEnum {
+        ROUTE
+        TREE
+        FINISH
+        HOLE
+    }
 }
 
-enum PlaneTypeEnum {
-    ROUTE
-    TREE
-    FINISH
-    HOLE
-}
 
 @enduml
 

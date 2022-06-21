@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcdd12d6ab5c94852be7c7840c7b3d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_groundRenderer: {fileID: 6175141110705144203}
   m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   m_isPlayerInstancePlace: 0
   m_ShouldDestroyable: 0
@@ -164,7 +165,6 @@ MonoBehaviour:
   m_rootSO: {fileID: 11400000, guid: c3b7d28f417ba46709fb78b9ab49028b, type: 2}
   m_groundSprite: {fileID: 6175141110705144203}
   m_activeColor: {r: 0.6784314, g: 0.5372549, b: 0.18431373, a: 0.34117648}
-  item: {fileID: 0}
 --- !u!50 &-5445178349978724216
 Rigidbody2D:
   serializedVersion: 4

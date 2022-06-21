@@ -5,15 +5,10 @@ public class PlaneFinish : Plane
     [SerializeField] GameStateChannelSO m_gameStateChannelSO;
     [SerializeField] SpriteRenderer m_renderer;
 
-    internal override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
     internal override void Start()
     {
+        SetPlaneType(PlaneTypeEnum.FINISH);
         base.Start();
-        PlaneType = PlaneTypeEnum.FINISH;
     }
 
     /// <summary>
@@ -37,7 +32,5 @@ public class PlaneFinish : Plane
         LeanTween
             .move(m_renderer.gameObject, Vector2.zero, .5f)
             .setEaseInOutBounce();
-
-
     }
 }

@@ -85,19 +85,16 @@ public class CivilianWalk : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Plane plane = collision?.GetComponent<Plane>();
-        if (plane) {
-            if (plane.Box && !plane) OnHitBox();
+        if (plane)
+        {
+            if (plane.Box) OnHitBox();
             else plane.SetCivilian(m_baseCivilian);
-        };
+        } 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Plane plane = collision.GetComponent<Plane>();
-        if (plane)
-        {
-            plane.SetCivilian(null);
-        }
+        collision.GetComponent<Plane>()?.SetCivilian(null);
     }
 
     void OnHitBox() // Reverse

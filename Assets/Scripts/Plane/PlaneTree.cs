@@ -26,8 +26,8 @@ public class PlaneTree : Plane
 
     internal override void Start()
     {
+        SetPlaneType(PlaneTypeEnum.TREE);
         base.Start();
-        PlaneType = PlaneTypeEnum.TREE;
         Destroyed = false;
         if (ShouldDestroyable) m_spriteRenderer.sprite = m_destroyableTree;
         else m_spriteRenderer.sprite = m_notDestroyableTree;
@@ -40,7 +40,7 @@ public class PlaneTree : Plane
         if (m_ShouldDestroyable && ActiveInventory?.InventoryItemType == InventoryItemType.KNIFE)
         {
             Destroyed = true;
-            PlaneType = PlaneTypeEnum.ROUTE;
+            SetPlaneType(PlaneTypeEnum.ROUTE);
             m_spriteRenderer.enabled = false;
             m_rootSO.Add();
             m_inventoryChannel.RaiseEvent(null);
@@ -50,19 +50,5 @@ public class PlaneTree : Plane
         {
             Box.MoveToPlane(this);
         }
-    }
-
-    internal override void OnFocusChanged()
-    {
-        base.OnFocusChanged();
-        print(IsFocus);
-        SetBox(IsFocus ? Box : null);
-        m_groundSprite.color = IsFocus ? m_activeColor : Color.white;
-    }
-
-    public override void SetCivilian(BaseCivilian civilian)
-    {
-        base.SetCivilian(civilian);
-        SetFocus(false, Box);
     }
 }

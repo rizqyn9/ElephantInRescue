@@ -5,21 +5,24 @@ public enum PlaneTypeEnum
     ROUTE,
     TREE,
     FINISH,
-    HOLE
+    HOLE,
+    OBSTACLE
 }
 
 [System.Serializable]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Plane : MonoBehaviour
 {
+    [SerializeField] internal SpriteRenderer m_groundRenderer;
+
     [Header("Events")]
     [SerializeField] internal InventoryStateSO m_inventoryChannel;
-
     [SerializeField] bool m_isPlayerInstancePlace = false;
 
-    public PlaneTypeEnum PlaneType { get; internal set; }
+    public PlaneTypeEnum PlaneType { get; private set; }
     public bool IsPlayerInstancePlace { get => m_isPlayerInstancePlace; }
     public InventoryItem ActiveInventory { get; private set; }
+    [SerializeField] public PlaneState<Plane> PlaneState { get; set; }
 
     // Handle State
     public BaseCivilian Civilian { get; private set; }
@@ -36,11 +39,18 @@ public class Plane : MonoBehaviour
         m_inventoryChannel.OnEventRaised -= HandleInventoryChange;
     }
 
+    /// <summary>
+    /// Ensure set PlaneType before base.Start was invoke
+    /// </summary>
     internal virtual void Start()
     {
+        PlaneState = new PlaneState<Plane>(this, HandlePlaneFocusOnChange);
         CheckValidity();
-        RegisterPlaneToPlaneManager();
+        PlaneManager.AuthorizedPlane(this, out string planeNameHashed);
     }
+
+    internal void SetPlaneType(PlaneTypeEnum planeType) =>
+        PlaneType = planeType;
 
     void CheckValidity()
     {
@@ -55,55 +65,53 @@ public class Plane : MonoBehaviour
 
     public virtual void OnElephant() { }
 
-    public void RegisterPlaneToPlaneManager()
-    {
-        PlaneManager.AuthorizedPlane(this, out string planeNameHashed);
-        gameObject.name = planeNameHashed;
+    internal virtual void OnMouseDown() {
+        PlaneState.OnMouseDown();
     }
-
-    internal virtual void OnMouseDown() { }
 
     internal virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerController>()) OnElephant();
+        else
+            OnObjectEnter(collision);
+    }
+
+    internal virtual void OnObjectEnter(Collider2D collider)
+    {
+        PlaneState.OnObjectEnter(collider);
     }
 
     internal void OnTriggerStay2D(Collider2D collision) { }
 
-    internal void OnTriggerExit2D(Collider2D collision) { }
-
-    /// <summary>
-    /// Trigger every Civilian property has changed
-    /// </summary>
-    /// <param name="civilian">Can be null</param>
-    public virtual void SetCivilian(BaseCivilian civilian) =>
-        Civilian = civilian;
-
-    /// <summary>
-    /// Trigger every Box property has changed
-    /// </summary>
-    /// <param name="box"></param>
-    public void SetBox(Box box) => Box = box;
-
-    /// <summary>
-    /// Trigger every Player property has changed
-    /// </summary>
-    /// <param name="Player"></param>
-    public void SetPlayer(PlayerController player) => PlayerController = player;
-
-    public bool IsFocus { get; private set; }
-    public void SetFocus(bool isFocus, Box box)
-    {
-        IsFocus = isFocus;
-        SetBox(box);
-        OnFocusChanged();
+    internal void OnTriggerExit2D(Collider2D collision) {
+        OnObjectExit(collision);
     }
 
-    public void SetFocus(bool isFocus)
+    internal virtual void OnObjectExit(Collider2D collider)
     {
-        IsFocus = isFocus;
-        OnFocusChanged();
+        PlaneState.OnObjectExit(collider);
     }
 
-    internal virtual void OnFocusChanged() { }
+    #region Plane State
+    public virtual void SetCivilian(BaseCivilian civilian) => OnCivilianChange(civilian);
+    internal virtual void OnCivilianChange(BaseCivilian civilian)
+    {
+        Civilian = civilian;    // Setter
+        PlaneState.OnCivilianChange(civilian);
+    }
+
+    public virtual void SetBox(Box box) => OnBoxChange(box);
+    internal virtual void OnBoxChange(Box box)
+    {
+        Box = box;
+    }
+    public void SetPlayer(PlayerController player) => OnPlayerChange(player);
+    internal virtual void OnPlayerChange(PlayerController player)
+    {
+        PlayerController = player;
+    }
+
+    public virtual void HandlePlaneFocusOnChange(bool isFocus) { }
+    #endregion
+
 }

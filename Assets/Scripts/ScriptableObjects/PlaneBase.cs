@@ -7,33 +7,13 @@ public class PlaneBase : Plane
 
     internal override void Start()
     {
-        base.Start();
-        PlaneType = PlaneTypeEnum.ROUTE;
+        SetPlaneType(PlaneTypeEnum.ROUTE);
         m_sprite = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    internal override void OnMouseDown()
-    {
-        base.OnMouseDown();
-        if(Box)
-        {
-            Box.MoveToPlane(this);
-        }
-    }
-
-    internal override void OnFocusChanged()
-    {
-        base.OnFocusChanged();
-        print(IsFocus);
-        SetBox(IsFocus ? Box : null);
-        m_sprite.color = IsFocus ? m_activeColor : Color.white;
+        base.Start();
     }
 
     public override void SetCivilian(BaseCivilian civilian)
     {
         base.SetCivilian(civilian);
-        SetFocus(false, Box);
     }
-
-
 }
