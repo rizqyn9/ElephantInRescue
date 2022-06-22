@@ -12,13 +12,12 @@ public class PlayerController : MonoBehaviour
     public GameStateChannelSO m_gameStateChannel;
     public InventoryStateSO m_inventoryStateSO;
 
-    public Plane PlanePosition { get; private set; }
+    public Plane CurrentPlane { get; private set; }
     public ElephantAnimation ElephantAnimation { get; internal set; }
     public bool IsDead { get; private set; }
     public bool CanMove { get; internal set; }
     public Vector3 Direction { get; internal set; }
     public GameObject RenderObject { get => m_spriteRenderer.gameObject; }
-
 
     private void OnEnable()
     {
@@ -78,13 +77,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //print(collision.gameObject.name);
-    }
-
-    void HandleInventoryState(InventoryItem activeInventory)
-    {
 
     }
+
+    void HandleInventoryState(InventoryItem activeInventory) { }
 
     void InitializePlayer()
     {
@@ -94,7 +90,6 @@ public class PlayerController : MonoBehaviour
         m_spriteRenderer.enabled = true;
     }
 
-    [SerializeField] Plane target;
     public void SetDirection(Vector3 dir)
     {
         if (!CanMove || IsDead) return;
@@ -107,7 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             if (ray.collider != null)
             {
-                target = ray.collider.GetComponent<Plane>();
+                Plane target = ray.collider.GetComponent<Plane>();
                 if (target)
                 {
                     if (target.PlaneType == PlaneTypeEnum.ROUTE
@@ -115,17 +110,17 @@ public class PlayerController : MonoBehaviour
                         || (target.PlaneType == PlaneTypeEnum.TREE && (target as PlaneTree).Destroyed)
                     )
                     {
-                        if (target.name == PlanePosition?.name) continue;
-                        MoveTowards(ray.collider);
-                    } else
-                        continue;
+                        if (target.name == CurrentPlane?.name) continue;
+                        MoveTowards(ray.collider, target);
+                        break;
+                    }
                 }
             }
         }
     }
 
 
-    void MoveTowards(Collider2D collider)
+    void MoveTowards(Collider2D collider, Plane plane)
     {
         LeanTween
             .move(gameObject, collider.bounds.center, .5f)
@@ -138,8 +133,10 @@ public class PlayerController : MonoBehaviour
             {
                 ElephantAnimation.Iddle();
                 CanMove = true;
-                target?.OnElephant();
-                PlanePosition = target;
+                plane?.OnElephant();
+                CurrentPlane = plane;
             });
     }
+
+    void StopAllTweening() => LeanTween.cancel(gameObject);
 }
