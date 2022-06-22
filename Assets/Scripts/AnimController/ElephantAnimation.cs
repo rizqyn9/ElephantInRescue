@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class ElephantAnimation : MonoBehaviour
 {
-    [SerializeField] Vector3 m_direction;
-    [SerializeField] Animator m_animator;
+    public PlayerController PlayerController { get; internal set; }
+    public Vector2 Direction { get => PlayerController.Direction; }
+    public Animator Animator { get; internal set; }
 
     // Enumurate for animation state
     public static string KNOCK { get => "KNOCK"; }
@@ -15,12 +16,12 @@ public class ElephantAnimation : MonoBehaviour
 
     private void OnEnable()
     {
-        m_animator = GetComponent<Animator>();
+        PlayerController = GetComponentInParent<PlayerController>();
+        Animator = GetComponent<Animator>();
     }
 
-    public void Walk(Vector3 direction)
+    public void Walk()
     {
-        m_direction = direction;
         LeanTween
             .value(0, 1, 3f)
             .setOnStart(() =>
@@ -33,24 +34,23 @@ public class ElephantAnimation : MonoBehaviour
             });
     }
 
-    public void Knock(Vector3 direction)
+    public void Knock()
     {
         MotionStateUpdate(KNOCK);
     }
 
-    public void Iddle(Vector3 direction)
+    public void Iddle()
     {
-        m_direction = direction;
         MotionStateUpdate(IDDLE);
     }
 
     string m_latestStateMotion = null;
     public void MotionStateUpdate(string state)
     {
-        if (m_latestStateMotion == KNOCK || !m_animator) return;
+        if (m_latestStateMotion == KNOCK || !Animator) return;
         ConditionActive(state);
-        m_animator?.SetFloat("X", m_direction.x);
-        m_animator?.SetFloat("Y", m_direction.y);
+        Animator?.SetFloat("X", Direction.x);
+        Animator?.SetFloat("Y", Direction.y);
     }
 
     void ConditionActive(string active)
@@ -63,7 +63,7 @@ public class ElephantAnimation : MonoBehaviour
 
         m_registeredMotionState.ForEach(val =>
         {
-            m_animator?.SetBool(val, val == active);
+            Animator?.SetBool(val, val == active);
         });
     }
 }

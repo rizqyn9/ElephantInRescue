@@ -131,7 +131,6 @@ public class Civilian : MonoBehaviour
 
     public void SetCanSeePlayer (bool should)
     {
-        print(should);
         CanSeePlayer = should;
         if (should)
             OnSeePlayer();

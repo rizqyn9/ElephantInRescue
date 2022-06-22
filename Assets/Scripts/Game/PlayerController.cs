@@ -5,30 +5,27 @@ public class PlayerController : MonoBehaviour
     private static PlayerController m_instance;
     public static PlayerController Instance { get => m_instance; }
 
-    public Plane PlanePosition { get; private set; }
-    public bool IsDead { get; private set; }
-
     [SerializeField] Plane m_planeStartPosition;
-    [SerializeField] ElephantAnimation m_elephantAnimation;
-    SpriteRenderer m_spriteRenderer;
-    GameObject m_player;
-    [HideInInspector] [SerializeField] bool m_canMove;
-    Vector3 m_direction;
+    [SerializeField] SpriteRenderer m_spriteRenderer;
 
     [Header("Events")]
     public GameStateChannelSO m_gameStateChannel;
     public InventoryStateSO m_inventoryStateSO;
 
-    // Get Instances object
-    public UI_Game UI_Game => UI_Game.Instance;
+    public Plane PlanePosition { get; private set; }
+    public ElephantAnimation ElephantAnimation { get; internal set; }
+    public bool IsDead { get; private set; }
+    public bool CanMove { get; internal set; }
+    public Vector3 Direction { get; internal set; }
+    public GameObject RenderObject { get => m_spriteRenderer.gameObject; }
+
 
     private void OnEnable()
     {
         m_gameStateChannel.OnEventRaised += HandleGameState;
         m_inventoryStateSO.OnEventRaised += HandleInventoryState;
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        m_player = m_spriteRenderer.gameObject;
-        m_elephantAnimation = GetComponentInChildren<ElephantAnimation>();
+        ElephantAnimation = GetComponentInChildren<ElephantAnimation>();
     }
 
     private void OnDisable()
@@ -60,22 +57,22 @@ public class PlayerController : MonoBehaviour
         {
             case GameState.PLAY:
                 if (before == GameState.PAUSE)
-                    m_canMove = true;
+                    CanMove = true;
                 else 
                     InitializePlayer();
                 break;
             case GameState.BEFORE_PLAY:
             case GameState.PAUSE:
             case GameState.FINISH:
-                m_canMove = false;
+                CanMove = false;
                 break;
         }
     }
 
-    public void OnHitCivilian(BaseCivilian civilian)
+    public void OnHitCivilian(Civilian civilian)
     {
         IsDead = true;
-        m_elephantAnimation.Knock(m_direction);
+        ElephantAnimation.Knock();
         LeanTween.value(0, 1, 5f).setOnComplete(LevelManager.Instance.LoseCondition);
     }
 
@@ -91,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     void InitializePlayer()
     {
-        m_canMove = true;
+        CanMove = true;
         IsDead = false;
         gameObject.transform.position = m_planeStartPosition.transform.position;
         m_spriteRenderer.enabled = true;
@@ -100,9 +97,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Plane target;
     public void SetDirection(Vector3 dir)
     {
-        if (!m_canMove || IsDead) return;
+        if (!CanMove || IsDead) return;
 
-        m_direction = dir;
+        Direction = dir;
+
         RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir, 1f);
 
         foreach (RaycastHit2D ray in raycast)
@@ -118,24 +116,30 @@ public class PlayerController : MonoBehaviour
                     )
                     {
                         if (target.name == PlanePosition?.name) continue;
-                        LeanTween
-                            .move(gameObject, ray.collider.bounds.center, .5f)
-                            .setOnStart(() =>
-                            {
-                                m_canMove = false;
-                                m_elephantAnimation.Walk(m_direction);
-                            })
-                            .setOnComplete(() =>
-                            {
-                                m_elephantAnimation.Iddle(m_direction);
-                                m_canMove = true;
-                                target?.OnElephant();
-                                PlanePosition = target;
-                            });
+                        MoveTowards(ray.collider);
                     } else
                         continue;
                 }
             }
         }
+    }
+
+
+    void MoveTowards(Collider2D collider)
+    {
+        LeanTween
+            .move(gameObject, collider.bounds.center, .5f)
+            .setOnStart(() =>
+            {
+                CanMove = false;
+                ElephantAnimation.Walk();
+            })
+            .setOnComplete(() =>
+            {
+                ElephantAnimation.Iddle();
+                CanMove = true;
+                target?.OnElephant();
+                PlanePosition = target;
+            });
     }
 }

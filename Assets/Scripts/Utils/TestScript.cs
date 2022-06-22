@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestScript : MonoBehaviour
@@ -34,10 +31,10 @@ public class TestScript : MonoBehaviour
             direction = Vector3.left;
 
         if (Input.GetKeyDown(KeyCode.Space))
-            m_elephantAnimation.Knock(direction);
+            m_elephantAnimation.Knock();
 
 
         if (direction == Vector3.zero) return;
-        m_elephantAnimation.Walk(direction);
+        m_elephantAnimation.Walk();
     }
 }
