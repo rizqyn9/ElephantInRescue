@@ -6,7 +6,6 @@ public class BaseCivilian : MonoBehaviour
     public CivilianWalk CivilianWalk { get; private set; }
     [SerializeField] float radius = 3f;
     [SerializeField] float angle = 360f;
-    [SerializeField] LayerMask targetLayer;
     [SerializeField] GameObject m_throwedGO;
     [SerializeField] Vector3 m_direction;
 
@@ -49,20 +48,22 @@ public class BaseCivilian : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Direction, radius);
         Debug.DrawRay(transform.position, Direction, Color.red);
 
+        float playerDistance = float.MaxValue, obstacleDistance = float.MaxValue;
+
         foreach(RaycastHit2D hit in hits)
         {
-            //if (hit.collider.CompareTag("Obstacle"))
-            //{
-            //    OnObstacleHit(hit);
-            //    break;
-            //}
-
-            if (hit.collider.CompareTag("Player"))
-            {
-                OnPlayerHit();
-                break;
-            }
+            if (hit.collider.CompareTag("Player")) playerDistance = hit.distance;
+            else if (hit.collider.CompareTag("Obstacle")) obstacleDistance = hit.distance;
         }
+
+        SetCanSeePlayer(playerDistance < obstacleDistance);
+    }
+
+    private void SetCanSeePlayer(bool should)
+    {
+        CanSeePlayer = should;
+        if (should)
+            OnPlayerHit();
     }
 
     private void OnPlayerHit()
@@ -72,15 +73,6 @@ public class BaseCivilian : MonoBehaviour
         PlayerController.Instance.OnHitCivilian(this);
         CivilianWalk.Stop();
     }
-
-    //private void OnObstacleHit(RaycastHit2D obstacle)
-    //{
-    //    Box box = obstacle.collider.GetComponent<Box>();
-    //    if (box)
-    //    {
-    //        CivilianWalk.OnHitBox();
-    //    }
-    //}
 
     void ThrowSomething()
     {
@@ -128,29 +120,29 @@ public class BaseCivilian : MonoBehaviour
 
     }
 #endif
-    private void FOV()
-    {
-        Collider2D target = Physics2D.OverlapCircle(transform.position, radius, targetLayer);
+    //private void FOV()
+    //{
+    //    Collider2D target = Physics2D.OverlapCircle(transform.position, radius, targetLayer);
 
-        if (target && target.CompareTag("Player"))
-        {
-            Vector2 directionToTarget = (transform.position - PlayerController.Instance.transform.position).normalized;
+    //    if (target && target.CompareTag("Player"))
+    //    {
+    //        Vector2 directionToTarget = (transform.position - PlayerController.Instance.transform.position).normalized;
 
-            if (Vector2.Angle(transform.up, directionToTarget) > angle / 2)
-            {
-                CanSeePlayer = true;
-                OnPlayerHit();
-            }
-            else
-            {
-                CanSeePlayer = false;
-            }
-        }
-        else
-        {
-            CanSeePlayer = false;
-        }
-    }
+    //        if (Vector2.Angle(transform.up, directionToTarget) > angle / 2)
+    //        {
+    //            CanSeePlayer = true;
+    //            OnPlayerHit();
+    //        }
+    //        else
+    //        {
+    //            CanSeePlayer = false;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        CanSeePlayer = false;
+    //    }
+    //}
     #endregion
 
 

@@ -473,6 +473,22 @@ PrefabInstance:
       propertyPath: planeWayPoint.Array.data[4]
       value: 
       objectReference: {fileID: 7764442192208418629}
+    - target: {fileID: 1419271400967171710, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+      propertyPath: a.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419271400967171710, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+      propertyPath: a.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419271400967171710, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+      propertyPath: a.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
+    - target: {fileID: 1419271400967171710, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+      propertyPath: a.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1419271400967171711, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -519,6 +535,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+--- !u!1 &1419271400145880300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1419271400967171704, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+  m_PrefabInstance: {fileID: 1419271400145880299}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1419271400145880301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419271400145880300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb8158cb7ad34567974eb9b34cd7485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CivilianConfig:
+    Radius: 0
+    Speed: 0
+    Routes: []
+  m_gameStateChannel: {fileID: 0}
+  m_sprite: {fileID: 0}
 --- !u!1001 &1836091926307493645
 PrefabInstance:
   m_ObjectHideFlags: 0

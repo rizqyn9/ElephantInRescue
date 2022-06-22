@@ -5,7 +5,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(BaseCivilian))]
 public class CivilianWalk : MonoBehaviour
 {
-    [SerializeField] LayerMask m_gridLayer;
     [SerializeField] List<PlaneBase> planeWayPoint;
     [SerializeField] [Range(0, 4)] float m_speed = 2f;
     [SerializeField] bool m_canMove = false;
@@ -153,40 +152,40 @@ public class CivilianWalk : MonoBehaviour
 
 
 #if UNITY_EDITOR
-    PlaneBase CurrentGrid() =>
-        Physics2D
-                .Raycast(transform.position, Vector2.zero, m_gridLayer)
-                .collider
-                .GetComponent<PlaneBase>() ?? null;
+  //  PlaneBase CurrentGrid() =>
+  //      Physics2D
+  //              .Raycast(transform.position, Vector2.zero, m_gridLayer)
+  //              .collider
+  //              .GetComponent<PlaneBase>() ?? null;
 
-    PlaneBase GetGrid(Vector2 direction)
-    {
-        PlaneBase plane = null;
-        RaycastHit2D[] hits =
-            Physics2D
-                .RaycastAll(transform.position, direction, .5f, m_gridLayer);
-        foreach(RaycastHit2D hit in hits)
-        {
-            plane = hit.collider.GetComponent<PlaneBase>();
-            if (!plane) continue;
-            if (CurrentGrid()?.name == hit.collider.name) continue;
-            break;
-        }
+  //  PlaneBase GetGrid(Vector2 direction)
+  //  {
+  //      PlaneBase plane = null;
+  //      RaycastHit2D[] hits =
+  //          Physics2D
+  //              .RaycastAll(transform.position, direction, .5f, m_gridLayer);
+  //      foreach(RaycastHit2D hit in hits)
+  //      {
+  //          plane = hit.collider.GetComponent<PlaneBase>();
+  //          if (!plane) continue;
+  //          if (CurrentGrid()?.name == hit.collider.name) continue;
+  //          break;
+  //      }
 
-        return plane;
-    }
-  private void OnChangeTarget(Transform target)
-    {
-        Vector3 targ = target.transform.position;
-        targ.z = 0f;
+  //      return plane;
+  //  }
+  //private void OnChangeTarget(Transform target)
+  //  {
+  //      Vector3 targ = target.transform.position;
+  //      targ.z = 0f;
 
-        Vector3 objectPos = transform.position;
-        targ.x -= objectPos.x;
-        targ.y -= objectPos.y;
+  //      Vector3 objectPos = transform.position;
+  //      targ.x -= objectPos.x;
+  //      targ.y -= objectPos.y;
 
-        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
-    }
+  //      float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+  //      transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+  //  }
 
     //private void OnValidate()
     //{
