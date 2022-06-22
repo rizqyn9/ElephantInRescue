@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class CivilianMovement
 {
-    private Civilian Civilian;
+    public Civilian Civilian { get; set; }
     public List<Plane> Routes { get; set; }
+    public Plane CurrentPlane { get; private set; }
     public float Speed { get; private set; }
     public int CurrentIndex { get; private set; }
     public int NextTarget { get; private set; }
@@ -23,6 +24,11 @@ public class CivilianMovement
         RoutesCount = civilian.CivilianConfig.Routes.Count;
         CanMove = false;
         ValidateRoutes();
+    }
+
+    public void SetCurrentPlane(Plane plane)
+    {
+        CurrentPlane = plane;
     }
 
     public void RecalculateTarget()
@@ -53,6 +59,20 @@ public class CivilianMovement
             {
                 NextTarget--;
             }
+        }
+    }
+
+    public void ReverseDirection()
+    {
+        if (CurrentIndex < NextTarget)
+        {
+            CurrentIndex = NextTarget;
+            NextTarget--;
+        }
+        else if (CurrentIndex > NextTarget)
+        {
+            CurrentIndex = NextTarget;
+            NextTarget++;
         }
     }
 

@@ -61,7 +61,6 @@ public class CivilianAnimation : MonoBehaviour
 
         m_latestStateMotion = active;
 
-        //print(active);
         m_registeredMotionState.ForEach(val =>
         {
             m_animator?.SetBool(val, val == active);

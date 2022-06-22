@@ -10,6 +10,7 @@ public struct CivilianConfig
 }
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Civilian : MonoBehaviour
 {
     [SerializeField] internal CivilianConfig CivilianConfig;
@@ -31,10 +32,6 @@ public class Civilian : MonoBehaviour
 
     internal virtual void OnDisable() {
         m_gameStateChannel.OnEventRaised -= HandleGameStateOnChange;
-    }
-
-    internal virtual void Start()
-    {
     }
 
     private void HandleGameStateOnChange(GameState old, GameState recent)
@@ -76,11 +73,47 @@ public class Civilian : MonoBehaviour
 
     internal virtual void OnDirectionChange(Vector2 dir) { }
 
-    internal virtual void OnTriggerEnter2D(Collider2D collision) { }
+    internal virtual void OnTriggerEnter2D(Collider2D collision) {
+        Plane plane = collision.GetComponent<Plane>();
+        if (plane) OnPlaneEnter(plane);
+    }
 
-    internal virtual void OnTriggerExit2D(Collider2D collision) { }
+    internal virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        Plane plane = collision.GetComponent<Plane>();
+        if (plane) OnPlaneExit(plane);
+    }
 
-    internal virtual void OnHitObstacle() { }
+    internal virtual void OnPlaneExit(Plane plane)
+    {
+        plane.SetCivilian(null);
+    }
+
+    internal virtual void OnPlaneEnter(Plane plane)
+    {
+        CheckValidPlane(plane);
+        plane.SetCivilian(this);
+        CivilianMovement.SetCurrentPlane(plane);
+    }
 
     internal virtual void OnCanMoveChange() { }
+
+    internal virtual void CheckValidPlane(Plane plane)
+    {
+        if (plane.Box) OnHitObstacle();
+    }
+
+    internal virtual void OnHitObstacle()
+    {
+        StopAllCoroutines();
+        CivilianMovement.ReverseDirection();
+        StartCoroutine(CivilianMovement.IStartMove());
+    }
+
+    internal virtual void OnTouchedFocusPlane(Plane plane)
+    {
+
+    }
+
+    
 }

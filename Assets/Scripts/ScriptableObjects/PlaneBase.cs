@@ -12,7 +12,7 @@ public class PlaneBase : Plane
         base.Start();
     }
 
-    public override void SetCivilian(BaseCivilian civilian)
+    public override void SetCivilian(Civilian civilian)
     {
         base.SetCivilian(civilian);
     }

@@ -25,7 +25,7 @@ public class Plane : MonoBehaviour
     [SerializeField] public PlaneState<Plane> PlaneState { get; set; }
 
     // Handle State
-    public BaseCivilian Civilian { get; private set; }
+    public Civilian Civilian { get; private set; }
     public Box Box { get; private set; }
     public PlayerController PlayerController { get; private set; }
 
@@ -93,8 +93,10 @@ public class Plane : MonoBehaviour
     }
 
     #region Plane State
-    public virtual void SetCivilian(BaseCivilian civilian) => OnCivilianChange(civilian);
-    internal virtual void OnCivilianChange(BaseCivilian civilian)
+    //public virtual void SetCivilian(BaseCivilian civilian) => OnCivilianChange(civilian);
+    public virtual void SetCivilian(Civilian civilian) => OnCivilianChange(civilian);
+
+    internal virtual void OnCivilianChange(Civilian civilian)
     {
         Civilian = civilian;    // Setter
         PlaneState.OnCivilianChange(civilian);

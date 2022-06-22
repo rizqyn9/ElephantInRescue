@@ -23,7 +23,7 @@ public class PlaneState<T> where T : Plane
     {
         if (Plane.PlaneType != PlaneTypeEnum.ROUTE) return;
         if (IsFocus == isFocus) return;
-        if (Plane.Civilian || Plane.Box) isFocus = false;
+        if (Plane.Civilian || Plane.Box || Plane.PlayerController) isFocus = false;
 
         IsFocus = isFocus;
 
@@ -46,8 +46,8 @@ public class PlaneState<T> where T : Plane
 
     internal void OnObjectExit(Collider2D collider) { }
 
-    internal void OnCivilianChange(BaseCivilian recent)
+    internal void OnCivilianChange(Civilian recent)
     {
-        if (recent && BoxSubscribe) BoxSubscribe.Refocus();
+        if (BoxSubscribe) BoxSubscribe.Refocus();
     }
 }
