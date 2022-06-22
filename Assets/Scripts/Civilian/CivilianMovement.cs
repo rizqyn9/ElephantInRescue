@@ -5,30 +5,28 @@ using UnityEngine;
 [System.Serializable]
 public class CivilianMovement
 {
-    public Civilian Civilian { get; set; }
-    public List<Plane> Routes { get; set; }
-    public Plane CurrentPlane { get; private set; }
-    public float Speed { get; private set; }
+    Civilian Civilian { get; set; }
+    Plane CurrentPlane { get => Civilian.CurrentPlane; }
+    List<Plane> Routes { get => Civilian.CivilianConfig.Routes; }
+    float Speed { get => Civilian.CivilianConfig.Speed; }
+    bool CanMove { get => Civilian.CanMove; }
+    int RoutesCount { get => Civilian.CivilianConfig.Routes.Count; }
+
     public int CurrentIndex { get; private set; }
     public int NextTarget { get; private set; }
-    public int RoutesCount { get; private set; }
-    public bool CanMove { get; internal set; }
+    public Coroutine coroutine { get; internal set; }
 
     public CivilianMovement(Civilian civilian)
     {
         Civilian = civilian;
-        Routes = civilian.CivilianConfig.Routes;
-        Speed = civilian.CivilianConfig.Speed;
         CurrentIndex = 0;
         NextTarget = 1;
-        RoutesCount = civilian.CivilianConfig.Routes.Count;
-        CanMove = false;
         ValidateRoutes();
     }
 
-    public void SetCurrentPlane(Plane plane)
+    public void Start()
     {
-        CurrentPlane = plane;
+        coroutine = Civilian.StartCoroutine(IStartMove());
     }
 
     public void RecalculateTarget()
@@ -76,11 +74,12 @@ public class CivilianMovement
         }
     }
 
-    public IEnumerator IStartMove()
+    IEnumerator IStartMove()
     {
         if (!Civilian) yield return new WaitUntil(() => Civilian != null);
 
-        CanMove = true;
+        Civilian.SetCanMove(true);
+
         while (CanMove)
         {
             yield return
@@ -93,7 +92,7 @@ public class CivilianMovement
         }
     }
 
-    public IEnumerator IMove(Transform target, System.Action cb)
+    IEnumerator IMove(Transform target, System.Action cb)
     {
         UpdateDirection(Civilian.transform, target);
         while ( CanMove && ShouldMoveByDistance(Civilian.transform, target) )
@@ -106,13 +105,7 @@ public class CivilianMovement
 
     public void Stop()
     {
-        SetCanMove(false);
-    }
-
-    public void SetCanMove(bool canMove)
-    {
-        CanMove = canMove;
-        Civilian.OnCanMoveChange();
+        Civilian.SetCanMove(false);
     }
 
     Vector2 MoveTowards(Transform from, Transform to) =>

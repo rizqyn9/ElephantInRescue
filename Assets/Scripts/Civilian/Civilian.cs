@@ -18,7 +18,12 @@ public class Civilian : MonoBehaviour
     [SerializeField] internal SpriteRenderer m_sprite;
 
     public Vector2 Direction { get; private set; }
+    public bool CanSeePlayer { get; set; }
+    public bool CanMove { get; set; }
     public CivilianMovement CivilianMovement { get; internal set; }
+    public CivilianFOV CivilianFOV { get; internal set; }
+    public CivilianAnimation CivilianAnimation { get; set; }
+    public Plane CurrentPlane { get; set; }
 
     internal virtual void SetDirection(Vector2 dir) {
         OnDirectionChange(dir);
@@ -26,7 +31,12 @@ public class Civilian : MonoBehaviour
     }
 
     internal virtual void OnEnable() {
+        Direction = Vector2.down;
+        CanSeePlayer = false;
+        CanMove = true;
         CivilianMovement = new CivilianMovement(this);
+        CivilianFOV = new CivilianFOV(this);
+        CivilianAnimation = GetComponentInChildren<CivilianAnimation>();
         m_gameStateChannel.OnEventRaised += HandleGameStateOnChange;
     }
 
@@ -59,6 +69,18 @@ public class Civilian : MonoBehaviour
         }
     }
 
+    internal virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        Plane plane = collision.GetComponent<Plane>();
+        if (plane) OnPlaneEnter(plane);
+    }
+
+    internal virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        Plane plane = collision.GetComponent<Plane>();
+        if (plane) OnPlaneExit(plane);
+    }
+
     internal virtual void OnBeforePlay() { }
 
     internal virtual void OnTutorial() { }
@@ -71,17 +93,9 @@ public class Civilian : MonoBehaviour
 
     internal virtual void OnGameStateChange(GameState old, GameState recent) { }
 
-    internal virtual void OnDirectionChange(Vector2 dir) { }
-
-    internal virtual void OnTriggerEnter2D(Collider2D collision) {
-        Plane plane = collision.GetComponent<Plane>();
-        if (plane) OnPlaneEnter(plane);
-    }
-
-    internal virtual void OnTriggerExit2D(Collider2D collision)
+    internal virtual void OnDirectionChange(Vector2 dir)
     {
-        Plane plane = collision.GetComponent<Plane>();
-        if (plane) OnPlaneExit(plane);
+        CivilianAnimation.Walk();
     }
 
     internal virtual void OnPlaneExit(Plane plane)
@@ -92,8 +106,8 @@ public class Civilian : MonoBehaviour
     internal virtual void OnPlaneEnter(Plane plane)
     {
         CheckValidPlane(plane);
+        SetCurrentPlane(plane);
         plane.SetCivilian(this);
-        CivilianMovement.SetCurrentPlane(plane);
     }
 
     internal virtual void OnCanMoveChange() { }
@@ -107,7 +121,7 @@ public class Civilian : MonoBehaviour
     {
         StopAllCoroutines();
         CivilianMovement.ReverseDirection();
-        StartCoroutine(CivilianMovement.IStartMove());
+        CivilianMovement.Start();
     }
 
     internal virtual void OnTouchedFocusPlane(Plane plane)
@@ -115,5 +129,28 @@ public class Civilian : MonoBehaviour
 
     }
 
-    
+    public void SetCanSeePlayer (bool should)
+    {
+        print(should);
+        CanSeePlayer = should;
+        if (should)
+            OnSeePlayer();
+    }
+
+    internal void OnSeePlayer()
+    {
+        CivilianAnimation.Attack();
+        CivilianMovement.Stop();
+    }
+
+    internal void SetCurrentPlane(Plane plane)
+    {
+        CurrentPlane = plane;
+    }
+
+    internal void SetCanMove(bool shouldMove)
+    {
+        CanMove = shouldMove;
+        OnCanMoveChange();
+    }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CivilianAnimation : MonoBehaviour
 {
-    [SerializeField] Vector3 m_direction;
+    [SerializeField] Civilian Civilian;
     [SerializeField] Animator m_animator;
 
     // Enumurate for animation state
@@ -16,11 +16,11 @@ public class CivilianAnimation : MonoBehaviour
     private void OnEnable()
     {
         m_animator = GetComponent<Animator>();
+        if (!Civilian) Civilian = GetComponentInParent<Civilian>();
     }
 
-    public void Walk(Vector3 direction)
+    public void Walk()
     {
-        m_direction = direction;
         LeanTween
             .value(0, 1, 3f)
             .setOnStart(() =>
@@ -33,14 +33,13 @@ public class CivilianAnimation : MonoBehaviour
             });
     }
 
-    public void Attack(Vector3 direction)
+    public void Attack()
     {
         MotionStateUpdate(ATTACK);
     }
 
-    public void Iddle(Vector3 direction)
+    public void Iddle()
     {
-        m_direction = direction;
         MotionStateUpdate(IDDLE);
     }
 
@@ -49,8 +48,8 @@ public class CivilianAnimation : MonoBehaviour
     {
         if (m_latestStateMotion == ATTACK || !m_animator) return;
         ConditionActive(state);
-        m_animator?.SetFloat("X", m_direction.x);
-        m_animator?.SetFloat("Y", m_direction.y);
+        m_animator?.SetFloat("X", Civilian.Direction.x);
+        m_animator?.SetFloat("Y", Civilian.Direction.y);
     }
 
     void ConditionActive(string active)

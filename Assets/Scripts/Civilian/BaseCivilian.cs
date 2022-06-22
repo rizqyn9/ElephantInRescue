@@ -21,7 +21,7 @@ public class BaseCivilian : MonoBehaviour
     private void OnDirectionChanged(Vector3 value)
     {
         m_direction = value;
-        m_civilianAnimation.Walk(value);
+        m_civilianAnimation.Walk();
     }
 
     public bool CanSeePlayer { get; private set; }
@@ -68,7 +68,7 @@ public class BaseCivilian : MonoBehaviour
 
     private void OnPlayerHit()
     {
-        m_civilianAnimation.Attack(m_direction);
+        m_civilianAnimation.Attack();
         ThrowSomething();
         PlayerController.Instance.OnHitCivilian(this);
         CivilianWalk.Stop();

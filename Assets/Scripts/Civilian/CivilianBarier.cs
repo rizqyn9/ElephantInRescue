@@ -6,6 +6,7 @@ public class CivilianBarier : Civilian
     {
         base.OnPlay();
 
-        StartCoroutine(CivilianMovement.IStartMove());
+        CivilianMovement.Start();
+        CivilianFOV.Start();
     }
 }
