@@ -8,19 +8,24 @@ public class UI_Game : MonoBehaviour
     [SerializeField] UI_Inventory m_uI_Inventory;
     [SerializeField] GameStateChannelSO gameState;
     [SerializeField] CanvasGroup gameUI;
-    [SerializeField] Canvas m_canvas;
+
+    Canvas Canvas { get; set; }
+    public LevelManager LevelManager { get; set; }
 
     private void OnEnable()
     {
         gameState.OnEventRaised += HandleGameStateChanged;
+
         gameUI.alpha = 0;
         gameUI.interactable = false;
-        m_canvas = GetComponent<Canvas>();
+
+        Canvas = GetComponent<Canvas>();
+        LevelManager = LevelManager.Instance;
     }
 
     private void Start()
     {
-        m_canvas.worldCamera = Camera.main;
+        Canvas.worldCamera = Camera.main;
     }
 
     private void OnDisable()
@@ -56,6 +61,8 @@ public class UI_Game : MonoBehaviour
 
     void Pause() => Time.timeScale = 0;
     void Play() => Time.timeScale = 1;
+
+    public bool IsPaused() => Time.timeScale == 0;
 
     public void Btn_Restart()
     {

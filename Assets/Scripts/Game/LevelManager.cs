@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct LevelConfiguration
+{
+    public int CountDown;
+}
+
 public class LevelManager : MonoBehaviour
 {
     private static LevelManager _instance;
     public static LevelManager Instance { get => _instance; }
 
+    [Header("LevelConfig")]
+    [SerializeField] LevelConfiguration m_levelConfiguration;
     [SerializeField] List<GameObject> m_inventoryGO = new List<GameObject>();
 
     [Header("Event")]
@@ -17,11 +25,16 @@ public class LevelManager : MonoBehaviour
     [SerializeField] InventorySO m_stoneController;
 
     public LevelDataModel LevelModel { get; private set; }
-    public int CountTimeOut = 100;
+    public HeaderUtils HeaderUtils { get; set; }
+    public LevelConfiguration LevelConfiguration { get => m_levelConfiguration; }
 
     private void OnEnable()
     {
         gameStateChannel.OnEventRaised += HandleGameStateChange;
+        HeaderUtils = FindObjectOfType<HeaderUtils>();
+
+        if (!HeaderUtils)
+            throw new System.Exception("Header Utils not found");
     }
 
     private void OnDisable()
@@ -33,6 +46,11 @@ public class LevelManager : MonoBehaviour
     void HandleGameStateChange(GameState before, GameState gameState)
     {
         m_gameState = gameState;
+
+        if (gameState == GameState.PLAY)
+            HeaderUtils.CountDown.Start();
+        if (gameState == GameState.FINISH)
+            HeaderUtils.CountDown.Stop();
     }
 
     private void Awake()
@@ -70,6 +88,12 @@ public class LevelManager : MonoBehaviour
             .setFrom(0);
 
         yield return 1;
+    }
+
+    internal void OnCountDownChange() { }
+
+    internal void OnTimeOut()
+    {
     }
 
     public List<GameObject> GetInventoryGO() => m_inventoryGO;

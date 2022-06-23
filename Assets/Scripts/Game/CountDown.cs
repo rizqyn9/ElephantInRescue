@@ -1,62 +1,48 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
-public class CountDown : MonoBehaviour
+
+[System.Serializable]
+public class CountDown
 {
-    [SerializeField] TextMeshPro text;
-    [SerializeField] int countTime = 100;
-    [SerializeField] GameStateChannelSO m_gameStateChannelSO;
+    public int CountTotal { get; private set; }
+    public int CurrentTime { get; private set; }
+    public Coroutine Coroutine { get; private set; }
 
-    private void OnEnable()
+    HeaderUtils HeaderUtils { get; set; }
+
+    public CountDown(HeaderUtils headerUtils)
     {
-        m_gameStateChannelSO.OnEventRaised += HandleOnGameStateChanged;
+        HeaderUtils = headerUtils;
+        CountTotal = HeaderUtils.LevelManager.LevelConfiguration.CountDown;
     }
 
-    private void OnDisable()
+    public void Start()
     {
-        m_gameStateChannelSO.OnEventRaised -= HandleOnGameStateChanged;
+        Coroutine = HeaderUtils.StartCoroutine(ICountDown());
     }
 
-    private void Start()
+    public void Stop()
     {
-        countTime = LevelManager.Instance.CountTimeOut;
-        text.text = countTime.ToString();
+        HeaderUtils.StopCoroutine(Coroutine);
     }
 
-    private void HandleOnGameStateChanged(GameState before, GameState gameState)
+    IEnumerator ICountDown()
     {
-        switch (gameState)
-        {
-            case GameState.PLAY:
-                StartCoroutine(ICountDown(countTime));
-                break;
-            case GameState.FINISH:
-                StopAllCoroutines();
-                break;
-        }
-    }
-
-
-    public int CountTime { get; private set; }
-    IEnumerator ICountDown(int seconds)
-    {
-        CountTime = seconds;
-        while (CountTime > 0)
+        CurrentTime = CountTotal;
+        while (CurrentTime > 0)
         {
             yield return new WaitForSeconds(1);
-            CountTime--;
-            text.text = CountTime.ToString();
+            CurrentTime--;
+            HeaderUtils.OnCountDownChange();
         }
         OnTimeOut();
     }
 
     void OnTimeOut()
     {
-        print("Time Out");
-        m_gameStateChannelSO.RaiseEvent(GameState.FINISH);
+        HeaderUtils.OnTimeOut();
     }
 
-    float RemainingTime() => 1f;
-
+    public int GetRemainingTime() => CurrentTime;
 }
