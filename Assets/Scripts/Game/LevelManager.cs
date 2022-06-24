@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator StartEnumerator()
     {
         LeanTween
-            .moveZ(m_gameContainer, 0, 1f)
+            .moveZ(m_gameContainer, 0, 5f)
             .setFrom(2)
             .setOnComplete(() =>
             {

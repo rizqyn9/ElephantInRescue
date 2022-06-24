@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -36,6 +37,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         m_spriteRenderer.enabled = false;
+        CanMove = false;
+        IsDead = false;
+        transform.position = m_planeStartPosition.transform.position;
+        CurrentPlane = m_planeStartPosition;
     }
 
     private void Awake()
@@ -84,10 +89,8 @@ public class PlayerController : MonoBehaviour
 
     void InitializePlayer()
     {
-        CanMove = true;
-        IsDead = false;
-        gameObject.transform.position = m_planeStartPosition.transform.position;
         m_spriteRenderer.enabled = true;
+        CanMove = true;
     }
 
     public void SetDirection(Vector3 dir)
@@ -105,10 +108,7 @@ public class PlayerController : MonoBehaviour
                 Plane target = ray.collider.GetComponent<Plane>();
                 if (target)
                 {
-                    if (target.PlaneType == PlaneTypeEnum.ROUTE
-                        || target.PlaneType == PlaneTypeEnum.FINISH
-                        || (target.PlaneType == PlaneTypeEnum.TREE && (target as PlaneTree).Destroyed)
-                    )
+                    if (PlayerUtils.ShouldMove(target))
                     {
                         if (target.name == CurrentPlane?.name) continue;
                         MoveTowards(ray.collider, target);

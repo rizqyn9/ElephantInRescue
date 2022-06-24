@@ -5,9 +5,6 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private float threshHold = 0.1f;
 
-    //ref to playerController
-    [SerializeField] private PlayerController playerController => PlayerController.Instance;
-
     [Header("Events")]
     [SerializeField] GameStateChannelSO m_GameStateChannelSO = null;
     [SerializeField] TouchStateSO m_TouchState = null;
@@ -16,26 +13,20 @@ public class InputManager : MonoBehaviour
     private Vector3 startPos, endPos;
     [SerializeField] GameState m_gameState;
 
-    private Camera mainCamera => Camera.main;
+    public PlayerController PlayerController { get; private set; }
 
     void HandleGameState(GameState before, GameState _gameState) => m_gameState = _gameState;
 
     private void OnEnable()
     {
         m_GameStateChannelSO.OnEventRaised += HandleGameState;
-        //m_TouchState.OnEventRaised += HandleTouchState;
+        ValidatePlayerController();
     }
 
     private void OnDisable()
     {
         m_GameStateChannelSO.OnEventRaised -= HandleGameState;
-        //m_TouchState.OnEventRaised -= HandleTouchState;
     }
-
-    //private void HandleTouchState(TouchState arg1)
-    //{
-    //    print(m_TouchState.cachedState.Count);
-    //}
 
     void Start()
     {
@@ -43,21 +34,24 @@ public class InputManager : MonoBehaviour
         transform.position = new Vector3(0, 0, 1);
     }
 
+    void ValidatePlayerController() =>
+        PlayerController = FindObjectOfType<PlayerController>();
+
     void Update()
     {
         if (m_gameState != GameState.PLAY) return;
+        if (PlayerController == null)
+        {
+            ValidatePlayerController();
+            return;
+        }
 
         ListenWithKeys();
         MoveInput();
         TouchInput();
     }
 
-    /// <summary>
-    /// Method called for mouse input
-    /// </summary>
-    ///
-
-    [SerializeField] bool validClick = false;
+    bool validClick = false;
 
     void MoveInput()
     {
@@ -80,7 +74,7 @@ public class InputManager : MonoBehaviour
         {
             validClick = false;
             if (DecideDirection() != Vector3.zero)
-                playerController.SetDirection(DecideDirection());
+                PlayerController.SetDirection(DecideDirection());
         }
     }
 
@@ -103,7 +97,7 @@ public class InputManager : MonoBehaviour
 
             if (touch.phase == TouchPhase.Ended)
                 if (DecideDirection() != Vector3.zero)
-                    playerController.SetDirection(DecideDirection());
+                    PlayerController.SetDirection(DecideDirection());
         }
     }
 
@@ -161,7 +155,7 @@ public class InputManager : MonoBehaviour
             direction = Vector3.left;
 
         if (direction == Vector3.zero) return;
-        playerController.SetDirection(direction);
+        PlayerController.SetDirection(direction);
     }
 
     /// <summary>
