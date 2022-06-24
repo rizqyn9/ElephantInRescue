@@ -20,20 +20,22 @@ public class LevelManager : MonoBehaviour
     [SerializeField] List<GameObject> m_inventoryGO = new List<GameObject>();
 
     [Header("Event")]
-    [SerializeField] GameStateChannelSO gameStateChannel = default;
+    [SerializeField] GameStateChannelSO gameStateChannel;
     [SerializeField] UITutorial m_uITutorial;
-    [SerializeField] GameObject m_gameContainer;
     [SerializeField] InventorySO m_rootController;
     [SerializeField] InventorySO m_stoneController;
 
+    public GameObject MainComponent { get; private set; }
     public LevelDataModel LevelModel { get; private set; }
     public HeaderUtils HeaderUtils { get; set; }
-    public LevelConfiguration LevelConfiguration { get => m_levelConfiguration; }
+    public LevelSO LevelData { get; private set; }
+    public PlayerController PlayerController { get; set; }
 
     private void OnEnable()
     {
         gameStateChannel.OnEventRaised += HandleGameStateChange;
         HeaderUtils = FindObjectOfType<HeaderUtils>();
+        LevelData = GameManager.LevelSO;
 
         if (!HeaderUtils)
             throw new System.Exception("Header Utils not found");
@@ -62,17 +64,26 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        // Instantiate Main Component
+        MainComponent = Instantiate(LevelData.GO_MainComponent, new Vector2(0, 2.6f), Quaternion.identity);
+        //MainComponent.SetActive(true);
+
+        // Get Player
+        PlayerController = FindObjectOfType<PlayerController>();
+        if (!PlayerController) throw new System.Exception("Player not found");
+
+        // Reset all tools
         m_rootController.Set(0);
         m_stoneController.Set(0);
 
-        gameStateChannel.RaiseEvent(GameState.BEFORE_PLAY); // Reset
         StartCoroutine(StartEnumerator());
     }
 
     IEnumerator StartEnumerator()
     {
+        gameStateChannel.RaiseEvent(GameState.BEFORE_PLAY); // Reset
         LeanTween
-            .moveZ(m_gameContainer, 0, 5f)
+            .moveZ(MainComponent, 0, 1f)
             .setFrom(2)
             .setOnComplete(() =>
             {
@@ -86,7 +97,7 @@ public class LevelManager : MonoBehaviour
             });
 
         LeanTween
-            .alpha(m_gameContainer, 1, 1f)
+            .alpha(MainComponent, 1, 1f)
             .setFrom(0);
 
         yield return 1;

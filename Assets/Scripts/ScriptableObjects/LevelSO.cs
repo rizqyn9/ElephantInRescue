@@ -11,8 +11,13 @@ public class LevelSO : DescriptionBaseSO
 
     public bool ShouldTutorialUI { get => GO_Tutorial != null; }
 
-    private void OnValidate()
-    {
-        name = $"Stg{Stage}-Lvl{Level}";
-    }
+    /// <summary>
+    /// Get the level whic exist on resource manager
+    /// </summary>
+    /// <param name="resources"></param>
+    /// <param name="stage"></param>
+    /// <param name="level"></param>
+    /// <returns></returns>
+    public static LevelSO FindLevel(ResourcesManager resources, int stage, int level) =>
+        resources.ListLevels.Find(levelExist => levelExist.Level == level && levelExist.Stage == stage);
 }

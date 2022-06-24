@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField][TextArea] string Desc;
     private static PlayerController m_instance;
     public static PlayerController Instance { get => m_instance; }
 
@@ -96,7 +97,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!CanMove || IsDead) return;
 
-        Direction = dir;
 
         RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir, 1f);
 
@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
                     if (PlayerUtils.ShouldMove(target))
                     {
                         if (target.name == CurrentPlane?.name) continue;
+                        Direction = dir;
                         MoveTowards(ray.collider, target);
                         SetPlane(target);
                         break;
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
     void MoveTowards(Collider2D collider, Plane plane)
     {
+        print(collider.name);
         LeanTween
             .move(gameObject, collider.bounds.center, .5f)
             .setOnStart(() =>

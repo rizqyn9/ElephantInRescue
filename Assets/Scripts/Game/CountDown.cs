@@ -14,7 +14,7 @@ public class CountDown
     public CountDown(HeaderUtils headerUtils)
     {
         HeaderUtils = headerUtils;
-        CountTotal = HeaderUtils.LevelManager.LevelConfiguration.CountDown;
+        CountTotal = HeaderUtils.LevelManager.LevelData.CountDown;
     }
 
     public void Start()

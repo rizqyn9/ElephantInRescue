@@ -71,6 +71,11 @@ public class Plane : MonoBehaviour
 
     internal virtual void OnTriggerEnter2D(Collider2D collision)
     {
+#if UNITY_EDITOR
+        if (collision.GetComponent<Plane>())
+            throw new System.Exception($"{gameObject.name} layered with {collision.name}");
+#endif
+
         OnObjectEnter(collision);
     }
 
@@ -92,7 +97,7 @@ public class Plane : MonoBehaviour
         PlaneState.OnObjectExit(collider);
     }
 
-    #region Plane State
+#region Plane State
     //public virtual void SetCivilian(BaseCivilian civilian) => OnCivilianChange(civilian);
     public virtual void SetCivilian(Civilian civilian) => OnCivilianChange(civilian);
 
@@ -115,6 +120,6 @@ public class Plane : MonoBehaviour
     }
 
     public virtual void HandlePlaneFocusOnChange(bool isFocus) { }
-    #endregion
+#endregion
 
 }

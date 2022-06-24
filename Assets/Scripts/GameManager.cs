@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
 
     public static PlayerDataModel PlayerDataModel { get => Instance.m_playerDataModel; internal set => Instance.m_playerDataModel = value; }
     public static PlayerData PlayerData { get => Instance.playerData; }
-    public static SceneState SceneState => updateSceneState();
-    public static ResourcesManager resourcesManager { get; set; }
+    public static SceneState SceneState => UpdateSceneState();
+    public static ResourcesManager ResourcesManager { get; set; }
 
     private void Awake()
     {
@@ -29,18 +29,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Load Resource data
+    /// Load User data
+    /// </summary>
     private void Start()
     {
-        resourcesManager = GetComponentInChildren<ResourcesManager>();
-        if (Dev.Instance.isDevMode) return;
-        else initialize();        
+        ResourcesManager = GetComponentInChildren<ResourcesManager>();
+        Initialize();   
     }
 
-    public void initialize()
+    public void Initialize()
     {
-        updateSceneState();
+        UpdateSceneState();
         PlayerDataModel = playerData.Load();
-
     }
 
     private void OnEnable() =>
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable() =>
         SceneManager.sceneLoaded -= HandleSceneChanged;
 
-    static SceneState updateSceneState()
+    static SceneState UpdateSceneState()
     {
         Scene _scene = SceneManager.GetActiveScene();
         if (_scene.name == "MainMenu") return SceneState.MAINMENU;
@@ -79,9 +82,8 @@ public class GameManager : MonoBehaviour
 
     public static void LoadLevelMap()
     {
-        print("Load Level");
 #if UNITY_EDITOR
-        LoadGameLevel(GetLevelDataByLevelStage(1, 2));
+        LoadGameLevel(GetLevelDataByLevelStage(1, 1));
         return;
 #endif
         SceneManager.LoadScene(3, LoadSceneMode.Single);
@@ -94,17 +96,21 @@ public class GameManager : MonoBehaviour
     */
     [SerializeField] LevelDataModel m_levelLoaded;
     public LevelDataModel LevelDataModel { get => m_levelLoaded; private set => m_levelLoaded = value; }
+    public static LevelSO LevelSO { get; private set; }
     public static void LoadGameLevel(LevelDataModel level)
     {
         try
         {
-            if (!Utils.DoesSceneExist($"Stg{level.Stage}-Lvl{level.Level}")) throw new System.Exception("asd");
+            LevelSO levelSO= LevelSO.FindLevel(ResourcesManager, level.Stage, level.Level);
+            if (!levelSO) throw new System.Exception("Level target not found");
+            LevelSO = levelSO;
             Instance.LevelDataModel = level; // Reset // Todo
             SceneManager.LoadScene(1, LoadSceneMode.Single);
             SceneManager.LoadScene(2, LoadSceneMode.Additive);
-        } catch
+        } catch (System.Exception err)
         {
             // Handle coming soon level
+            Debug.Log(err);
             LoadMainMenu();
         }
     }

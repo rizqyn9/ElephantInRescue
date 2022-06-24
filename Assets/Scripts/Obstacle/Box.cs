@@ -33,7 +33,6 @@ public class Box : MonoBehaviour
         }
     }
 
-
     private void OnMouseDown()
     {
         if (m_onMove) return;

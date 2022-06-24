@@ -6,6 +6,7 @@ using UnityEngine;
 public class CivilianMovement
 {
     Civilian Civilian { get; set; }
+
     Plane CurrentPlane { get => Civilian.CurrentPlane; }
     List<Plane> Routes { get => Civilian.CivilianConfig.Routes; }
     float Speed { get => Civilian.CivilianConfig.Speed; }
