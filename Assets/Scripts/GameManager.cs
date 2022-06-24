@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -13,12 +12,12 @@ public class GameManager : MonoBehaviour
     public PlayerData playerData;
     public GameObject GO_ResourcesManager;
     [SerializeField] SceneState _sceneState = SceneState.MAINMENU;
-    [SerializeField] ResourcesManager resourcesManager;
-    [SerializeField] PlayerDataModel m_playerDataModel;
+    PlayerDataModel m_playerDataModel;
 
     public static PlayerDataModel PlayerDataModel { get => Instance.m_playerDataModel; internal set => Instance.m_playerDataModel = value; }
     public static PlayerData PlayerData { get => Instance.playerData; }
     public static SceneState SceneState => updateSceneState();
+    public static ResourcesManager resourcesManager { get; set; }
 
     private void Awake()
     {
@@ -32,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        resourcesManager = GetComponentInChildren<ResourcesManager>();
         if (Dev.Instance.isDevMode) return;
         else initialize();        
     }
@@ -40,21 +40,7 @@ public class GameManager : MonoBehaviour
     {
         updateSceneState();
         PlayerDataModel = playerData.Load();
-        StartCoroutine(ILoadAllResources());
-    }
 
-    /**
-    * Load all dependencies
-    * Resources Manager
-    * Main Controller
-    */
-    IEnumerator ILoadAllResources()
-    {
-        if (ResourcesManager.Instance == null)
-            resourcesManager = Instantiate(GO_ResourcesManager).GetComponent<ResourcesManager>();
-        else resourcesManager = ResourcesManager.Instance;
-
-        yield break;
     }
 
     private void OnEnable() =>
@@ -115,7 +101,7 @@ public class GameManager : MonoBehaviour
             if (!Utils.DoesSceneExist($"Stg{level.Stage}-Lvl{level.Level}")) throw new System.Exception("asd");
             Instance.LevelDataModel = level; // Reset // Todo
             SceneManager.LoadScene(1, LoadSceneMode.Single);
-            SceneManager.LoadScene($"Stg{level.Stage}-Lvl{level.Level}", LoadSceneMode.Additive);
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
         } catch
         {
             // Handle coming soon level
@@ -128,8 +114,11 @@ public class GameManager : MonoBehaviour
      */
     public static void CloseApplication ()
     {
-        // Do something
+#if UNITY_EDITOR        
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public static LevelDataModel GetLevelDataByLevelStage(int level, int stage)

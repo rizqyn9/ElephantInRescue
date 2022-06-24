@@ -57,4 +57,9 @@ public static class Utils
 
     public static RaycastHit2D RaycastCamera(Vector3 position, Vector2 dir, LayerMask layerMask = default(LayerMask)) =>
         Physics2D.Raycast(Camera.main.ScreenToWorldPoint(position), dir, layerMask);
+
+    public static LevelSO FindLevelResource(ResourcesManager resources, int stage, int level)
+    {
+        return resources.ListLevels.Find(levelExist => (levelExist.Stage == stage) && (levelExist.Level == level));
+    }
 }

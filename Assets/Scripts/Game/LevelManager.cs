@@ -6,6 +6,8 @@ using UnityEngine;
 public struct LevelConfiguration
 {
     public int CountDown;
+    public GameObject GOMainComponent;
+    public GameObject GOTutorial;
 }
 
 public class LevelManager : MonoBehaviour
