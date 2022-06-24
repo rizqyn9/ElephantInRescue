@@ -32,6 +32,7 @@ public class Plane : MonoBehaviour
     internal virtual void OnEnable()
     {
         m_inventoryChannel.OnEventRaised += HandleInventoryChange;
+        PlaneState = new PlaneState<Plane>(this, HandlePlaneFocusOnChange);
     }
 
     internal virtual void OnDisable()
@@ -44,7 +45,6 @@ public class Plane : MonoBehaviour
     /// </summary>
     internal virtual void Start()
     {
-        PlaneState = new PlaneState<Plane>(this, HandlePlaneFocusOnChange);
         CheckValidity();
         PlaneManager.AuthorizedPlane(this, out string planeNameHashed);
     }
@@ -71,9 +71,7 @@ public class Plane : MonoBehaviour
 
     internal virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerController>()) OnElephant();
-        else
-            OnObjectEnter(collision);
+        OnObjectEnter(collision);
     }
 
     internal virtual void OnObjectEnter(Collider2D collider)
@@ -81,7 +79,9 @@ public class Plane : MonoBehaviour
         PlaneState.OnObjectEnter(collider);
     }
 
-    internal void OnTriggerStay2D(Collider2D collision) { }
+    internal void OnTriggerStay2D(Collider2D collision) {
+
+    }
 
     internal void OnTriggerExit2D(Collider2D collision) {
         OnObjectExit(collision);
@@ -111,6 +111,7 @@ public class Plane : MonoBehaviour
     internal virtual void OnPlayerChange(PlayerController player)
     {
         PlayerController = player;
+        PlaneState?.OnPlayerChange();
     }
 
     public virtual void HandlePlaneFocusOnChange(bool isFocus) { }

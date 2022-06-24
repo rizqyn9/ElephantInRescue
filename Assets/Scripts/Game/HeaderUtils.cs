@@ -17,12 +17,11 @@ public class HeaderUtils : MonoBehaviour
 
     internal void OnCountDownChange()
     {
-        print("asdasx");
         countText.text = CountDown.CurrentTime.ToString();
     }
 
     internal void OnTimeOut()
     {
-        print("Time out");
+        LevelManager.OnTimeOut();
     }
 }

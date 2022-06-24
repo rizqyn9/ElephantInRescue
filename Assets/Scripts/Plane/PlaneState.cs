@@ -50,4 +50,8 @@ public class PlaneState<T> where T : Plane
     {
         if (BoxSubscribe) BoxSubscribe.Refocus();
     }
+
+    internal void OnPlayerChange() {
+        if (BoxSubscribe) BoxSubscribe.Refocus();
+    }
 }

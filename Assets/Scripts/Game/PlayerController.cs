@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour
         CanMove = false;
         IsDead = false;
         transform.position = m_planeStartPosition.transform.position;
-        CurrentPlane = m_planeStartPosition;
+        SetPlane(m_planeStartPosition);
     }
 
     private void Awake()
@@ -112,6 +111,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if (target.name == CurrentPlane?.name) continue;
                         MoveTowards(ray.collider, target);
+                        SetPlane(target);
                         break;
                     }
                 }
@@ -119,6 +119,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void SetPlane(Plane plane)
+    {
+        // Unsub older plane
+        CurrentPlane?.SetPlayer(null);
+
+        CurrentPlane = plane;
+        CurrentPlane.SetPlayer(this);
+    }
 
     void MoveTowards(Collider2D collider, Plane plane)
     {
@@ -134,7 +142,6 @@ public class PlayerController : MonoBehaviour
                 ElephantAnimation.Iddle();
                 CanMove = true;
                 plane?.OnElephant();
-                CurrentPlane = plane;
             });
     }
 
