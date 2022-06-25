@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+interface ICivilianMovement
+{
+    public void OnWalkStart();
+}
+
 [System.Serializable]
 public class CivilianMovement
 {

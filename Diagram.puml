@@ -1,16 +1,28 @@
 @startuml
 
+
+package Civilian {
+    class ShouldMove {
+        Barier
+    }
+
+    class ShouldntMove {
+        Stun
+        Hunt
+    }
+}
+
 ' package Civilian {
 '     class CivilianBase {}
 
 ' }
 
-' package Player {
-'     class PlayerController {}
-' }
+package Player {
+    class PlayerController {}
+}
 
-' package WithoutMonobehaviour {    
-' }
+package WithoutMonobehaviour {    
+}
 
 package Plane #DDDDDD {
     class Plane {
