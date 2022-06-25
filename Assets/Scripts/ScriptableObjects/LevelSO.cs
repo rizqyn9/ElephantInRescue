@@ -8,6 +8,7 @@ public class LevelSO : DescriptionBaseSO
     public int CountDown;
     public GameObject GO_Tutorial;
     public GameObject GO_MainComponent;
+    public Sprite LevelTitle;
 
     public bool ShouldTutorialUI { get => GO_Tutorial != null; }
 

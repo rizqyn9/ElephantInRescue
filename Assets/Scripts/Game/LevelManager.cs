@@ -2,21 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct LevelConfiguration
-{
-    public int CountDown;
-    public GameObject GOMainComponent;
-    public GameObject GOTutorial;
-}
-
 public class LevelManager : MonoBehaviour
 {
     private static LevelManager _instance;
     public static LevelManager Instance { get => _instance; }
 
     [Header("LevelConfig")]
-    [SerializeField] LevelConfiguration m_levelConfiguration;
     [SerializeField] List<GameObject> m_inventoryGO = new List<GameObject>();
 
     [Header("Event")]

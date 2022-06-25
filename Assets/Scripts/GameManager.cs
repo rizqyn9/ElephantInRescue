@@ -80,10 +80,14 @@ public class GameManager : MonoBehaviour
         LeanTween.reset();
     }
 
+#if UNITY_EDITOR
+    [SerializeField] int levelDev;
+    [SerializeField] int stageDev;
+#endif
     public static void LoadLevelMap()
     {
 #if UNITY_EDITOR
-        LoadGameLevel(GetLevelDataByLevelStage(1, 1));
+        LoadGameLevel(GetLevelDataByLevelStage(Instance.levelDev, Instance.stageDev));
         return;
 #endif
         SceneManager.LoadScene(3, LoadSceneMode.Single);
@@ -120,7 +124,7 @@ public class GameManager : MonoBehaviour
      */
     public static void CloseApplication ()
     {
-#if UNITY_EDITOR        
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();

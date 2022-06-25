@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df22bce8c3ddd4a6ba7082dc5f7c3574, type: 3}
-  m_Name: Stg1
+  m_Name: Lvl2Stg1
   m_EditorClassIdentifier: 
-  _guid: aa1fd22411aff4a189e151d756787cba
-  description: 'Level 1 stage 1
-
-'
-  Level: 1
+  _guid: 936980c748f5a4e1ea6ce599ba34c998
+  description: 
+  Level: 2
   Stage: 1
-  CountDown: 100
+  CountDown: 200
   GO_Tutorial: {fileID: 0}
-  GO_MainComponent: {fileID: 8835465095697293657, guid: 1e3bf5bfa88644bb5a10df658bca49a3, type: 3}
+  GO_MainComponent: {fileID: 6526954292820337800, guid: dfda87f41dc614eac809e049b2af7ece, type: 3}
+  LevelTitle: {fileID: 0}

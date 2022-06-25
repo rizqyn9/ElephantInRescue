@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df22bce8c3ddd4a6ba7082dc5f7c3574, type: 3}
+  m_Name: Lvl2Stg3
+  m_EditorClassIdentifier: 
+  _guid: b6fa8ab3d2d2e4b8da27522ed49a26de
+  description: 
+  Level: 2
+  Stage: 3
+  CountDown: 200
+  GO_Tutorial: {fileID: 0}
+  GO_MainComponent: {fileID: 7684218860468633867, guid: b6978b6a319694f47b8c50dafe94aaf1, type: 3}
+  LevelTitle: {fileID: 0}
