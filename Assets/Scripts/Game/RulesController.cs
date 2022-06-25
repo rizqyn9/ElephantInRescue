@@ -42,13 +42,11 @@ public class RulesController : MonoBehaviour
 
     void CalculateStar()
     {
-        float remainingTime = LevelManager.Instance.HeaderUtils.CountDown.GetRemainingTime();
+        int remainingTime = LevelManager.Instance.HeaderUtils.CountDown.GetRemainingTime();
 
         if (PlayerController.IsDead) HandlePoint(WinLoseType.LOSE);
-        else if (remainingTime >= 12) HandlePoint(WinLoseType.STARS3);
-        else if (remainingTime >= 8) HandlePoint(WinLoseType.STARS2);
-        else if (remainingTime >= 4) HandlePoint(WinLoseType.STARS1);
-        else HandlePoint(WinLoseType.TIME_OUT);
+        else 
+            HandlePoint(LevelManager.Instance.LevelData.CalculateStar(remainingTime));
     }
 
 

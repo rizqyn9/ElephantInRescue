@@ -140,6 +140,7 @@ public class Civilian : MonoBehaviour
     {
         CivilianAnimation.Attack();
         CivilianMovement.Stop();
+        PlayerController.Instance.OnHitCivilian(this);
     }
 
     internal void SetCurrentPlane(Plane plane)

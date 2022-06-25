@@ -11258,7 +11258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5041868331651107305, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
       propertyPath: levelDev
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5041868331651107305, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
       propertyPath: stageDev

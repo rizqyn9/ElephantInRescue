@@ -9,6 +9,7 @@ public class LevelSO : DescriptionBaseSO
     public GameObject GO_Tutorial;
     public GameObject GO_MainComponent;
     public Sprite LevelTitle;
+    public int Star3, Star2, Star1;
 
     public bool ShouldTutorialUI { get => GO_Tutorial != null; }
 
@@ -21,4 +22,14 @@ public class LevelSO : DescriptionBaseSO
     /// <returns></returns>
     public static LevelSO FindLevel(ResourcesManager resources, int stage, int level) =>
         resources.ListLevels.Find(levelExist => levelExist.Level == level && levelExist.Stage == stage);
+
+    public WinLoseType CalculateStar(int remainingTime)
+    {
+        remainingTime = CountDown - remainingTime;
+
+        if (remainingTime < Star3) return WinLoseType.STARS3;
+        else if (remainingTime < Star2) return WinLoseType.STARS2;
+        else if (remainingTime < Star3) return WinLoseType.STARS3;
+        else return WinLoseType.TIME_OUT;
+    }
 }

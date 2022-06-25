@@ -11,11 +11,12 @@ public class LevelManager : MonoBehaviour
     [SerializeField] List<GameObject> m_inventoryGO = new List<GameObject>();
 
     [Header("Event")]
+    [SerializeField] Canvas canvas;
     [SerializeField] GameStateChannelSO gameStateChannel;
-    [SerializeField] UITutorial m_uITutorial;
     [SerializeField] InventorySO m_rootController;
     [SerializeField] InventorySO m_stoneController;
 
+    public UITutorial UITutorial { get; set; }
     public GameObject MainComponent { get; private set; }
     public LevelDataModel LevelModel { get; private set; }
     public HeaderUtils HeaderUtils { get; set; }
@@ -67,37 +68,39 @@ public class LevelManager : MonoBehaviour
         m_rootController.Set(0);
         m_stoneController.Set(0);
 
-        StartCoroutine(StartEnumerator());
+        gameStateChannel.RaiseEvent(GameState.BEFORE_PLAY); // Reset
+
+        if (LevelData.ShouldTutorialUI)
+        {
+            UITutorial = Instantiate(LevelData.GO_Tutorial, canvas.transform).GetComponent<UITutorial>();
+        }
+
+        InstantiateMainComponent();
     }
 
-    IEnumerator StartEnumerator()
+    void InstantiateMainComponent()
     {
-        gameStateChannel.RaiseEvent(GameState.BEFORE_PLAY); // Reset
         LeanTween
             .moveZ(MainComponent, 0, 1f)
             .setFrom(2)
             .setOnComplete(() =>
             {
-                if(m_uITutorial)
-                {
-                    m_uITutorial.gameObject.SetActive(true);
-                } else
-                {
+                if (LevelData.ShouldTutorialUI)
+                    UITutorial.gameObject.SetActive(true);
+                else
                     gameStateChannel.RaiseEvent(GameState.PLAY);
-                }
             });
 
         LeanTween
             .alpha(MainComponent, 1, 1f)
             .setFrom(0);
-
-        yield return 1;
     }
 
     internal void OnCountDownChange() { }
 
     internal void OnTimeOut()
     {
+        LoseCondition();
     }
 
     public List<GameObject> GetInventoryGO() => m_inventoryGO;
