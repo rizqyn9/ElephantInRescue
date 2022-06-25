@@ -65,5 +65,4 @@ public class CivilianAnimation : MonoBehaviour
             m_animator?.SetBool(val, val == active);
         });
     }
-
 }

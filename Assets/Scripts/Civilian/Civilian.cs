@@ -34,7 +34,7 @@ public class Civilian : MonoBehaviour
         Direction = Vector2.down;
         CanSeePlayer = false;
         CanMove = true;
-        CivilianMovement = new CivilianMovement(this);
+        //CivilianMovement = new CivilianMovement(this);
         CivilianFOV = new CivilianFOV(this);
         CivilianAnimation = GetComponentInChildren<CivilianAnimation>();
         m_gameStateChannel.OnEventRaised += HandleGameStateOnChange;
