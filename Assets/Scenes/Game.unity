@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &111599230
 Animator:
   serializedVersion: 3
@@ -963,6 +963,10 @@ PrefabInstance:
       propertyPath: m_titleRenderer
       value: 
       objectReference: {fileID: 6807238815665473550}
+    - target: {fileID: 6807238813952110856, guid: 35bdf4f8465a247d38129e5561055827, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6807238814125531952, guid: 35bdf4f8465a247d38129e5561055827, type: 3}
       propertyPath: m_Name
       value: --Headers
@@ -1213,7 +1217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8835465095697293657, guid: 1e3bf5bfa88644bb5a10df658bca49a3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e3bf5bfa88644bb5a10df658bca49a3, type: 3}

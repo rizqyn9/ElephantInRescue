@@ -2874,6 +2874,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8835465095697293656}
     m_Modifications:
+    - target: {fileID: 561734800285794, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+      propertyPath: Routes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 561734800285794, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+      propertyPath: Routes.Array.data[0]
+      value: 
+      objectReference: {fileID: 5243857988571535961}
+    - target: {fileID: 561734800285794, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
+      propertyPath: Routes.Array.data[1]
+      value: 
+      objectReference: {fileID: 5243857989119578206}
     - target: {fileID: 1419271400967171704, guid: c462a45e7ab914e468efe20b18d7cd3a, type: 3}
       propertyPath: m_Name
       value: EnemyBarier
@@ -3088,6 +3100,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6321520746056188837}
     m_Modifications:
+    - target: {fileID: 2163193189823162798, guid: b554b01f7c8cb4a549ae8c309e7e2b3f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6525454
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163193189823162798, guid: b554b01f7c8cb4a549ae8c309e7e2b3f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6525454
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163193189823162798, guid: b554b01f7c8cb4a549ae8c309e7e2b3f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9811321
+      objectReference: {fileID: 0}
     - target: {fileID: 3792588309144000054, guid: b554b01f7c8cb4a549ae8c309e7e2b3f, type: 3}
       propertyPath: m_Name
       value: Elephant1

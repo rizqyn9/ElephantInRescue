@@ -6,6 +6,7 @@ public class LevelSO : DescriptionBaseSO
     public int Level;
     public int Stage;
     public int CountDown;
+    public Color32 ElephantColor;
     public GameObject GO_Tutorial;
     public GameObject GO_MainComponent;
     public Sprite LevelTitle;

@@ -7,5 +7,6 @@ public class CivilianHunt : Civilian
     internal override void OnBeforePlay()
     {
         base.OnBeforePlay();
+
     }
 }

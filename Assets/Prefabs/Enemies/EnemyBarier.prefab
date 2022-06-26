@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1419271400967171711}
   - component: {fileID: 5106581322883910913}
   - component: {fileID: 2500411357296678615}
+  - component: {fileID: 561734800285794}
   - component: {fileID: 8086563721262272969}
   m_Layer: 0
   m_Name: EnemyBarier
@@ -74,10 +75,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CivilianConfig:
     Radius: 2
-    Speed: 0.76
-    Routes: []
   m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_sprite: {fileID: 78617260798185894}
+--- !u!114 &561734800285794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419271400967171704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a074f0cd181044a1846bdff401cfbe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0.77
+  Routes: []
 --- !u!50 &8086563721262272969
 Rigidbody2D:
   serializedVersion: 4

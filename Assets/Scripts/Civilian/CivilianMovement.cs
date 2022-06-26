@@ -2,37 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface ICivilianMovement
+public interface ICMovement
 {
-    public void OnWalkStart();
+    bool CanMove { get; set; }
+    void SetCanMove(bool shouldMove);
+    void OnStartWalking();
+    void OnUpdateTarget();
+    void OnReverse();
 }
 
+[RequireComponent(typeof(Civilian))]
 [System.Serializable]
-public class CivilianMovement
+public class CivilianMovement: MonoBehaviour
 {
-    Civilian Civilian { get; set; }
+    [SerializeField][Range(0,3)] internal float Speed;
+    [SerializeField] List<Plane> Routes = new List<Plane>();
 
-    Plane CurrentPlane { get => Civilian.CurrentPlane; }
-    List<Plane> Routes { get => Civilian.CivilianConfig.Routes; }
-    float Speed { get => Civilian.CivilianConfig.Speed; }
-    bool CanMove { get => Civilian.CanMove; }
-    int RoutesCount { get => Civilian.CivilianConfig.Routes.Count; }
+    public Civilian Civilian { get; set; }
+    public ICMovement ICMovement { get; private set; }
+    public Coroutine coroutine { get; internal set; }
+
+    public Plane CurrentPlane { get => Civilian.CurrentPlane; }
+    bool CanMove { get => ICMovement.CanMove; }
+    int RoutesCount { get => Routes.Count; }
 
     public int CurrentIndex { get; private set; }
     public int NextTarget { get; private set; }
-    public Coroutine coroutine { get; internal set; }
 
-    public CivilianMovement(Civilian civilian)
+    private void OnEnable()
     {
-        Civilian = civilian;
+        Civilian = GetComponent<Civilian>();
+
+        if (!(Civilian is ICMovement)) throw new System.Exception("ICMovement not found");
+        ICMovement = Civilian as ICMovement;
+
         CurrentIndex = 0;
         NextTarget = 1;
+
+        Civilian.SetCurrentPlane(Routes[CurrentIndex]);
+        transform.position = CurrentPlane.transform.position;
+
         ValidateRoutes();
     }
 
-    public void Start()
+    public void StartMove()
     {
-        coroutine = Civilian.StartCoroutine(IStartMove());
+        coroutine = StartCoroutine(IStartMove());
+        ICMovement.OnStartWalking();
     }
 
     public void RecalculateTarget()
@@ -42,13 +58,9 @@ public class CivilianMovement
         {
             CurrentIndex++;
             if (NextTarget + 1 >= RoutesCount) // Reserve
-            {
                 NextTarget--;
-            }
             else
-            {
                 NextTarget++;
-            }
         }
 
         // PREV
@@ -56,13 +68,9 @@ public class CivilianMovement
         {
             CurrentIndex--;
             if (NextTarget <= 0) //Reserve
-            {
                 NextTarget++;
-            }
             else
-            {
                 NextTarget--;
-            }
         }
     }
 
@@ -78,20 +86,21 @@ public class CivilianMovement
             CurrentIndex = NextTarget;
             NextTarget++;
         }
+        ICMovement.OnReverse();
     }
 
     IEnumerator IStartMove()
     {
-        if (!Civilian) yield return new WaitUntil(() => Civilian != null);
+        ICMovement.SetCanMove(true);
 
-        Civilian.SetCanMove(true);
-
+            print(CanMove);
         while (CanMove)
         {
             yield return
                 Civilian.StartCoroutine(
                     IMove(Routes[NextTarget].transform,
                         () => {
+                            ICMovement.OnUpdateTarget();
                             RecalculateTarget();
                         }
                     ));
@@ -111,7 +120,7 @@ public class CivilianMovement
 
     public void Stop()
     {
-        Civilian.SetCanMove(false);
+        ICMovement.SetCanMove(false);   
     }
 
     Vector2 MoveTowards(Transform from, Transform to) =>
