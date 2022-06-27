@@ -11258,11 +11258,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5041868331651107305, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
       propertyPath: levelDev
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5041868331651107305, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
       propertyPath: stageDev
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5041868331651107305, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
       propertyPath: resourceManagerGO
@@ -11290,7 +11290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5288780578053641327, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
       propertyPath: m_listLevels.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5288780578053641327, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
       propertyPath: m_listLevels.Array.data[0]
@@ -11328,6 +11328,10 @@ PrefabInstance:
       propertyPath: m_listLevels.Array.data[8]
       value: 
       objectReference: {fileID: 11400000, guid: 26fbea2a0a3374bf0a0750c5e3dba8f1, type: 2}
+    - target: {fileID: 5288780578053641327, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
+      propertyPath: m_listLevels.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e4729cd8ed3443cdb97049da891a189, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d7422495e5264d1abd4e4ccc4716257, type: 3}
 --- !u!1001 &7969527722093868413
