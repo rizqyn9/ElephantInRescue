@@ -4,7 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(CivilianIdle))]
 public class CivilianHunt : Civilian
 {
+    [SerializeField] GameObject GOThrow;
+
     public CivilianIdle CivilianIdle { get; set; }
+    public Throwable Throwable { get; set; }
 
     public HumanoidAnimation<CivilianHunt> AnimationControl { get; private set; }
     private readonly List<string> RegisteredMotionState = new List<string>()
@@ -49,7 +52,11 @@ public class CivilianHunt : Civilian
 
     internal override void OnSeePlayer()
     {
+        if (Throwable) return;
         base.OnSeePlayer();
-        print("Target");
+
+        Throwable = Instantiate(GOThrow, transform).GetComponent<Throwable>();
+
+        Throwable.Init(this, PlayerController.Instance.transform);
     }
 }
