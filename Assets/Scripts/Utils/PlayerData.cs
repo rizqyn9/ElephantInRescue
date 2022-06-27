@@ -36,13 +36,9 @@ public class PlayerData : MonoBehaviour
             }
         } catch (System.Exception e)
         {
-#if UNITY_EDITOR
             Debug.LogWarning(e);
-#endif
             print("<color=red>Generate New data</color>");
-
             PlayerDataModel newPlayerData = GenerateNewData();
-            print(newPlayerData.LevelDatas.Count);
             Save(newPlayerData);
             return newPlayerData;
         }

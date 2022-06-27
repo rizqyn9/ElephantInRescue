@@ -46,8 +46,6 @@ public class SoundManager : MonoBehaviour
     {
         ChangeVolume(GetVolumePref(SFX_VOL), SFX_VOL);
         ChangeVolume(GetVolumePref(BGM_VOL), BGM_VOL);
-        //mixer.SetFloat(SFX_VOL, );
-        //mixer.SetFloat(BGM_VOL, GetVolumePref(SFX_VOL));
     }
 
     public void PlayBGM()

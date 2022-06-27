@@ -400,7 +400,6 @@ MonoBehaviour:
   m_uI_Inventory: {fileID: 1606229380}
   gameState: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   gameUI: {fileID: 1883833052}
-  m_canvas: {fileID: 0}
 --- !u!1 &487232348
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +822,7 @@ MonoBehaviour:
   m_stars: {fileID: 1298188553}
   m_title: {fileID: 1105566691}
   m_emotion: {fileID: 766384722}
+  m_levelTitle: {fileID: 496062934}
   m_winContainer: {fileID: 1243565922}
   m_loseContainer: {fileID: 1900507202}
   m_uIDialog: {fileID: 232245373}
@@ -854,11 +854,11 @@ MonoBehaviour:
     IsWin: 1
   m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_levelDataModel:
-    Level: 0
     Stage: 0
+    Level: 0
+    IsNewLevel: 0
     IsOpen: 0
     Stars: 0
-    IsNewLevel: 0
     HighScore: 0
 --- !u!1 &643017493
 GameObject:

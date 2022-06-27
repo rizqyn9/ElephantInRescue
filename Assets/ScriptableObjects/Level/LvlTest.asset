@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df22bce8c3ddd4a6ba7082dc5f7c3574, type: 3}
+  m_Name: LvlTest
+  m_EditorClassIdentifier: 
+  _guid: 0e4729cd8ed3443cdb97049da891a189
+  description: 'Level test
+
+'
+  Level: 0
+  Stage: 0
+  CountDown: 300
+  ElephantColor:
+    serializedVersion: 2
+    rgba: 0
+  GO_Tutorial: {fileID: 0}
+  GO_MainComponent: {fileID: 4156136076795260991, guid: 6ba2e7e3e536d490886385e04e6cf35f, type: 3}
+  LevelTitle: {fileID: 0}
+  Star3: 0
+  Star2: 0
+  Star1: 0
