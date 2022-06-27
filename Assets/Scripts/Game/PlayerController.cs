@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public ElephantAnimation ElephantAnimation { get; internal set; }
     public bool IsDead { get; private set; }
     public bool CanMove { get; internal set; }
-    public Vector3 Direction { get; internal set; }
+    public Vector2 Direction { get; internal set; }
     public GameObject RenderObject { get => m_spriteRenderer.gameObject; }
 
     private void OnEnable()
@@ -131,7 +131,6 @@ public class PlayerController : MonoBehaviour
 
     void MoveTowards(Collider2D collider, Plane plane)
     {
-        print(collider.name);
         LeanTween
             .move(gameObject, collider.bounds.center, .5f)
             .setOnStart(() =>

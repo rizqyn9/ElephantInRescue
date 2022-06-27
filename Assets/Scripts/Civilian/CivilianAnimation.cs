@@ -1,68 +1,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CivilianAnimation : MonoBehaviour
+public class HumanoidAnimation<T> where T: class
 {
-    [SerializeField] Civilian Civilian;
-    [SerializeField] Animator m_animator;
-
-    // Enumurate for animation state
-    public static string ATTACK { get => "ATTACK"; }
-    public static string IDDLE { get => "IDDLE"; }
-    public static string WALK { get => "WALK"; }
-
-    private List<string> m_registeredMotionState = new List<string>() { ATTACK, IDDLE, WALK };
-
-    private void OnEnable()
-    {
-        m_animator = GetComponent<Animator>();
-        if (!Civilian) Civilian = GetComponentInParent<Civilian>();
-    }
-
-    public void Walk()
-    {
-        LeanTween
-            .value(0, 1, 3f)
-            .setOnStart(() =>
-            {
-                MotionStateUpdate(WALK);
-            })
-            .setOnComplete(() =>
-            {
-                MotionStateUpdate(IDDLE);
-            });
-    }
-
-    public void Attack()
-    {
-        MotionStateUpdate(ATTACK);
-    }
-
-    public void Iddle()
-    {
-        MotionStateUpdate(IDDLE);
-    }
-
+    public T Component { get; private set; }
+    public Animator Animator { get; private set; }
+    public List<string> RegisteredMotionState { get; private set; }
     string m_latestStateMotion = null;
-    public void MotionStateUpdate(string state)
+
+    public HumanoidAnimation(T objectGraphic, List<string> motionState, Animator animator)
     {
-        if (m_latestStateMotion == ATTACK || !m_animator) return;
-        ConditionActive(state);
-        m_animator?.SetFloat("X", Civilian.Direction.x);
-        m_animator?.SetFloat("Y", Civilian.Direction.y);
+        Component = objectGraphic;
+        Animator = animator;
+        RegisteredMotionState = motionState;
     }
 
-    void ConditionActive(string active)
+    public virtual void UpdateStateMotion(string state, Vector2 direction)
+    {
+        //if (m_latestStateMotion == ATTACK || !m_animator) return;
+        ConditionActive(state);
+        Animator?.SetFloat("X", direction.x);
+        Animator?.SetFloat("Y", direction.y);
+    }
+
+    internal virtual void ConditionActive(string active)
     {
         if (m_latestStateMotion == active) return;
-        if (!m_registeredMotionState.Contains(active))
+        if (!RegisteredMotionState.Contains(active))
             throw new System.Exception($"{active} not registered as animation state");
 
         m_latestStateMotion = active;
 
-        m_registeredMotionState.ForEach(val =>
+        RegisteredMotionState.ForEach(val =>
         {
-            m_animator?.SetBool(val, val == active);
+            Animator?.SetBool(val, val == active);
         });
     }
 }

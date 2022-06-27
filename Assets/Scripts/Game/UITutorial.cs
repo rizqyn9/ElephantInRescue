@@ -75,7 +75,6 @@ public class UITutorial : MonoBehaviour
             .alphaCanvas(m_canvasGroup, 0, .4f)
             .setOnComplete(() =>
             {
-                print("Clear");
                 m_gameStateChannel.RaiseEvent(GameState.PLAY);
                 gameObject.SetActive(false);
             });

@@ -93,14 +93,12 @@ public class CivilianMovement: MonoBehaviour
     {
         ICMovement.SetCanMove(true);
 
-            print(CanMove);
         while (CanMove)
         {
             yield return
                 Civilian.StartCoroutine(
                     IMove(Routes[NextTarget].transform,
                         () => {
-                            ICMovement.OnUpdateTarget();
                             RecalculateTarget();
                         }
                     ));

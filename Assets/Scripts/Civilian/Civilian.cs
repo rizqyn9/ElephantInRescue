@@ -19,19 +19,17 @@ public class Civilian : MonoBehaviour
     public bool CanSeePlayer { get; set; }
 
     public CivilianFOV CivilianFOV { get; internal set; }
-    public CivilianAnimation CivilianAnimation { get; set; }
     public Plane CurrentPlane { get; set; }
 
     internal virtual void SetDirection(Vector2 dir) {
-        OnDirectionChange(dir);
         Direction = dir;
+        OnDirectionChange(dir);
     }
 
     internal virtual void OnEnable() {
         Direction = Vector2.down;
         CanSeePlayer = false;
         CivilianFOV = new CivilianFOV(this);
-        CivilianAnimation = GetComponentInChildren<CivilianAnimation>();
         m_gameStateChannel.OnEventRaised += HandleGameStateOnChange;
     }
 
@@ -66,8 +64,13 @@ public class Civilian : MonoBehaviour
 
     internal virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Plane plane = collision.GetComponent<Plane>();
-        if (plane) OnPlaneEnter(plane);
+        if (collision.TryGetComponent(out Plane plane))
+        {
+            OnPlaneEnter(plane);
+        } else if (collision.TryGetComponent(out PlayerController player))
+        {
+            SetCanSeePlayer(true);
+        }
     }
 
     internal virtual void OnTriggerExit2D(Collider2D collision)
@@ -88,10 +91,7 @@ public class Civilian : MonoBehaviour
 
     internal virtual void OnGameStateChange(GameState old, GameState recent) { }
 
-    internal virtual void OnDirectionChange(Vector2 dir)
-    {
-        CivilianAnimation.Walk();
-    }
+    internal virtual void OnDirectionChange(Vector2 dir) { }
 
     internal virtual void OnPlaneExit(Plane plane)
     {
@@ -112,12 +112,7 @@ public class Civilian : MonoBehaviour
         if (plane.Box) OnHitObstacle();
     }
 
-    internal virtual void OnHitObstacle()
-    {
-        //StopAllCoroutines();
-        //CivilianMovement.ReverseDirection();
-        //CivilianMovement.Start();
-    }
+    internal virtual void OnHitObstacle() { }
 
     public void SetCanSeePlayer (bool should)
     {
@@ -126,11 +121,9 @@ public class Civilian : MonoBehaviour
             OnSeePlayer();
     }
 
-    internal void OnSeePlayer()
+    internal virtual void OnSeePlayer()
     {
-        CivilianAnimation.Attack();
-        //CivilianMovement.Stop();
-        PlayerController.Instance.OnHitCivilian(this);
+        //PlayerController.Instance.OnHitCivilian(this);
     }
 
     internal void SetCurrentPlane(Plane plane)

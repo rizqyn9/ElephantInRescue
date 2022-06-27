@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3160200983195024732}
   - component: {fileID: 3160200983195024733}
-  - component: {fileID: 3160200983195024739}
   m_Layer: 0
   m_Name: Civilian
   m_TagString: Untagged
@@ -80,23 +79,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3160200983195024739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3160200983195024734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8c67cfdfaad642eaaab24e702800a15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 1.5
-  angle: 120
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
