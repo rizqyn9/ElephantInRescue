@@ -40,7 +40,7 @@ AudioSource:
   m_GameObject: {fileID: 7969527721512817850}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6788923596094137606, guid: 2be7837e26a1a46f4be7b528d177d623, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -176,7 +176,7 @@ MonoBehaviour:
   sourceSFX: {fileID: 7969527721512817845}
   sourceBGM: {fileID: 7969527722612356619}
   BGM: {fileID: 0}
-  ButtonSFX: {fileID: 0}
+  ButtonSFX: {fileID: 8300000, guid: cf60f561a42be4159977196711741f60, type: 3}
   m_handleButtonOnClick: {fileID: 11400000, guid: 18d3c0d9e0e5c401997558f54829ea18, type: 2}
 --- !u!1 &7969527722612356616
 GameObject:
@@ -218,12 +218,12 @@ AudioSource:
   m_GameObject: {fileID: 7969527722612356616}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -356581434233713655, guid: 2be7837e26a1a46f4be7b528d177d623, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 71286caa23e6e479b8e5a8b3da7205a8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

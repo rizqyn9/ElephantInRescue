@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Sentry.Unity;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static PlayerData PlayerData { get => Instance.playerData; }
     public static SceneState SceneState => UpdateSceneState();
     public static ResourcesManager ResourcesManager { get; set; }
+    public SentryBehavior SentryBehavior { get; set; }
 
     private void Awake()
     {
@@ -36,12 +38,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        SentryBehavior = gameObject.AddComponent<SentryBehavior>();
         ResourcesManager = GetComponentInChildren<ResourcesManager>();
         Initialize();   
     }
 
     public void Initialize()
     {
+        SoundManager.Instance.PlayBGM();
         UpdateSceneState();
         PlayerDataModel = playerData.Load();
     }

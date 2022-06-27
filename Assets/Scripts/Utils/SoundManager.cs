@@ -6,12 +6,11 @@ public class SoundManager : MonoBehaviour
     private static SoundManager instance;
     public static SoundManager Instance { get => instance; }
 
-    [SerializeField] [HideInInspector] AudioMixer mixer;
+    [SerializeField] AudioMixer mixer;
     [SerializeField] AudioSource sourceSFX, sourceBGM;
 
     public AudioClip BGM;
     public AudioClip ButtonSFX;
-
 
     [SerializeField] VoidEventChannelSO m_handleButtonOnClick;
 
@@ -30,7 +29,7 @@ public class SoundManager : MonoBehaviour
 
     private void HandleButtonOnClick()
     {
-
+        PlaySound(ButtonSFX);
     }
 
     private void Awake()
@@ -45,8 +44,15 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        mixer.SetFloat(SFX_VOL, GetVolumePref(SFX_VOL));
-        mixer.SetFloat(BGM_VOL, GetVolumePref(SFX_VOL));
+        ChangeVolume(GetVolumePref(SFX_VOL), SFX_VOL);
+        ChangeVolume(GetVolumePref(BGM_VOL), BGM_VOL);
+        //mixer.SetFloat(SFX_VOL, );
+        //mixer.SetFloat(BGM_VOL, GetVolumePref(SFX_VOL));
+    }
+
+    public void PlayBGM()
+    {
+        Instance.sourceBGM.Play();
     }
 
     public void ChangeVolume(float value, string target)

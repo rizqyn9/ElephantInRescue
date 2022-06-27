@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class UIButton : MonoBehaviour
 {
+    [SerializeField] VoidEventChannelSO m_buttonClick;
     [SerializeField] UIDialog m_target;
     [SerializeField] UnityEvent onClick;
     Button m_button;
@@ -19,6 +20,7 @@ public class UIButton : MonoBehaviour
     public void On_Click()
     {
         RectTransform rect = m_button.GetComponent<RectTransform>();
+        m_buttonClick.RaiseEvent();
         LeanTween
             .scale(rect, rect.localScale * 1.1f, .2f)
             .setLoopPingPong(1)

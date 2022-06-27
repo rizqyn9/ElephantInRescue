@@ -133,4 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de994438de08e4a5b9423ee70975cf5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_buttonClick: {fileID: 11400000, guid: 18d3c0d9e0e5c401997558f54829ea18, type: 2}
   m_target: {fileID: 0}
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
