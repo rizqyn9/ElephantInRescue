@@ -19,7 +19,7 @@ MonoBehaviour:
   CountDown: 150
   ElephantColor:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4290625023
   GO_Tutorial: {fileID: 7596849095416375760, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
   GO_MainComponent: {fileID: 8835465095697293657, guid: 1e3bf5bfa88644bb5a10df658bca49a3, type: 3}
   LevelTitle: {fileID: 0}

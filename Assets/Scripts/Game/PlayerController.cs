@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameStateChannelSO m_gameStateChannel;
     public InventoryStateSO m_inventoryStateSO;
 
+    public LevelManager LevelManager { get; set; }
     public Plane CurrentPlane { get; private set; }
     public ElephantAnimation ElephantAnimation { get; internal set; }
     public bool IsDead { get; private set; }
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         m_inventoryStateSO.OnEventRaised += HandleInventoryState;
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         ElephantAnimation = GetComponentInChildren<ElephantAnimation>();
+        LevelManager = FindObjectOfType<LevelManager>();
     }
 
     private void OnDisable()
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         m_spriteRenderer.enabled = false;
+        m_spriteRenderer.color = LevelManager.LevelData.ElephantColor;
         CanMove = false;
         IsDead = false;
         transform.position = m_planeStartPosition.transform.position;
