@@ -4,6 +4,7 @@ public enum PlaneTypeEnum
 {
     ROUTE,
     TREE,
+    STONE,
     FINISH,
     HOLE,
     OBSTACLE

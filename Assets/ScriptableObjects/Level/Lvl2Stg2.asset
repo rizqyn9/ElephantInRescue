@@ -17,6 +17,12 @@ MonoBehaviour:
   Level: 2
   Stage: 2
   CountDown: 400
+  ElephantColor:
+    serializedVersion: 2
+    rgba: 4294967295
   GO_Tutorial: {fileID: 0}
   GO_MainComponent: {fileID: 3584385854464444248, guid: 88d2a69b7ae474786a0cfca93232def7, type: 3}
   LevelTitle: {fileID: 0}
+  Star3: 0
+  Star2: 0
+  Star1: 0

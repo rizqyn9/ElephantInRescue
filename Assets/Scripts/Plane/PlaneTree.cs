@@ -11,18 +11,7 @@ public class PlaneTree : Plane
     [SerializeField] Color m_activeColor;
 
     public bool Destroyed { get; private set; }
-
     public bool ShouldDestroyable { get => m_ShouldDestroyable; private set => m_ShouldDestroyable = value; }
-
-    internal override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
-    internal override void OnDisable()
-    {
-        base.OnDisable();
-    }
 
     internal override void Start()
     {
@@ -44,11 +33,6 @@ public class PlaneTree : Plane
             m_spriteRenderer.enabled = false;
             m_rootSO.Add();
             m_inventoryChannel.RaiseEvent(null);
-        }
-        base.OnMouseDown();
-        if (Box)
-        {
-            Box.MoveToPlane(this);
         }
     }
 }
