@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,12 +20,14 @@ public enum InventoryState
 [RequireComponent(typeof(Button))]
 public class InventoryItem : MonoBehaviour
 {
-    internal Image image;
-    internal Button button;
-    RectTransform rectTransform;
     [SerializeField] Color32 m_activeColor, m_iddleColor;
     [SerializeField] internal InventoryStateSO inventoryStateSO;
     [SerializeField] InventoryState m_inventoryState = InventoryState.IDDLE;
+    [SerializeField] AudioClip m_sfxClick;
+
+    internal Image image;
+    internal Button button;
+    RectTransform rectTransform;
     public InventoryState InventoryState
     {
         get => m_inventoryState;
@@ -42,7 +43,7 @@ public class InventoryItem : MonoBehaviour
 
     internal virtual void HandleStateOnChange(InventoryState before, InventoryState after)
     {
-        if(after == InventoryState.IDDLE)
+        if (after == InventoryState.IDDLE)
         {
             if(rectTransform.localScale != Vector3.one)
             {
@@ -53,6 +54,7 @@ public class InventoryItem : MonoBehaviour
             image.color = m_iddleColor;
         } else if(after == InventoryState.ACTIVE)
         {
+            SoundManager.PlaySound(m_sfxClick);
             inventoryStateSO.RaiseEvent(this);
             LeanTween
                 .scale(rectTransform, rectTransform.localScale * 1.1f, .2f).setEaseInBounce();

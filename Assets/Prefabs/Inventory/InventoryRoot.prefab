@@ -288,7 +288,7 @@ MonoBehaviour:
     rgba: 4294967295
   inventoryStateSO: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
   m_inventoryState: 1
+  m_sfxClick: {fileID: 8300000, guid: cdef2e916f0054d04b9543686de7c591, type: 3}
   inventoryItemType: 1
   text: {fileID: 5474842307200041033}
   m_rootController: {fileID: 11400000, guid: c3b7d28f417ba46709fb78b9ab49028b, type: 2}
-  m_countRoot: 0

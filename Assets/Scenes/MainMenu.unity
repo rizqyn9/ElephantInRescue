@@ -11425,6 +11425,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7969527721954217778, guid: 163de8b5692ed4760a54c05ed17e240c, type: 3}
+      propertyPath: BGM_Game
+      value: 
+      objectReference: {fileID: 8300000, guid: 71286caa23e6e479b8e5a8b3da7205a8, type: 3}
+    - target: {fileID: 7969527721954217778, guid: 163de8b5692ed4760a54c05ed17e240c, type: 3}
+      propertyPath: BGM_MainMenu
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cbd4a999e5094fa398077d9d56ccc73, type: 3}
     - target: {fileID: 7969527721954217779, guid: 163de8b5692ed4760a54c05ed17e240c, type: 3}
       propertyPath: m_Name
       value: --SoundManager

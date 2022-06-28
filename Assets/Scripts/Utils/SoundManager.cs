@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioMixer mixer;
     [SerializeField] AudioSource sourceSFX, sourceBGM;
 
-    public AudioClip BGM;
+    public AudioClip BGM_MainMenu, BGM_Game;
     public AudioClip ButtonSFX;
 
     [SerializeField] VoidEventChannelSO m_handleButtonOnClick;
@@ -48,8 +48,11 @@ public class SoundManager : MonoBehaviour
         ChangeVolume(GetVolumePref(BGM_VOL), BGM_VOL);
     }
 
-    public void PlayBGM()
+    public void PlayBGM(string sceneName)
     {
+        if (sceneName == "Game") Instance.sourceBGM.clip = BGM_Game;
+        else Instance.sourceBGM.clip = BGM_MainMenu;
+
         Instance.sourceBGM.Play();
     }
 
@@ -68,5 +71,19 @@ public class SoundManager : MonoBehaviour
     public static void PlaySound(AudioClip audioClip)
     {
         Instance.sourceSFX.PlayOneShot(audioClip);
+    }
+
+    public static void PlaySFXLoop(AudioClip audioClip)
+    {
+        Instance.sourceSFX.loop = true;
+        Instance.sourceSFX.clip = audioClip;
+        Instance.sourceSFX.Play();
+    }
+
+    public static void StopSFXLoop()
+    {
+        Instance.sourceSFX.loop = false;
+        Instance.sourceSFX.clip = null;
+        Instance.sourceSFX.Stop();
     }
 }

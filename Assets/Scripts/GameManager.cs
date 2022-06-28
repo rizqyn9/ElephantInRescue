@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
 
     public void Initialize()
     {
-        SoundManager.Instance.PlayBGM();
         UpdateSceneState();
         PlayerDataModel = playerData.Load();
     }
@@ -67,6 +66,8 @@ public class GameManager : MonoBehaviour
     {
         PlayerDataModel = playerData.Load(); // Sync persistant data with runtime
         print($"Load {scene.name}");
+
+        SoundManager.Instance.PlayBGM(scene.name);
 
         if (Time.timeScale == 0)
         {

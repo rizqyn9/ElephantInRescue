@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Plane m_planeStartPosition;
     [SerializeField] SpriteRenderer m_spriteRenderer;
+    [SerializeField] AudioClip m_sfxOnHit;
 
     [Header("Events")]
     public GameStateChannelSO m_gameStateChannel;
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnHitCivilian(Civilian civilian)
     {
+        SoundManager.PlaySound(m_sfxOnHit);
         IsDead = true;
         ElephantAnimation.Knock();
         LeanTween.value(0, 1, 5f).setOnComplete(LevelManager.Instance.LoseCondition);

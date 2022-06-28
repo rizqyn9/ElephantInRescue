@@ -128,6 +128,7 @@ MonoBehaviour:
   m_LayerGrid:
     serializedVersion: 2
     m_Bits: 64
+  m_boxAudio: {fileID: 8300000, guid: 621453b2083334ba19105b4a43b4350f, type: 3}
 --- !u!50 &3165564381872928668
 Rigidbody2D:
   serializedVersion: 4

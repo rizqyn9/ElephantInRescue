@@ -9,6 +9,7 @@ public class PlaneTree : Plane
     [SerializeField] InventorySO m_rootSO;
     [SerializeField] SpriteRenderer m_groundSprite;
     [SerializeField] Color m_activeColor;
+    [SerializeField] AudioClip m_sfxOnDestroy;
 
     public bool Destroyed { get; private set; }
     public bool ShouldDestroyable { get => m_ShouldDestroyable; private set => m_ShouldDestroyable = value; }
@@ -27,12 +28,16 @@ public class PlaneTree : Plane
         base.OnMouseDown();
 
         if (m_ShouldDestroyable && ActiveInventory?.InventoryItemType == InventoryItemType.KNIFE)
-        {
-            Destroyed = true;
-            SetPlaneType(PlaneTypeEnum.ROUTE);
-            m_spriteRenderer.enabled = false;
-            m_rootSO.Add();
-            m_inventoryChannel.RaiseEvent(null);
-        }
+            DestroyTree();
+    }
+
+    void DestroyTree()
+    {
+        SoundManager.PlaySound(m_sfxOnDestroy);
+        Destroyed = true;
+        SetPlaneType(PlaneTypeEnum.ROUTE);
+        m_spriteRenderer.enabled = false;
+        m_rootSO.Add();
+        m_inventoryChannel.RaiseEvent(null);
     }
 }

@@ -165,6 +165,7 @@ MonoBehaviour:
   m_rootSO: {fileID: 11400000, guid: c3b7d28f417ba46709fb78b9ab49028b, type: 2}
   m_groundSprite: {fileID: 6175141110705144203}
   m_activeColor: {r: 0.6784314, g: 0.5372549, b: 0.18431373, a: 0.34117648}
+  m_sfxOnDestroy: {fileID: 8300000, guid: 28441da3a73e84190b7e49c3beb0317f, type: 3}
 --- !u!50 &-5445178349978724216
 Rigidbody2D:
   serializedVersion: 4

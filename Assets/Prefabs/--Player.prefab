@@ -48,6 +48,7 @@ MonoBehaviour:
   Desc: 
   m_planeStartPosition: {fileID: 0}
   m_spriteRenderer: {fileID: 0}
+  m_sfxOnHit: {fileID: 8300000, guid: 241b27f4c591741bd875007dd6f42aba, type: 3}
   m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_inventoryStateSO: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
 --- !u!61 &7424339006242935325

@@ -7,6 +7,7 @@ public class Box : MonoBehaviour
     [SerializeField] GameStateChannelSO m_GameStateChannelSO = null;
     [SerializeField] Plane m_boxPlane; // Initialize position
     [SerializeField] LayerMask m_LayerGrid;
+    [SerializeField] AudioClip m_boxAudio;
 
     List<Plane> m_activePlanes = new List<Plane>();
     bool m_onMove = false;
@@ -52,6 +53,7 @@ public class Box : MonoBehaviour
     public void MoveToPlane(Plane plane)
     {
         CloseFocus();
+        SoundManager.PlaySound(m_boxAudio);
         IsActive = false;
 
         m_onMove = true;
