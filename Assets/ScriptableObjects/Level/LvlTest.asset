@@ -23,7 +23,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   GO_Tutorial: {fileID: 0}
-  GO_MainComponent: {fileID: 4156136076795260991, guid: 6ba2e7e3e536d490886385e04e6cf35f, type: 3}
+  GO_MainComponent: {fileID: 1666424388448877298, guid: 9011cb2590b0b4b6a98f1583d9a9472c, type: 3}
   LevelTitle: {fileID: 0}
   Star3: 0
   Star2: 0
