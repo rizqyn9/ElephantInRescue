@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Box : MonoBehaviour
 {
-    [SerializeField] GameStateChannelSO m_GameStateChannelSO = null;
     [SerializeField] Plane m_boxPlane; // Initialize position
     [SerializeField] LayerMask m_LayerGrid;
     [SerializeField] AudioClip m_boxAudio;
@@ -13,6 +12,13 @@ public class Box : MonoBehaviour
     bool m_onMove = false;
 
     public bool IsActive { get; private set; }
+    public LevelManager LevelManager { get; set; }
+
+    private void OnEnable()
+    {
+        LevelManager = LevelManager.Instance
+            ?? FindObjectOfType<LevelManager>();
+    }
 
     private void Start()
     {
@@ -23,6 +29,7 @@ public class Box : MonoBehaviour
 
     private void Update()
     {
+        if (LevelManager.GameState != GameState.PLAY) return;
         if (!IsActive) return;
 
         // Close click away
@@ -36,6 +43,7 @@ public class Box : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (LevelManager.GameState != GameState.PLAY) return;
         if (m_onMove) return;
         if (IsActive)
         {

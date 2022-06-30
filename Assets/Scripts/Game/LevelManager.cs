@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
     public HeaderUtils HeaderUtils { get; set; }
     public LevelSO LevelData { get; private set; }
     public PlayerController PlayerController { get; set; }
+    public GameState GameState { get; private set; }
 
     private void OnEnable()
     {
@@ -38,10 +39,9 @@ public class LevelManager : MonoBehaviour
         gameStateChannel.OnEventRaised -= HandleGameStateChange;
     }
 
-    [SerializeField] GameState m_gameState;
     void HandleGameStateChange(GameState before, GameState gameState)
     {
-        m_gameState = gameState;
+        GameState = gameState;
 
         if (gameState == GameState.PLAY)
             HeaderUtils.CountDown.Start();
