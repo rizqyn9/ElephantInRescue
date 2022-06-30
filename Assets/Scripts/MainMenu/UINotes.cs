@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class UINotes : MonoBehaviour
 {
-    [SerializeField] UI_MainMenu m_Ui_MainMenu;
     [SerializeField] GameObject m_primaryContainer;
     [SerializeField] GameObject m_containerState;
     [SerializeField] UIDialog m_dialog;
 
-    private GameObject ContainerState
+    public UI_MainMenu m_uiMainMenu { get; private set; }
+
+    public GameObject ContainerState
     {
         get => m_containerState;
-        set
+        private set
         {
             if (m_containerState == value) return;
             HandleOnContainerChanged(m_containerState, value);
@@ -22,10 +23,12 @@ public class UINotes : MonoBehaviour
     {
         ContainerState = m_primaryContainer;
         m_dialog = GetComponent<UIDialog>();
+        m_uiMainMenu = GetComponentInParent<UI_MainMenu>();
     }
 
     public void OnChange(GameObject _containerOpen)
     {
+        m_uiMainMenu.ButtonClick();
         ContainerState = _containerOpen;
     }
 

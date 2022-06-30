@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7188301641128981826}
   - component: {fileID: 260020341643804603}
-  - component: {fileID: 7575241356319921723}
   - component: {fileID: 3663188185995454211}
   - component: {fileID: 3652023694899138148}
   m_Layer: 6
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 67218582361331623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1777713690733158295}
   m_Father: {fileID: 0}
@@ -61,22 +60,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 0.85}
   m_EdgeRadius: 0
---- !u!114 &7575241356319921723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67218582361331623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e43a8e47f2e49e5809facc7cd72561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_groundRenderer: {fileID: 8733284455272903601}
-  m_inventoryChannel: {fileID: 11400000, guid: 7b60e6e9370f04a939c48ae58e3f8663, type: 2}
-  m_isPlayerInstancePlace: 0
-  m_activeColor: {r: 0.6792453, g: 0.5358521, b: 0.18262726, a: 0.34117648}
 --- !u!50 &3663188185995454211
 Rigidbody2D:
   serializedVersion: 4

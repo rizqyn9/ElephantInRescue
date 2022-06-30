@@ -3,15 +3,17 @@ using UnityEngine.UI;
 
 public class UISetting : MonoBehaviour
 {
-    [SerializeField] UI_MainMenu m_Ui_MainMenu;
     [SerializeField] Slider m_bgmSlider;
     [SerializeField] Slider m_sfxSlider;
     [SerializeField] GameObject m_preference, m_credit;
     [SerializeField] UIDialog m_dialog;
     [SerializeField] bool m_isMainMenu;
 
+    public UI_MainMenu m_uiMainMenu { get; private set; }
+
     private void OnEnable()
     {
+        m_uiMainMenu = GetComponentInParent<UI_MainMenu>();
         m_bgmSlider.onValueChanged.AddListener(HandleBgmSliderOnChange);
         m_sfxSlider.onValueChanged.AddListener(HandleSfxSliderOnChange);
         m_dialog = GetComponent<UIDialog>();
@@ -35,6 +37,7 @@ public class UISetting : MonoBehaviour
         if (m_preference.activeInHierarchy) m_dialog.OnClose();
         if (m_credit.activeInHierarchy)
         {
+            m_uiMainMenu.ButtonClick();
             m_credit.SetActive(false);
             m_preference.SetActive(true);
         }
@@ -46,6 +49,7 @@ public class UISetting : MonoBehaviour
         if (m_credit.activeInHierarchy) return;
         else
         {
+            m_uiMainMenu.ButtonClick();
             m_preference.SetActive(false);
             m_credit.SetActive(true);
         }

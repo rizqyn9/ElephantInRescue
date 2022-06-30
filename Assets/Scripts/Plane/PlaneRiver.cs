@@ -40,7 +40,7 @@ public class PlaneRiver : Plane
 
     void CbAfterBuild (GameObject effect)
     {
-        GameObject bridge = Instantiate(m_bridge, BoxCollider2D.bounds.center, Quaternion.identity);
+        GameObject bridge = Instantiate(m_bridge, BoxCollider2D.bounds.center, transform.rotation);
         
         LeanTween
             .alpha(effect, 0, .5f)                    

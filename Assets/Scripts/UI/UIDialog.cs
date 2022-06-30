@@ -8,8 +8,11 @@ public class UIDialog : MonoBehaviour
     [SerializeField] UnityAction m_onClose;
     internal Action CloseCallback;
 
+    public UI_MainMenu UI_MainMenu { get; set; }
+
     private void OnEnable()
     {
+        UI_MainMenu = GetComponentInParent<UI_MainMenu>();
         m_child.GetComponent<CanvasGroup>().alpha = 0;
 
         LeanTween
@@ -25,6 +28,8 @@ public class UIDialog : MonoBehaviour
     void Close()
     {
         m_onClose?.Invoke();
+
+        UI_MainMenu.ButtonClick();
 
         LeanTween
             .alphaCanvas(m_child.GetComponent<CanvasGroup>(), 0, 1f)

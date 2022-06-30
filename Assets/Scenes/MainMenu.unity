@@ -2696,7 +2696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca468f3efd16f441d98769e9c6e8a2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Ui_MainMenu: {fileID: 596243915}
+  m_uiMainMenu: {fileID: 0}
   m_bgmSlider: {fileID: 2017216619}
   m_sfxSlider: {fileID: 302376532}
   m_preference: {fileID: 1625941747}
@@ -4007,6 +4007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4c74ecd7b8949a08891eafacb1b56d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_buttonClickSO: {fileID: 11400000, guid: 18d3c0d9e0e5c401997558f54829ea18, type: 2}
 --- !u!224 &596243916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7591,7 +7592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d249efcd3ce44aa9b57888013031b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Ui_MainMenu: {fileID: 596243915}
+  m_uiMainMenu: {fileID: 0}
   m_primaryContainer: {fileID: 190109676}
   m_containerState: {fileID: 0}
   m_dialog: {fileID: 0}

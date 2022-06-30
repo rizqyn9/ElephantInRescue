@@ -181,6 +181,7 @@ MonoBehaviour:
   m_isPlayerInstancePlace: 0
   m_stoneRenderer: {fileID: 7585857013668557398}
   m_stoneSO: {fileID: 11400000, guid: 71ce70d952eda4a63aa5b7bea2c11b44, type: 2}
+  m_sfxStoneDestroy: {fileID: 8300000, guid: 30d0f8cb865ec49d68cf2c6a2df894ed, type: 3}
 --- !u!1 &6134780789701053783
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,13 +4,15 @@ public class PlaneStone : Plane
 {
     [SerializeField] SpriteRenderer m_stoneRenderer;
     [SerializeField] InventorySO m_stoneSO;
+    [SerializeField] AudioClip m_sfxStoneDestroy;
 
     public bool Destroyed { get; private set; }
 
-    internal override void Start()
+    internal override void OnEnable()
     {
         SetPlaneType(PlaneTypeEnum.STONE);
-        base.Start();
+        base.OnEnable();
+        Destroyed = false;
     }
 
     internal override void OnMouseDown()
@@ -25,6 +27,7 @@ public class PlaneStone : Plane
 
     private void DestroyStone()
     {
+        SoundManager.PlaySound(m_sfxStoneDestroy);
         Destroyed = true;
         SetPlaneType(PlaneTypeEnum.ROUTE);    
         Destroy(m_stoneRenderer.gameObject);
