@@ -1,6 +1,5 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using Sentry.Unity;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-
 
     /// <summary>
     /// Load Resource data
@@ -91,10 +89,10 @@ public class GameManager : MonoBehaviour
 #endif
     public static void LoadLevelMap()
     {
-#if UNITY_EDITOR
-        LoadGameLevel(GetLevelDataByLevelStage(Instance.levelDev, Instance.stageDev));
-        return;
-#endif
+//#if UNITY_EDITOR
+//        LoadGameLevel(GetLevelDataByLevelStage(Instance.levelDev, Instance.stageDev));
+//        return;
+//#endif
         SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 
@@ -110,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            LevelSO levelSO= LevelSO.FindLevel(ResourcesManager, level.Stage, level.Level);
+            LevelSO levelSO = LevelSO.FindLevel(ResourcesManager, level.Stage, level.Level);
             if (!levelSO) throw new System.Exception("Level target not found");
             LevelSO = levelSO;
             Instance.LevelDataModel = level; // Reset // Todo
@@ -123,6 +121,9 @@ public class GameManager : MonoBehaviour
             LoadMainMenu();
         }
     }
+
+    public static LevelSO GetLevelSO (int level, int stage) =>
+        LevelSO.FindLevel(ResourcesManager, stage, level);
 
     /**
      * Close Application
@@ -167,7 +168,7 @@ public class GameManager : MonoBehaviour
 
         OpenNextLevel(indexLevel);
 
-        print($"Update level data {levelDataModel.IsNewLevel.ToString()}");
+        print($"Update level data {levelDataModel.IsNewLevel}");
 
         Instance.playerData.Save();
     }
@@ -185,4 +186,3 @@ public class GameManager : MonoBehaviour
         PlayerDataModel.LevelDatas[currentLevelIndex + 1] = nextTarget;
     }
 }
-

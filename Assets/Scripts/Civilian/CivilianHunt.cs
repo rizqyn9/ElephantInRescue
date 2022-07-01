@@ -58,5 +58,6 @@ public class CivilianHunt : Civilian
         Throwable = Instantiate(GOThrow, transform).GetComponent<Throwable>();
 
         Throwable.Init(this, PlayerController.Instance.transform);
+        PlayerController.Instance.OnThrowed(Throwable);
     }
 }

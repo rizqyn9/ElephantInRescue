@@ -18,7 +18,7 @@ public class PlaneFinish : Plane
     public override void OnElephant()
     {
         LeanTween
-            .scale(m_renderer.gameObject, m_renderer.transform.localScale * 4, .5f)
+            .scale(m_renderer.gameObject, m_renderer.transform.localScale * 4, .35f)
             .setOnStart(() =>
             {
                 m_renderer.sortingOrder = 30;
@@ -30,7 +30,7 @@ public class PlaneFinish : Plane
             .setEaseInOutBounce();
 
         LeanTween
-            .move(m_renderer.gameObject, Vector2.zero, .5f)
+            .move(m_renderer.gameObject, Vector2.zero, .35f)
             .setEaseInOutBounce();
     }
 }

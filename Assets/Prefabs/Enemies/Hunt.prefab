@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CivilianConfig:
-    Radius: 1
+    Radius: 3
   m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_sprite: {fileID: 1728947553659054486}
   GOThrow: {fileID: 4575588420294739821, guid: fd78c0f420e974bd9aabe796ecbd0813, type: 3}

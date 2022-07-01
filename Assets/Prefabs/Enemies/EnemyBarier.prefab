@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CivilianConfig:
-    Radius: 2
+    Radius: 0
   m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_sprite: {fileID: 78617260798185894}
 --- !u!114 &561734800285794

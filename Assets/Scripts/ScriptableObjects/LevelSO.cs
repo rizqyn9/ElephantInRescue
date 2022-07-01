@@ -14,6 +14,8 @@ public class LevelSO : DescriptionBaseSO
 
     public bool ShouldTutorialUI { get => GO_Tutorial != null; }
 
+    public bool IsComingSoon { get => !GO_MainComponent; }
+
     /// <summary>
     /// Get the level whic exist on resource manager
     /// </summary>

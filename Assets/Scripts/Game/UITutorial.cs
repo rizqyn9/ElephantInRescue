@@ -1,31 +1,55 @@
 using System.Collections;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum CharExpression
+{
+    SMILE,
+    TALK,
+    SAD
+}
+
+[System.Serializable]
+public struct TutorialProps
+{
+    [TextArea] public string Text;
+    public CharExpression CharExpression;    
+}
+
+[System.Serializable]
+public struct SpriteExpression
+{
+    public CharExpression CharExpression;
+    public Sprite Sprite;
+}
 
 public class UITutorial : MonoBehaviour
 {
     [SerializeField] Image m_char;
     [SerializeField] Image m_textContainer;
-    [SerializeField] TMP_Text m_textScript;
-    [HideInInspector] CanvasGroup m_canvasGroup;
-    [SerializeField][TextArea] string[] m_texts;
+    [SerializeField] TMPro.TMP_Text m_textScript;
+    [SerializeField] List<TutorialProps> m_tutorials;
     [SerializeField] GameStateChannelSO m_gameStateChannel;
+    [SerializeField] List<SpriteExpression> SpriteExpressions;
+
+    public CanvasGroup CanvasGroup { get; private set; }
 
     private void OnEnable()
     {
         m_gameStateChannel.RaiseEvent(GameState.TUTORIAL);
 
-        m_canvasGroup = GetComponent<CanvasGroup>();
-        m_canvasGroup.alpha = 0;
-        m_canvasGroup.interactable = false;
+        CanvasGroup = GetComponent<CanvasGroup>();
+        CanvasGroup.alpha = 0;
+        CanvasGroup.interactable = false;
+        m_char.enabled = false;
 
         m_textScript.text = "";
 
         LeanTween
-            .alphaCanvas(m_canvasGroup, 1, .8f)
+            .alphaCanvas(CanvasGroup, 1, .8f)
             .setOnComplete(() => {
-                m_canvasGroup.interactable = true;
+                CanvasGroup.interactable = true;
                 StartText();
             });
     }
@@ -34,19 +58,21 @@ public class UITutorial : MonoBehaviour
     void StartText()
     {
         indexTextCounter = 0;
-        StartCoroutine(PlayText(m_texts[indexTextCounter]));
+        StartCoroutine(PlayText(m_tutorials[indexTextCounter]));
     }
 
     bool shouldNext = false;
     bool shouldSkip = false;
-    IEnumerator PlayText(string text)
+    IEnumerator PlayText(TutorialProps props)
     {
         m_textScript.text = "";
+
+        SetCharSprite(GetSprite(props.CharExpression));
 
         shouldNext = false;
         shouldSkip = false;
 
-        foreach (char c in text)
+        foreach (char c in props.Text)
         {
             m_textScript.text += c;
             if(!shouldSkip)
@@ -59,11 +85,11 @@ public class UITutorial : MonoBehaviour
     public void Btn_OnNext()
     {
         if (!shouldNext) shouldSkip = true;
-        else if (shouldNext && indexTextCounter < m_texts.Length - 1)
+        else if (shouldNext && indexTextCounter < m_tutorials.Count - 1)
         {
             indexTextCounter++;
-            StartCoroutine(PlayText(m_texts[indexTextCounter]));
-        } else if (shouldNext && indexTextCounter == m_texts.Length - 1)
+            StartCoroutine(PlayText(m_tutorials[indexTextCounter]));
+        } else if (shouldNext && indexTextCounter == m_tutorials.Count - 1)
         {
             CloseContainer();
         }
@@ -72,7 +98,7 @@ public class UITutorial : MonoBehaviour
     void CloseContainer ()
     {
         LeanTween
-            .alphaCanvas(m_canvasGroup, 0, .4f)
+            .alphaCanvas(CanvasGroup, 0, .4f)
             .setOnComplete(() =>
             {
                 m_gameStateChannel.RaiseEvent(GameState.PLAY);
@@ -82,5 +108,18 @@ public class UITutorial : MonoBehaviour
         LeanTween
             .moveY(gameObject.GetComponent<RectTransform>(), -100, .4f)
             .setEaseOutQuad();
+    }
+
+    Sprite GetSprite(CharExpression mode) =>
+        SpriteExpressions.Find(val => val.CharExpression == mode).Sprite;
+
+    void SetCharSprite(Sprite sprite)
+    {
+        if (!sprite) m_char.enabled = false;
+        else
+        {
+            m_char.sprite = sprite;
+            m_char.enabled = true;
+        }
     }
 }

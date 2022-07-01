@@ -53,10 +53,22 @@ public class CivilianBarier : Civilian, ICMovement
 
     public void OnUpdateTarget() {}
 
+    internal override void OnFinish()
+    {
+        base.OnFinish();
+    }
+
     public void SetCanMove(bool shouldMove)
     {
         CanMove = shouldMove;
         if(!CanMove)
             Animator.speed = 0;
+    }
+
+    internal override void OnSeePlayer()
+    {
+        base.OnSeePlayer();
+        PlayerController.Instance.OnHitCivilian(this);
+        CivilianMovement.Stop();
     }
 }

@@ -852,6 +852,8 @@ MonoBehaviour:
     Stars: {fileID: 21300000, guid: 3a60e79410291431cbd3e04eef72c08a, type: 3}
     Emotion: {fileID: 21300000, guid: 6268eeaf7b5ed43b1a8699c77e168062, type: 3}
     IsWin: 1
+  m_winSFX: {fileID: 8300000, guid: c3462ee8621de4773aaf93ee241dcca3, type: 3}
+  m_loseSFX: {fileID: 8300000, guid: 863360196dfd744789fe9d8b3db3e97f, type: 3}
   m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
   m_levelDataModel:
     Stage: 0

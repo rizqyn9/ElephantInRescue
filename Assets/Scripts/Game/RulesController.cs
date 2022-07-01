@@ -8,6 +8,7 @@ public class RulesController : MonoBehaviour
     [SerializeField] GameObject m_winContainer, m_loseContainer;
     [SerializeField] UIDialog m_uIDialog;
     [SerializeField] List<RulesProps> m_rulesProps = new List<RulesProps>();
+    [SerializeField] AudioClip m_winSFX, m_loseSFX;
 
     [SerializeField] GameStateChannelSO m_gameStateChannel;
     [SerializeField] LevelDataModel m_levelDataModel;
@@ -63,18 +64,23 @@ public class RulesController : MonoBehaviour
             case WinLoseType.TIME_OUT:
             case WinLoseType.LOSE:
                 m_levelDataModel.Stars = 0;
+                SoundManager.PlaySound(m_loseSFX);
                 break;
             case WinLoseType.STARS1:
                 m_levelDataModel.Stars = 1;
+                SoundManager.PlaySound(m_winSFX);
                 break;
             case WinLoseType.STARS2:
                 m_levelDataModel.Stars = 2;
+                SoundManager.PlaySound(m_winSFX);
                 break;
             case WinLoseType.STARS3:
                 m_levelDataModel.Stars = 3;
+                SoundManager.PlaySound(m_winSFX);
                 break;
             default:
-                throw new System.Exception("Unhandled Win Lose Type");
+                Debug.LogError("Unhandled Win Lose Type");
+                break;
         }
 
         SaveToPersistant();

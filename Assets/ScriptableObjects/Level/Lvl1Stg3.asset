@@ -16,13 +16,13 @@ MonoBehaviour:
   description: 
   Level: 1
   Stage: 3
-  CountDown: 150
+  CountDown: 60
   ElephantColor:
     serializedVersion: 2
     rgba: 4294967295
   GO_Tutorial: {fileID: 0}
   GO_MainComponent: {fileID: 8835465095697293657, guid: 1e3bf5bfa88644bb5a10df658bca49a3, type: 3}
-  LevelTitle: {fileID: 0}
-  Star3: 100
-  Star2: 80
-  Star1: 50
+  LevelTitle: {fileID: 21300000, guid: f7bafdca5256f4d34bb823563eb32fc8, type: 3}
+  Star3: 16
+  Star2: 37
+  Star1: 59

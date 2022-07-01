@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1261840989483860005}
   - component: {fileID: 1261840989483860006}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,15 +52,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_levelData:
-    Level: 0
     Stage: 0
+    Level: 0
+    IsNewLevel: 0
     IsOpen: 0
     Stars: 0
-    IsNewLevel: 0
     HighScore: 0
   m_level: 1
   m_stage: 1
-  m_uiActive: {fileID: 21300000, guid: 9a374c35dfc204f4d855253fe7195677, type: 3}
   m_uiDisable: {fileID: 21300000, guid: efbbcb93c19ec40efbad8c2aba3d7ab6, type: 3}
   m_image: {fileID: 1261840990069038006}
   m_stars: {fileID: 1009699963294582063}
@@ -69,7 +68,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1b6e7fbd1d59b4811921268b4ed67cc0, type: 3}
   - {fileID: 21300000, guid: f556a208c088b4edfb004a0f3d59c1ea, type: 3}
   - {fileID: 21300000, guid: 3f2167bc267674b4e9f58c9be54fede3, type: 3}
-  m_stageSprite: {fileID: 0}
+  m_buttonSFX: {fileID: 11400000, guid: 18d3c0d9e0e5c401997558f54829ea18, type: 2}
 --- !u!114 &1261840989483860006
 MonoBehaviour:
   m_ObjectHideFlags: 0

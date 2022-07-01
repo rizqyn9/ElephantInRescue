@@ -244,8 +244,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 1707830147510761918}
   - component: {fileID: 6916605550294437596}
   m_Layer: 5
-  m_Name: --Tutorial
+  m_Name: Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,10 +472,25 @@ MonoBehaviour:
   m_char: {fileID: 4439462427281949484}
   m_textContainer: {fileID: 6932096924664922615}
   m_textScript: {fileID: 8920248341264490457}
-  m_texts:
-  - Lorem Ipsum blasdadLorem Ipsum blasdadLorem Ipsum blasdad
-  - asdasdasdhjaksdkjasdjknacm, asdnjans,das asdn
+  m_tutorials:
+  - Text: Hello! Welcome to Elephant In Rescue!
+    CharExpression: 0
+  - Text: This game is based on Way Kambas National Park, Lampung.
+    CharExpression: 1
+  - Text: 'Way Kambas National Park has long been known as one of the main tourist
+      destinations in Lampung Province, which is also known as elephant training
+      center. '
+    CharExpression: 1
+  - Text: 'It has five main specieses, such the Sumatran elephant, Sumatran rhino,
+      Sumatran tiger, tapir, and sun bear as well as other endangered species. '
+    CharExpression: 1
+  - Text: In this stage we have to save the elephant Orbi to get past the obstacles
+      and the poachers who want to catch the elephant Orbi.
+    CharExpression: 1
+  - Text: Let's save the elephant orbi to continue the next game!
+    CharExpression: 1
   m_gameStateChannel: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
+  SpriteExpressions: []
 --- !u!225 &6916605550294437596
 CanvasGroup:
   m_ObjectHideFlags: 0

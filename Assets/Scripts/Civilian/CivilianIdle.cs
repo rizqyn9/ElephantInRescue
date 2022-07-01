@@ -13,6 +13,7 @@ public class CivilianIdle : MonoBehaviour
     public Civilian Civilian { get; private set; }
     public bool CanRotate { get; private set; }
     public int CurrentIndex { get; private set; }
+    public Coroutine Coroutine { get; private set; }
 
     private void OnEnable()
     {
@@ -24,9 +25,10 @@ public class CivilianIdle : MonoBehaviour
 
     public void StartRotation()
     {
+        if (Coroutine != null) return;
         CanRotate = true;
         UpdateDirection();
-        StartCoroutine(IRotate());
+        Coroutine = StartCoroutine(IRotate());
     }
 
 

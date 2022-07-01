@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_child: {fileID: 464204984626170515}
+  m_buttonClickSFX: {fileID: 11400000, guid: 18d3c0d9e0e5c401997558f54829ea18, type: 2}
 --- !u!1 &464204984626170514
 GameObject:
   m_ObjectHideFlags: 0

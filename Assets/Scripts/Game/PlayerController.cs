@@ -7,26 +7,27 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get => m_instance; }
 
     [SerializeField] Plane m_planeStartPosition;
-    [SerializeField] SpriteRenderer m_spriteRenderer;
     [SerializeField] AudioClip m_sfxOnHit;
 
     [Header("Events")]
     public GameStateChannelSO m_gameStateChannel;
     public InventoryStateSO m_inventoryStateSO;
 
+    public SpriteRenderer SpriteRenderer { get; set; }
     public LevelManager LevelManager { get; set; }
     public Plane CurrentPlane { get; private set; }
     public ElephantAnimation ElephantAnimation { get; internal set; }
     public bool IsDead { get; private set; }
     public bool CanMove { get; internal set; }
     public Vector2 Direction { get; internal set; }
-    public GameObject RenderObject { get => m_spriteRenderer.gameObject; }
+    public GameObject RenderObject { get => SpriteRenderer.gameObject; }
+    public Throwable Throwable { get; private set; }
 
     private void OnEnable()
     {
         m_gameStateChannel.OnEventRaised += HandleGameState;
         m_inventoryStateSO.OnEventRaised += HandleInventoryState;
-        m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         ElephantAnimation = GetComponentInChildren<ElephantAnimation>();
         LevelManager = FindObjectOfType<LevelManager>();
     }
@@ -39,8 +40,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        m_spriteRenderer.enabled = false;
-        m_spriteRenderer.color = LevelManager.LevelData.ElephantColor;
+        SpriteRenderer.enabled = false;
+        SpriteRenderer.color = LevelManager.LevelData.ElephantColor;
         CanMove = false;
         IsDead = false;
         transform.position = m_planeStartPosition.transform.position;
@@ -77,31 +78,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnHitCivilian(Civilian civilian)
+    public virtual void OnThrowed(Throwable throwObject)
+    {
+        CanMove = false;
+        Throwable = throwObject;
+    }
+
+    public virtual void OnHitCivilian(Civilian civilian)
     {
         SoundManager.PlaySound(m_sfxOnHit);
         IsDead = true;
         ElephantAnimation.Knock();
-        LeanTween.value(0, 1, 5f).setOnComplete(LevelManager.Instance.LoseCondition);
+        LeanTween.value(0, 1, .35f).setOnComplete(LevelManager.Instance.LoseCondition);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-    }
+    private void OnTriggerEnter2D(Collider2D collision) { }
 
     void HandleInventoryState(InventoryItem activeInventory) { }
 
     void InitializePlayer()
     {
-        m_spriteRenderer.enabled = true;
+        SpriteRenderer.enabled = true;
         CanMove = true;
     }
 
     public void SetDirection(Vector3 dir)
     {
-        if (!CanMove || IsDead) return;
-
+        if (!CanMove || IsDead || Throwable) return;
 
         RaycastHit2D[] raycast = Physics2D.RaycastAll(transform.position, dir, 1f);
 

@@ -3,13 +3,14 @@ using UnityEngine;
 public class UILevel : MonoBehaviour
 {
     [SerializeField] UIDialog m_uIDialog;
-    [HideInInspector] [SerializeField] LevelItem m_levelItem;
 
-    public LevelItem LevelItem { get => m_levelItem; private set => m_levelItem = value; }
+    public LevelItem LevelItem { get; private set; }
+    public LevelSO LevelSO { get; private set; }
 
     public void OpenDialog(LevelItem levelItem)
     {
         LevelItem = levelItem;
+        LevelSO = levelItem.LevelSO;
         m_uIDialog.gameObject.SetActive(true);
     }
 

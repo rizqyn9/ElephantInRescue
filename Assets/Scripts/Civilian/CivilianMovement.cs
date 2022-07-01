@@ -47,6 +47,7 @@ public class CivilianMovement: MonoBehaviour
 
     public void StartMove()
     {
+        if (coroutine != null) return;
         coroutine = StartCoroutine(IStartMove());
         ICMovement.OnStartWalking();
     }
