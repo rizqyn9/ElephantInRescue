@@ -72,6 +72,7 @@ public class UI_Game : MonoBehaviour
     public void Btn_NextLevel()
     {
         print("Next Level unhandled now");
+        GameManager.LoadGameNextLevel(LevelManager.Instance.LevelData);
     }
 
     public void Btn_BackToMainMenu()

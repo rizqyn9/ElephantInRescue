@@ -122,6 +122,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static void LoadGameNextLevel(LevelSO current)
+    {
+        LevelSO next = ResourcesManager.ListLevels[ResourcesManager.ListLevels.FindIndex(level => level.Level == current.Level && level.Stage == current.Stage) + 1];
+        LoadGameLevel(GetLevelDataByLevelStage(next.Level, next.Stage));
+    }
+
     public static LevelSO GetLevelSO (int level, int stage) =>
         LevelSO.FindLevel(ResourcesManager, stage, level);
 
