@@ -112,8 +112,7 @@ public class GameManager : MonoBehaviour
             if (!levelSO) throw new System.Exception("Level target not found");
             LevelSO = levelSO;
             Instance.LevelDataModel = level; // Reset // Todo
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
-            SceneManager.LoadScene(2, LoadSceneMode.Additive);
+            SceneManager.LoadScene(2, LoadSceneMode.Single);
         } catch (System.Exception err)
         {
             // Handle coming soon level

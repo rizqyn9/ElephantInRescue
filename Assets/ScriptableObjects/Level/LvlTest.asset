@@ -18,7 +18,7 @@ MonoBehaviour:
 '
   Level: 0
   Stage: 0
-  CountDown: 300
+  CountDown: 60
   ElephantColor:
     serializedVersion: 2
     rgba: 4294967295

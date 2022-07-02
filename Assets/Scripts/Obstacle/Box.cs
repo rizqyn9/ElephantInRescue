@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Box : MonoBehaviour
 {
-    [SerializeField] Plane m_boxPlane; // Initialize position
+    [SerializeField] Plane m_boxPlane;
     [SerializeField] LayerMask m_LayerGrid;
     [SerializeField] AudioClip m_boxAudio;
 
@@ -13,11 +13,13 @@ public class Box : MonoBehaviour
 
     public bool IsActive { get; private set; }
     public LevelManager LevelManager { get; set; }
+    public BoxCollider2D BoxCollider2D { get; set; }
 
     private void OnEnable()
     {
-        LevelManager = LevelManager.Instance
-            ?? FindObjectOfType<LevelManager>();
+        LevelManager = LevelManager.Instance;
+        BoxCollider2D = GetComponent<BoxCollider2D>();
+        BoxCollider2D.enabled = false;
     }
 
     private void Start()
@@ -25,6 +27,7 @@ public class Box : MonoBehaviour
         transform.position = m_boxPlane.transform.position;
         IsActive = false;
         m_boxPlane.SetBox(this);
+        BoxCollider2D.enabled = true;
     }
 
     private void Update()
@@ -85,13 +88,11 @@ public class Box : MonoBehaviour
             SetFocus();
     }
 
-
     void SetFocus()
     {
         m_activePlanes = PlaneUtils.GetAllAxis(m_boxPlane);
         m_activePlanes.ForEach(plane => plane.PlaneState.SetFocus(true, this));
     }
-
 
     void CloseFocus ()
     {

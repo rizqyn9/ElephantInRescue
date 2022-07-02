@@ -8,6 +8,7 @@ public class UI_Game : MonoBehaviour
     [SerializeField] UI_Inventory m_uI_Inventory;
     [SerializeField] GameStateChannelSO gameState;
     [SerializeField] CanvasGroup gameUI;
+    [SerializeField] UIDialog m_uiSetting, m_uiPause;
 
     Canvas Canvas { get; set; }
     public LevelManager LevelManager { get; set; }
@@ -78,5 +79,17 @@ public class UI_Game : MonoBehaviour
     public void Btn_BackToMainMenu()
     {
         GameManager.LoadMainMenu();
+    }
+
+    public void Btn_BackSetting()
+    {
+        m_uiSetting.gameObject.SetActive(false);
+        m_uiPause.gameObject.SetActive(true);
+    }
+
+    public void Btn_OpenSetting()
+    {
+        m_uiSetting.gameObject.SetActive(true);
+        m_uiPause.OnClose();
     }
 }
