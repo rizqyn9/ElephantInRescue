@@ -164,11 +164,10 @@ public class GameManager : MonoBehaviour
         int indexLevel = PlayerDataModel.LevelDatas.FindIndex(level => level.Level == levelDataModel.Level && level.Stage == levelDataModel.Stage);
 
         if (indexLevel < 0)
-#if UNITY_EDITOR
+        {
             Debug.LogError($"Level not found {levelDataModel.ToString()}");
-#else
             return;
-#endif
+        }
 
         PlayerDataModel.LevelDatas[indexLevel] = levelDataModel;
 

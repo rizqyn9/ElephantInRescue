@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour
         SpriteRenderer.enabled = false;
         SpriteRenderer.color = LevelManager.LevelData.ElephantColor;
         CanMove = false;
-        IsDead = false;
-        transform.position = m_planeStartPosition.transform.position;
+        IsDead = false;        
         SetPlane(m_planeStartPosition);
+        transform.position = m_planeStartPosition?.transform.position ?? transform.position;
     }
 
     private void Awake()
