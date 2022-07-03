@@ -7,7 +7,8 @@ public enum PlaneTypeEnum
     STONE,
     FINISH,
     HOLE,
-    OBSTACLE
+    OBSTACLE,
+    SPIKE,
 }
 
 [System.Serializable]

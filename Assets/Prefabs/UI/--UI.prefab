@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6098651177513362486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989462617242677467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbff438153994414e9d8208559d24ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GameStateChannelSO: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
 --- !u!1 &6098651177492760126
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,19 +267,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6098651177513362486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989462617242677467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbff438153994414e9d8208559d24ad0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_GameStateChannelSO: {fileID: 11400000, guid: 995ea4c378a5841a5a812bd4acb56c6f, type: 2}
 --- !u!1 &6098651177518121784
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
     Emotion: {fileID: 21300000, guid: b224dc774aed74626b32b158892ca405, type: 3}
     IsWin: 0
   - WinLoseType: 1
-    Title: {fileID: 21300000, guid: 7a38c3190756845cb8de95c9d1e28b60, type: 3}
+    Title: {fileID: 21300000, guid: a02f7c5c5c5444889a58ab0a414db11c, type: 3}
     Stars: {fileID: 21300000, guid: 24f67f33ce9fe4357a2139df7c57d7f1, type: 3}
     Emotion: {fileID: 21300000, guid: b224dc774aed74626b32b158892ca405, type: 3}
     IsWin: 0

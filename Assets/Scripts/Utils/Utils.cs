@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -61,5 +62,15 @@ public static class Utils
     public static LevelSO FindLevelResource(ResourcesManager resources, int stage, int level)
     {
         return resources.ListLevels.Find(levelExist => (levelExist.Stage == stage) && (levelExist.Level == level));
+    }
+
+    public static void BuildingEffect(Action onStart = null, Action onComplete = null)
+    {
+        LeanTween
+            .value(0, 1, 3f)
+            .setOnStart(onStart)
+            .setOnComplete(() => {
+                onComplete?.Invoke();
+            });
     }
 }

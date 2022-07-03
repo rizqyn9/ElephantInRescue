@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public interface IUI_Game
+{
+    public UI_Game UI_Game { get; }
+    public void SetUIGame(UI_Game uI_Game);
+}
+
 public class UI_Game : MonoBehaviour
 {
     private static UI_Game _instance;
@@ -72,7 +78,6 @@ public class UI_Game : MonoBehaviour
 
     public void Btn_NextLevel()
     {
-        print("Next Level unhandled now");
         GameManager.LoadGameNextLevel(LevelManager.Instance.LevelData);
     }
 

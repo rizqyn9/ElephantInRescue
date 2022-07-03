@@ -89,10 +89,10 @@ public class GameManager : MonoBehaviour
 #endif
     public static void LoadLevelMap()
     {
-//#if UNITY_EDITOR
-//        LoadGameLevel(GetLevelDataByLevelStage(Instance.levelDev, Instance.stageDev));
-//        return;
-//#endif
+#if UNITY_EDITOR
+        LoadGameLevel(GetLevelDataByLevelStage(Instance.levelDev, Instance.stageDev));
+        return;
+#endif
         SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 

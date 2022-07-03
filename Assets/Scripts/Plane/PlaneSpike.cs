@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlaneHole : Plane
+public class PlaneSpike : Plane
 {
     [SerializeField] InventorySO m_stoneController;
     [SerializeField] GameObject m_effectBuild;
@@ -10,7 +10,7 @@ public class PlaneHole : Plane
 
     internal override void OnEnable()
     {
-        SetPlaneType(PlaneTypeEnum.HOLE);
+        SetPlaneType(PlaneTypeEnum.SPIKE);
         base.OnEnable();
         BoxCollider2D = GetComponent<BoxCollider2D>();
     }
@@ -18,7 +18,7 @@ public class PlaneHole : Plane
     internal override void OnMouseDown()
     {
         base.OnMouseDown();
-        if(ActiveInventory?.InventoryItemType == InventoryItemType.STONE)
+        if (ActiveInventory?.InventoryItemType == InventoryItemType.STONE)
         {
             Building();
             m_stoneController.Remove();
@@ -32,6 +32,6 @@ public class PlaneHole : Plane
             SetPlaneType(PlaneTypeEnum.ROUTE);
             m_groundRenderer.sprite = m_MoveableSprite;
             Destroy(goEffect);
-        });       
+        });
     }
 }
