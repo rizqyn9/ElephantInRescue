@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3378205430622763895
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.data[0].Text
+      value: Congratulations on moving to the next level!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.data[1].Text
+      value: Now let's save the elephant Adora who is trapped by poachers. Sumatran
+        elephants have been officially protected since 1931 in the Wild Animal Protection
+        Ordinance No. 134 and 226.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.data[2].Text
+      value: The reduction of forest areas is a conflict that occurs between humans
+        and animals. One of them is illegal logging. As for the purpose of humans
+        doing it for the clearing of Agricultural Land, Regional Development, and
+        hunting animals.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.data[3].Text
+      value: Worse yet, there is also a breaking of the food chain in Sumatran forest
+        ecosystems.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.data[4].Text
+      value: Therefore, save the Adora elephant and the others to preserve the animals,
+        especially the Sumatran elephant in Way Kambas National Park!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.data[2].CharExpression
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.data[3].CharExpression
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707830147510761918, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_tutorials.Array.data[4].CharExpression
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500.6761
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 363.8875
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162089054571581640, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596849095416375760, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}
+      propertyPath: m_Name
+      value: Lvl2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 436e55bd5979248c6a29f8e7cff3e86b, type: 3}

@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8109216972509081203
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500.6761
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 363.8875
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360346025588911039, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130545814764536521, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_tutorials.Array.data[0].Text
+      value: Cool! You've reached the final level!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130545814764536521, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_tutorials.Array.data[1].Text
+      value: Way Kambas National Park has 50 species of mammals. Five main and endangered
+        species on the island of Sumatra from mammal groups, one of which is the
+        Sumatran elephant.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130545814764536521, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_tutorials.Array.data[2].Text
+      value: It has a management unit for elephant conservation, namely the Elephant
+        Training Center.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130545814764536521, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_tutorials.Array.data[3].Text
+      value: The elephants captured from the wild are trained to be empowered for
+        the benefit of humans, such as driving wild elephants into areas of human
+        activity, helping with agriculture, research, and tourism.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130545814764536521, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_tutorials.Array.data[4].Text
+      value: 'Now let''s save the elephant Hiro and the others and you will finish
+        the game, Keep Spirit! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130545814764536521, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_tutorials.Array.data[2].CharExpression
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130545814764536521, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_tutorials.Array.data[3].CharExpression
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155678125490360999, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}
+      propertyPath: m_Name
+      value: Lvl2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 564baa3ff77a4486fba244ebd2cc5298, type: 3}

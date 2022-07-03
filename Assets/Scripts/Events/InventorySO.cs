@@ -36,4 +36,9 @@ public class InventorySO : DescriptionBaseSO
     {
         Count++;
     }
+
+    public void Reset()
+    {
+        Count = 0; 
+    }
 }

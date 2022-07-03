@@ -14,7 +14,7 @@ public class PlayerData : MonoBehaviour
     {
         try
         {
-            saveFilePath = Application.persistentDataPath + "/eir_production.json";
+            saveFilePath = Application.persistentDataPath + "/eir_beta1.json";
 
             if (File.Exists(saveFilePath))
             {

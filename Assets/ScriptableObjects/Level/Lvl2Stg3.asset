@@ -19,10 +19,10 @@ MonoBehaviour:
   CountDown: 60
   ElephantColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4290558130
   GO_Tutorial: {fileID: 0}
   GO_MainComponent: {fileID: 7684218860468633867, guid: b6978b6a319694f47b8c50dafe94aaf1, type: 3}
   LevelTitle: {fileID: 0}
-  Star3: 0
-  Star2: 0
-  Star1: 0
+  Star3: 60
+  Star2: 37
+  Star1: 16

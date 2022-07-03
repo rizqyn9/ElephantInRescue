@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1272647043547311298}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.18, y: 0.18, z: 1}
+  m_LocalScale: {x: 0.16, y: 0.16, z: 1}
   m_Children: []
   m_Father: {fileID: 1272647043653299897}
   m_RootOrder: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlaneIdleArea: {fileID: 0}
-  m_intervalRotation: 0
+  m_intervalRotation: 2.5
   m_registeredDirection: []
 --- !u!61 &2604806066795459357
 BoxCollider2D:
@@ -176,7 +176,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
 --- !u!50 &7100947322944684162
 Rigidbody2D:

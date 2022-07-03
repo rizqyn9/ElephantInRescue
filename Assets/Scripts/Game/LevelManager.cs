@@ -40,12 +40,17 @@ public class LevelManager : MonoBehaviour
 
     void HandleGameStateChange(GameState before, GameState gameState)
     {
-        GameState = gameState;
-
-        if (gameState == GameState.PLAY)
-            HeaderUtils.CountDown.Start();
-        if (gameState == GameState.FINISH)
-            HeaderUtils.CountDown.Stop();
+        switch (GameState = gameState)
+        {
+            case GameState.PLAY:
+                m_rootController.Reset();
+                m_stoneController.Reset();
+                HeaderUtils.CountDown.Start();
+                break;
+            case GameState.FINISH:
+                HeaderUtils.CountDown.Stop();
+                break;
+        }
     }
 
     private void Awake()
