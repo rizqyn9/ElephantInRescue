@@ -3544,6 +3544,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1630166007}
     m_Modifications:
+    - target: {fileID: 291877067781510503, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 291877067964097452, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 319db15e513e24e7b91ced34dafb48d3, type: 3}
+    - target: {fileID: 291877068361316257, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 291877068726552375, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 319db15e513e24e7b91ced34dafb48d3, type: 3}
+    - target: {fileID: 291877068912816636, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 291877069343707962, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4852243518954244596, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3631,6 +3655,10 @@ PrefabInstance:
     - target: {fileID: 4852243518954244597, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
       propertyPath: m_Name
       value: SettingDialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852243518954244597, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4edb5a79753b845c58a5f2ef17ab803d, type: 3}
