@@ -6,7 +6,7 @@ using UnityEngine;
 public class CivilianIdle : MonoBehaviour
 {
     [SerializeField] internal Plane PlaneIdleArea;
-    [SerializeField][Range(5,50)] float m_intervalRotation;
+    [SerializeField][Range(0,50)] float m_intervalRotation;
     [SerializeField] List<Vector2> m_registeredDirection = new List<Vector2>();
 
     public Vector2 Direction { get => Civilian.Direction; }
