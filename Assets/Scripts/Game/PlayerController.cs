@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         SoundManager.PlaySound(m_sfxOnHit);
         IsDead = true;
+        StopAllTweening();
         ElephantAnimation.Knock();
         LeanTween.value(0, 1, .35f).setOnComplete(LevelManager.Instance.LoseCondition);
     }

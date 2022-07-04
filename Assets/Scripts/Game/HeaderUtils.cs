@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class HeaderUtils : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text m_countText;
-    [SerializeField] SpriteRenderer m_titleRenderer;
+    [SerializeField] TMPro.TMP_Text m_countText, m_stageText, m_levelText;
     [SerializeField] SpriteRenderer m_elephantHeader;
 
     public CountDown CountDown { get; set; }
@@ -12,7 +11,6 @@ public class HeaderUtils : MonoBehaviour
     private void OnEnable()
     {
         m_countText.text = (0).ToString();
-        m_titleRenderer.enabled = false;
     }
 
     private void Start()
@@ -26,8 +24,8 @@ public class HeaderUtils : MonoBehaviour
     {
         m_elephantHeader.color = LevelManager.LevelData.ElephantColor;
         m_countText.text = LevelManager.LevelData.CountDown.ToString();
-        m_titleRenderer.sprite = LevelManager.LevelData.LevelTitle;
-        m_titleRenderer.enabled = true;
+        m_stageText.text = $"STAGE {LevelManager.LevelData.Stage}";
+        m_levelText.text = $"Level {LevelManager.LevelData.Level}";
     }
 
     internal void OnCountDownChange()

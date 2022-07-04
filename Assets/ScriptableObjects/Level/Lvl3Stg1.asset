@@ -23,6 +23,6 @@ MonoBehaviour:
   GO_Tutorial: {fileID: 3964606036549188820, guid: 66441cd36feea497ba3c181fe51f5868, type: 3}
   GO_MainComponent: {fileID: 1273796671125844511, guid: 58d233392ac8c4860bb8e811ae647711, type: 3}
   LevelTitle: {fileID: 0}
-  Star3: 60
+  Star3: 20
   Star2: 40
-  Star1: 20
+  Star1: 60

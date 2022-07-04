@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class RulesController : MonoBehaviour
 {
-    [SerializeField] Image m_stars, m_title, m_emotion, m_levelTitle;
+    [SerializeField] Image m_stars, m_emotion, m_title;
+    [SerializeField] TMPro.TMP_Text m_LevelText, m_stageText;
     [SerializeField] GameObject m_winContainer, m_loseContainer;
     [SerializeField] UIDialog m_uIDialog;
     [SerializeField] List<RulesProps> m_rulesProps = new List<RulesProps>();
@@ -88,7 +89,8 @@ public class RulesController : MonoBehaviour
 
     void RenderUI(RulesProps props)
     {
-        m_levelTitle.sprite = LevelManager.Instance.LevelData.LevelTitle;
+        m_LevelText.text = $"LEVEL {LevelManager.Instance.LevelData.Level}";
+        m_stageText.text = $"STAGE {LevelManager.Instance.LevelData.Stage}";
         m_title.sprite = props.Title;
         m_stars.sprite = props.Stars;
         m_emotion.sprite = props.Emotion;

@@ -28,11 +28,20 @@ public class LevelSO : DescriptionBaseSO
 
     public WinLoseType CalculateStar(int remainingTime)
     {
-        remainingTime = CountDown - remainingTime;
-
-        if (remainingTime < Star3) return WinLoseType.STARS3;
-        else if (remainingTime < Star2) return WinLoseType.STARS2;
-        else if (remainingTime < Star3) return WinLoseType.STARS3;
+        int timeLength = CountDown - remainingTime;
+        Debug.Log(timeLength);
+        if (remainingTime == 0) return WinLoseType.TIME_OUT;
+        else if (timeLength <= Star3) return WinLoseType.STARS3;
+        else if (timeLength <= Star2) return WinLoseType.STARS2;
+        else if (timeLength < Star1) return WinLoseType.STARS1;
         else return WinLoseType.TIME_OUT;
     }
 }
+
+///
+/// param = 44
+/// rt = 60 - 20
+/// rt = 40
+/// 
+///
+///
