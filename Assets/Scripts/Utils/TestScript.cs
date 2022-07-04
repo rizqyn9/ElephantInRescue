@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] bool isKnocked = false;
     [SerializeField] ElephantAnimation m_elephantAnimation;
 
     private void OnEnable()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         m_elephantAnimation = GetComponent<ElephantAnimation>();
     }
 

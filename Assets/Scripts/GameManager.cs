@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 //        LoadGameLevel(GetLevelDataByLevelStage(Instance.levelDev, Instance.stageDev));
 //        return;
 //#endif
-        SceneManager.LoadScene(3, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     /**

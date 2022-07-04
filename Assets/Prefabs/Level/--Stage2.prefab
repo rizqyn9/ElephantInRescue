@@ -3712,7 +3712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878475328277081409, guid: 175163ec1360046deb42487eeab4c935, type: 3}
       propertyPath: m_registeredDirection.Array.data[0].y
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878475328277081409, guid: 175163ec1360046deb42487eeab4c935, type: 3}
       propertyPath: m_registeredDirection.Array.data[1].x
