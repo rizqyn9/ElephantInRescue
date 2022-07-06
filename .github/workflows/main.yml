@@ -60,12 +60,12 @@ jobs:
           path: build/Android
 
   buildWebGL:
-    name: 🐘 Elephant WebGL
+    name: Build for WebGL 🖥️
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Create LFS file list
@@ -96,7 +96,6 @@ jobs:
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: WebGL
-          customParameters: "${{ github.event.inputs.debugMode && '-Development -AllowDebugging' }}"
 
       - uses: actions/upload-artifact@v2
         with:
